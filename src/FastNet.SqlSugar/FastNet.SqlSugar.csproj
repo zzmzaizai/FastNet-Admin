@@ -16,6 +16,10 @@
   <ItemGroup>
     <Folder Include="Enum\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FastNet.Infrastructure\FastNet.Infrastructure.csproj" />
+  </ItemGroup>
 	
 	
 

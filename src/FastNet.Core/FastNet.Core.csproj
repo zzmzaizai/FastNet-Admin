@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\FastNet.Infrastructure\FastNet.Infrastructure.csproj" />
 	  <ProjectReference Include="..\FastNet.SqlSugar\FastNet.SqlSugar.csproj" />
 	</ItemGroup>
 
