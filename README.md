@@ -33,8 +33,8 @@ Soybean Admin ÊÇÒ»¸ö»ùÓÚ Vue3¡¢Vite3¡¢TypeScript¡¢NaiveUI¡¢Pinia ºÍ UnoCSS µÄÇåĞ
 * [ ]  µ÷¶È
 * [x]  ¿çÓò
 * [x]  [Êı¾İ¿âÉè¼Æ](doc/database.md)
-* [ ]  Êı¾İÊµÌå
-* [ ]  Êı¾İ·şÎñ
+* [x]  Êı¾İÊµÌå
+* [ ]  Êı¾İ²Ö´¢·şÎñ
 * [ ]  API¿ØÖÆÆ÷
 * [ ]  
 * [ ]  

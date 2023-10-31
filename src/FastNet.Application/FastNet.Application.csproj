@@ -20,10 +20,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Repositorys\Repositorys\" />
-		<Folder Include="Repositorys\IRepositorys\" />
-		<Folder Include="Services\IServices\" />
-		<Folder Include="Services\Services\" />
+		<Folder Include="Services\System\ApiResource\Dto\" />
+		<Folder Include="Services\System\ClientApp\Dto\" />
+		<Folder Include="Services\System\Config\Dto\" />
+		<Folder Include="Services\System\DictData\Dto\" />
+		<Folder Include="Services\System\DictType\Dto\" />
+		<Folder Include="Services\System\Menu\Dto\" />
+		<Folder Include="Services\System\Relation\Dto\" />
+		<Folder Include="Services\System\Organization\Dto\" />
+		<Folder Include="Services\System\Role\Dto\" />
+		<Folder Include="Services\System\Tenant\Dto\" />
+		<Folder Include="Services\System\User\Dto\" />
 		<Folder Include="System\Services\" />
 	</ItemGroup>
 
