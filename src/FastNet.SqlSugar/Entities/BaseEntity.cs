@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.SqlSugar.Entities
+namespace FastNet.SqlSugar
 {
     /// <summary>
     /// 主键实体基类
@@ -56,14 +56,29 @@ namespace FastNet.SqlSugar.Entities
     }
 
     /// <summary>
-    /// 业务数据实体基类(数据权限)
+    /// 业务数据实体基类(租户数据隔离)
     /// </summary>
     public abstract class DataEntityBase : BaseEntity
     {
         /// <summary>
-        /// 创建者部门Id
+        /// 租户编号
         /// </summary>
-        [SugarColumn(ColumnDescription = "创建者部门Id")]
-        public virtual long CreateOrgId { get; set; }
+        [SugarColumn(ColumnDescription = "租户编号")]
+        public virtual long TenantId { get; set; }
     }
+
+    /// <summary>
+    /// 关系表用到的实体几类(主键、租户编号)
+    /// </summary>
+    public abstract class SimpleEntityBase : PrimaryKeyEntity
+    {
+        /// <summary>
+        /// 租户编号
+        /// </summary>
+        [SugarColumn(ColumnDescription = "租户编号")]
+        public virtual long TenantId { get; set; }
+    }
+
+
+
 }

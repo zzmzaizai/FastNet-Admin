@@ -14,6 +14,15 @@
 * Status `状态` - 租户状态枚举
 
 
+#### SysRelation `系统关系表`
+
+* Id `编号`
+* SourceId `源编号`
+* TargetId `目标编号`
+* RelationType `关系类型` - 用户角色、用户组织、角色组织、角色菜单、客户端API
+* ExtraData `额外数据`
+
+
 #### SysUser `用户表`
 
 * Id `用户编号`
@@ -40,6 +49,7 @@
 * Leader `负责人`
 * Tel  `电话`
 * Email `邮箱`
+* Remark `备注`
 * Order `排序`
 * Status `状态` - 组织部门状态枚举
 
@@ -48,6 +58,7 @@
 
 * Id `角色编号`
 * Name `名称`
+* Remark `备注`
 * Status `状态` - 角色状态枚举
 
 
@@ -66,7 +77,7 @@
 
 * Id `API编号`
 * Name `名称`
-* Group `分组名称`
+* Group `分组名称` - 用字典定义资源分组
 * Router `API路由`
 * Path `API资源路径`
 * Method `请求方法`
@@ -81,47 +92,20 @@
 * Name `名称`
 * ClientCode `客户端编码`
 * SecretKey `私钥`
-* Remark `备注`
 * Tel  `电话`
-* Email  `邮箱`
+* Email `邮箱`
 * Contact  `联系人`
+* Remark `备注`
 * Status `状态` - 客户端状态枚举
 
 
-#### SysUserRole `用户角色关系表`
-* Id `编号`
-* UserId `用户编号`
-* RoleId `角色编号`
 
-#### SysUserOrg `用户组织关系表`
 
-* Id `编号`
-* UserId `用户编号`
-* OrgId `组织编号`
-
-#### SysRoleOrg `角色组织关系表`
-
-* Id `编号`
-* OrgId `组织编号`
-* RoleId `角色编号`
-
-#### SysRoleMenu `角色菜单关系表`
-
-* Id `编号`
-* MenuId `菜单编号`
-* RoleId `角色编号`
-* MenuActions `菜单操作枚举`
-
-#### SysApiClient `API客户端关系表`
-
-* Id `编号`
-* ClientId `客户端编号`
-* ApiId `API资源编号`
 
 #### SysDictType `字典类型表`
 
 * Id `编号`
-* DictName `字典类型名称`
+* DictTypeName `字典类型名称`
 * DictType `字典类型`
 * Order `排序`
 
@@ -141,6 +125,10 @@
 * Lable `配置名称`
 * Key `配置Key`
 * Value `配置值`
+
+
+
+## 后一期再设计的表
 
 #### SysTask `任务配置表`
 
