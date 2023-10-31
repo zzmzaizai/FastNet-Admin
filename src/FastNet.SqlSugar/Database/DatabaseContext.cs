@@ -141,8 +141,8 @@ public static class DatabaseContext
                     //创建人和创建机构ID
                     if (entityInfo.PropertyName == nameof(BaseEntity.CreateUserId))
                         entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
-                    if (entityInfo.PropertyName == nameof(DataEntityBase.CreateOrgId))
-                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
+                    //if (entityInfo.PropertyName == nameof(DataEntityBase.CreateOrgId))
+                    //    entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
                 }
             }
             // 更新操作

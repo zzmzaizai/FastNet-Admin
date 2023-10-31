@@ -12,6 +12,10 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
 {
     protected ITenant itenant = null;//多租户事务、GetConnection、IsAnyConnection等功能
 
+    /// <summary>
+    /// 仓储构造
+    /// </summary>
+    /// <param name="context"></param>
     public DatabaseRepository(ISqlSugarClient context = null) : base(context)//注意这里要有默认值等于null
     {
         Context = DatabaseContext.Db.GetConnectionScopeWithAttr<T>();//ioc注入的对象

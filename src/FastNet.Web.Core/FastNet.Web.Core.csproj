@@ -6,14 +6,19 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+ 
 
 	<ItemGroup>
 		<ProjectReference Include="..\FastNet.Application\FastNet.Application.csproj" />
 	</ItemGroup>
 
+ 
 
 	<ItemGroup>
-	  <DocFileItem Remove="FastNet.Web.Core.xml" />
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
-
+	
+	
 </Project>

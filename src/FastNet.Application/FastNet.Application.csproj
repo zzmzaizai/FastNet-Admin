@@ -2,36 +2,25 @@
 	<PropertyGroup>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+ 
 
-
-	<ItemGroup>
-		<None Remove="applicationsettings.json" />
-		<None Remove="FastNet.Admin.Application.xml" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="applicationsettings.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\FastNet.Core\FastNet.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Services\System\ApiResource\Dto\" />
-		<Folder Include="Services\System\ClientApp\Dto\" />
-		<Folder Include="Services\System\Config\Dto\" />
-		<Folder Include="Services\System\DictData\Dto\" />
-		<Folder Include="Services\System\DictType\Dto\" />
-		<Folder Include="Services\System\Menu\Dto\" />
-		<Folder Include="Services\System\Relation\Dto\" />
-		<Folder Include="Services\System\Organization\Dto\" />
-		<Folder Include="Services\System\Role\Dto\" />
-		<Folder Include="Services\System\Tenant\Dto\" />
-		<Folder Include="Services\System\User\Dto\" />
-		<Folder Include="System\Services\" />
+		<Folder Include="Repositorys\System\ApiResource\Dto\" />
+		<Folder Include="Repositorys\System\ClientApp\Dto\" />
+		<Folder Include="Repositorys\System\Config\Dto\" />
+		<Folder Include="Repositorys\System\DictData\Dto\" />
+		<Folder Include="Repositorys\System\DictType\Dto\" />
+		<Folder Include="Repositorys\System\Menu\Dto\" />
+		<Folder Include="Repositorys\System\Relation\Dto\" />
+		<Folder Include="Repositorys\System\Organization\Dto\" />
+		<Folder Include="Repositorys\System\Role\Dto\" />
+		<Folder Include="Repositorys\System\Tenant\Dto\" />
+		<Folder Include="Repositorys\System\User\Dto\" />
 	</ItemGroup>
 
 </Project>
