@@ -1,0 +1,51 @@
+<Project>
+	<PropertyGroup>
+		<!--目标框架版本-->
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+		<!--程序集版本号-->
+		<Version>0.0.1.0</Version>
+		<!--引入全局命名空间-->
+		<ImplicitUsings>enable</ImplicitUsings>
+		<!--开启文档注释-->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Authors>痞子叔</Authors>
+		<Company>个人</Company>
+		<Product>FastNet.Admin</Product>
+		<Copyright>© 2023-present 痞子叔</Copyright>
+		<RepositoryUrl>https://gitee.com/washala/ZmAdmin</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSource>true</EmbedUntrackedSource>
+		<EmbedAllSources>true</EmbedAllSources>
+		<RepositoryType>Gitee</RepositoryType>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>http://www.dnngo.net</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageTags>ASP.NET;ASP.NET Core;.NET;.NET Core;.NET6;.NET7;Framework;dotNET;Web;Cross Platform</PackageTags>
+		<PackageOutputPath>../nupkgs</PackageOutputPath>
+		<SignAssembly>True</SignAssembly>
+		<DelaySign>False</DelaySign>
+		<!--<AssemblyOriginatorKeyFile>..\..\snks\ZmAdmin.snk</AssemblyOriginatorKeyFile>-->
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\icon.png" Pack="true" PackagePath="\"/>
+		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+
+	</ItemGroup>
+
+</Project>

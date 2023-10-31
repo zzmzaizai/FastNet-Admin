@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Furion.Extras.DatabaseAccessor.SqlSugar" Version="4.8.8.50" />
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.112" />
+	<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.50" />
+	<PackageReference Include="Furion.Pure" Version="4.8.8.50" />
+	<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enum\" />
+  </ItemGroup>
+	
+	
+
+</Project>
