@@ -46,7 +46,7 @@ Soybean Admin ÊÇÒ»¸ö»ùÓÚ Vue3¡¢Vite3¡¢TypeScript¡¢NaiveUI¡¢Pinia ºÍ UnoCSS µÄÇåĞ
 # ¿ò¼Ü½á¹¹
 
 #### FastNet.Admin
-* ZmAdmin.sln `·½°¸`
+* FastNet.Admin.sln `·½°¸`
 * Base `»ù´¡ÏîÄ¿`
 	* FastNet.Infrastructure `Í¨ÓÃ·½·¨£¬À©Õ¹·½·¨`
 	* FastNet.SqlSugar `SqlSugar µÄ»ù´¡·â×°`
@@ -73,13 +73,14 @@ Soybean Admin ÊÇÒ»¸ö»ùÓÚ Vue3¡¢Vite3¡¢TypeScript¡¢NaiveUI¡¢Pinia ºÍ UnoCSS µÄÇåĞ
 
 # ËùÓÃµ½µÄ¼¼Êõ
 
-* .net7
+* .net6 & 7
 * SqlSugar
+* Furion
 * Swagger
 * JWT
 * Redis
 * Mapster
-* Sundial
+
 
 
 # Ñ§Ï°Ä¿µÄ
