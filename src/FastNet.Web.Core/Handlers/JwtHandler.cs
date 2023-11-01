@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace FastNet.Admin.Web.Core;
+namespace FastNet.Web.Core;
 
 public class JwtHandler : AppAuthorizeHandler
 {

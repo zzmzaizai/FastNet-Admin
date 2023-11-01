@@ -223,4 +223,76 @@ public static class StringExtension
 
         return result;
     }
+
+
+    #region 字符串分割
+    /// <summary>
+    /// 根据标志分割字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="sign">分割标识</param>
+    /// <param name="option">分割结果去重方式</param>
+    /// <returns></returns>
+
+    public static string[] SplitBySign(this string str, string sign, StringSplitOptions option = StringSplitOptions.None) => str?.Split(new string[] { sign }, option) ?? new string[0];
+    /// <summary>
+    /// 根据标志分割字符串(不包含空字符串)
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="sign"></param>
+    /// <returns></returns>
+    public static string[] SplitBySignWithoutEmpty(this string str, string sign) => str.SplitBySign(sign, StringSplitOptions.RemoveEmptyEntries);
+    /// <summary>
+    /// 根据标志分割字符串后获得第一个字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="sign"></param>
+    /// <param name="option"></param>
+    /// <returns></returns>
+    public static string SplitThenGetFirst(this string str, string sign, StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries) => str?.SplitBySign(sign, option).FirstOrDefault();
+    /// <summary>
+    /// 根据标志分割字符串后获得最后一个字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="sign">分割标志</param>
+    /// <param name="option">分割结果去重方式</param>
+    /// <returns></returns>
+    public static string SplitThenGetLast(this string str, string sign, StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries) => str?.SplitBySign(sign, option).LastOrDefault();
+
+    /// <summary>
+    /// 根据标志分割字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="signs">分割标识，多重标识</param>
+    /// <returns></returns>
+    public static string[] SplitByMultiSign(this string str, params string[] signs) => str?.Split(signs, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+    /// <summary>
+    /// 根据 | \ / 、 ， , 空格 中文空格 制表符空格换行 分割字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="option">分割结果去重方式</param>
+    /// <returns></returns>
+    public static string[] SplitAuto(this string str, StringSplitOptions option = StringSplitOptions.RemoveEmptyEntries) =>
+        str.SplitByMultiSign("|", "\\", "/", "、", ":", "：", "，", ",", "　", " ", "\t");
+    /// <summary>
+    /// 根据换行符拆分字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string[] SplitByLine(this string str) => str.SplitByMultiSign("\r\n", "\r", "\n");
+
+    /// <summary>
+    /// 根据竖线符 | 拆分字符串
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string[] SplitByYLine(this string str) => str.SplitByMultiSign("|");
+
+    /// <summary>
+    /// 根据逗号拆分字符串并转换成int
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static int[] SplitToInts(this string str) => Array.ConvertAll<string, int>(str.SplitByMultiSign(","), (s) => { return int.Parse(s); });
+    #endregion
 }

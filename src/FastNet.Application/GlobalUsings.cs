@@ -16,3 +16,6 @@ global using SqlSugar;
 
 global using FastNet.Core;
 global using FastNet.SqlSugar;
+
+global using FastNet.Infrastructure;
+global using FastNet.Infrastructure.Extensions;

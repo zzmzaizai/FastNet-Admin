@@ -74,6 +74,24 @@ public static partial class Extensions
         }
     }
 
+    /// <summary>
+    /// 设置 Hashtable
+    /// key 存在则更新，不存在则新增
+    /// </summary>
+    /// <param name="hash"></param>
+    /// <param name="key"></param>
+    /// <param name="value"></param>
+    public static void Set(this IDictionary<object, object> hash, object key, object value)
+    {
+        if (hash.ContainsKey(key.ToString()))
+        {
+            hash[key] = value;
+        }
+        else
+        {
+            hash.Add(key, value);
+        }
+    }
 
     /// <summary>
     /// 设置 Hashtable

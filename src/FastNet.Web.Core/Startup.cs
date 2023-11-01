@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace FastNet.Admin.Web.Core;
+namespace FastNet.Web.Core;
 
 public class Startup : AppStartup
 {
@@ -36,6 +36,8 @@ public class Startup : AppStartup
         app.UseAuthorization();
 
         app.UseInject(string.Empty);
+
+        app.UseMiddlewares();
 
         app.UseEndpoints(endpoints =>
         {
