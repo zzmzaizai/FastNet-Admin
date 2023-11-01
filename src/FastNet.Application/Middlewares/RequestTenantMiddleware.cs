@@ -48,7 +48,7 @@ namespace FastNet.Application
             if (context.Request.Cookies.ContainsKey("TenantId"))
             {
                 //解密Cookies中的TenantId
-                var TenantId = context.Request.Cookies["TenantId"].ToAESDecrypt("abc123def").ParseToLong();
+                var TenantId = context.Request.Cookies["TenantId"].ToDESCDecrypt("abc123defas@#asd1AAAQs!").ParseToLong();
                 if(TenantId > 0)
                 {
                     //将TenantId装在到上下文对象中
@@ -71,7 +71,7 @@ namespace FastNet.Application
                 {
                     //将租户编号存放到上下文和Cookies中
                     context.Items.Set("TenantId", TenantItem.Id);
-                    context.Response.Cookies.Append("TenantId", $"{TenantItem.Id}".ToAESEncrypt("abc123def"));
+                    context.Response.Cookies.Append("TenantId", $"{TenantItem.Id}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
                     Completed = true;
                 }
             }
