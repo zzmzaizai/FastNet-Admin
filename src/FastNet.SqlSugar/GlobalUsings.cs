@@ -1,7 +1,12 @@
-﻿global using Furion;
+﻿global using System.IO;
+
+global using Furion;
 global using Mapster;
 global using SqlSugar;
 global using Furion.DependencyInjection;
 global using Microsoft.Extensions.Hosting;
 global using FastNet.SqlSugar;
 global using System.Linq.Expressions;
+
+global using FastNet.Infrastructure;
+global using FastNet.Infrastructure.Extensions;

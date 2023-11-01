@@ -12,7 +12,14 @@ global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.CodeAnalysis;
 global using System.ComponentModel.DataAnnotations;
-global using SqlSugar;
-
-global using FastNet.Infrastructure;
-global using FastNet.SqlSugar;
+global using System.Collections;
+global using System.Data;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Converters;
+global using System.Text;
+global using System.Text.RegularExpressions;
+global using System.Linq;
+global using Newtonsoft.Json.Linq;
+global using System.Linq.Expressions;
+global using System.ComponentModel;
+global using System.Reflection;
