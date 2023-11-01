@@ -32,9 +32,12 @@
 * Email `邮箱`
 * NickName `昵称`
 * FullName `全名`
+* Tel  `电话`
+* Avatar  `头像`
 * Sex `性别` - 字典编号
 * Title `职位` - 字典编号
-* Tel  `电话`
+* IsSuperAdmin `是否超级管理员`
+* IsAdmin `是否普通管理员`
 * Status `状态` - 用户状态枚举
 * LoginIP  `登录IP`
 * LoginDate `登录时间`

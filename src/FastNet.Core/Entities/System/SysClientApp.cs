@@ -54,7 +54,7 @@ public class SysClientApp : DataEntityBase
     /// 状态
     /// </summary>
     [SugarColumn(ColumnDescription = "状态", IsNullable = false)]
-    public DataStatus Status { get; set; }
+    public virtual DataStatus Status { get; set; }
 
 }
 
