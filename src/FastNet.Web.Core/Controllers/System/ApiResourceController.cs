@@ -9,6 +9,8 @@ namespace FastNet.Web.Core.Controllers;
 /// <summary>
 /// API资源服务
 /// </summary>
+[Route("api/system/[controller]")]
+[ApiDescriptionSettings(groups: "System", Order = 50)]
 public class ApiResourceController : IDynamicApiController
 {
 

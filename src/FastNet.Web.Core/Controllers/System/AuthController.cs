@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace FastNet.Web.Core.Controllers;
 
 /// <summary>
-/// 组织部门服务
+/// 账号服务
 /// </summary>
 [Route("api/system/[controller]")]
-[ApiDescriptionSettings(groups: "System",Order = 70)]
-public class OrganizationController : IDynamicApiController
+[ApiDescriptionSettings(groups: "System", Order = 90)]
+public class AuthController : IDynamicApiController
 {
 
-    public OrganizationController()
+    public AuthController()
     {
         
     }

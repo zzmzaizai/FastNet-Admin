@@ -4,9 +4,23 @@
     "DocumentTitle": "FastNet | Web API",
     "GroupOpenApiInfos": [
       {
-        "Group": "Default",
-        "Title": "规范化API接口",
-        "Description": "FastNet Admin Web API",
+        "Group": "System",
+        "Order": 10,
+        "Title": "System Api Group",
+        "Description": "User、Role、Menu ...",
+        "Version": "1.0.0",
+        "TermsOfService": "http://www.dnngo.net",
+        "Contact": {
+          "Name": "痞子再",
+          "Url": "https://gitee.com/washala",
+          "Email": "washala@qq.com"
+        }
+      },
+      {
+        "Group": "Host",
+        "Order": 0,
+        "Title": "Host Api Group",
+        "Description": "Tenant",
         "Version": "1.0.0",
         "TermsOfService": "http://www.dnngo.net",
         "Contact": {

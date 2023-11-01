@@ -9,6 +9,8 @@ namespace FastNet.Web.Core.Controllers;
 /// <summary>
 /// 菜单服务
 /// </summary>
+[Route("api/system/[controller]")]
+[ApiDescriptionSettings(groups: "System", Order = 60)]
 public class MenuController : IDynamicApiController
 {
 

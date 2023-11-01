@@ -9,6 +9,8 @@ namespace FastNet.Web.Core.Controllers;
 /// <summary>
 /// 全局配置服务
 /// </summary>
+[Route("api/system/[controller]")]
+[ApiDescriptionSettings(groups: "System", Order = 20)]
 public class ConfigController : IDynamicApiController
 {
 
