@@ -6,7 +6,7 @@
 ///</summary>
 [SugarTable("sys_user", TableDescription = "用户表")]
 [Tenant("FastNet")]
-public class SysUser : BaseEntity
+public class SysUser : DataEntityBase
 {
 
     /// <summary>
@@ -73,6 +73,13 @@ public class SysUser : BaseEntity
     /// </summary>
     [SugarColumn(ColumnDescription = "职位", Length = 50, IsNullable = true)]
     public virtual string Title { get; set; }
+
+
+    /// <summary>
+    /// 是否超级管理员
+    /// </summary>
+    [SugarColumn(ColumnDescription = "是否超级管理员", IsNullable = false, DefaultValue = "0")]
+    public virtual bool IsSuperAdmin { get; set; }
 
 
     /// <summary>

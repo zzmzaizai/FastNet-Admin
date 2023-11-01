@@ -11,6 +11,7 @@
 * Email  `邮箱`
 * Contact  `联系人`
 * Remark `备注`
+* IsDefault `默认站点`
 * Status `状态` - 租户状态枚举
 
 
@@ -37,7 +38,6 @@
 * Sex `性别` - 字典编号
 * Title `职位` - 字典编号
 * IsSuperAdmin `是否超级管理员`
-* IsAdmin `是否普通管理员`
 * Status `状态` - 用户状态枚举
 * LoginIP  `登录IP`
 * LoginDate `登录时间`

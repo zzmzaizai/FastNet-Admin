@@ -32,14 +32,11 @@ public class SysTenant : BaseEntity
     [SugarColumn(ColumnDescription = "结束时间", IsNullable = true)]
     public virtual DateTime? EndDate { get; set; }
 
-
-
     /// <summary>
     /// 电话
     ///</summary>
     [SugarColumn(ColumnDescription = "电话", Length = 100, IsNullable = true)]
     public virtual string Tel { get; set; }
-
 
     /// <summary>
     /// 邮箱
@@ -60,6 +57,14 @@ public class SysTenant : BaseEntity
     ///</summary>
     [SugarColumn(ColumnDescription = "备注", Length = 500, IsNullable = true)]
     public virtual string Remark { get; set; }
+
+
+    /// <summary>
+    /// 默认站点
+    /// </summary>
+    [SugarColumn(ColumnDescription = "默认站点", IsNullable = false,DefaultValue = "0")]
+    public virtual bool IsDefault { get; set; }
+
 
     /// <summary>
     /// 状态

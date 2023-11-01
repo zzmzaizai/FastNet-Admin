@@ -140,7 +140,16 @@ public static class DatabaseContext
                 {
                     //创建人和创建机构ID
                     if (entityInfo.PropertyName == nameof(BaseEntity.CreateUserId))
+                    {
                         entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                    }
+
+                    //租户编号设置
+                    if (entityInfo.PropertyName == nameof(DataEntityBase.TenantId))
+                    {
+                        entityInfo.SetValue(App.HttpContext?.Items.Get<long>("TenantId", 0));
+                    }
+                       
                     //if (entityInfo.PropertyName == nameof(DataEntityBase.CreateOrgId))
                     //    entityInfo.SetValue(App.User.FindFirst(ClaimConst.OrgId)?.Value);
                 }
@@ -164,6 +173,8 @@ public static class DatabaseContext
         db.Aop.DataExecuted = (value, entity) =>
         {
         };
+
+
     }
 
     /// <summary>
@@ -186,6 +197,10 @@ public static class DatabaseContext
     {
         // 假删除过滤器
         //LogicDeletedEntityFilter(db);
+
+        //租户数据过滤器
+        TenantEntityFilter(db);
+
     }
 
     /// <summary>
@@ -195,6 +210,21 @@ public static class DatabaseContext
     private static void LogicDeletedEntityFilter(SqlSugarScopeProvider db)
     {
     }
+
+    /// <summary>
+    /// 租户数据过滤器
+    /// </summary>
+    /// <param name="db"></param>
+    private static void TenantEntityFilter(SqlSugarScopeProvider db)
+    {
+        //需要通过上下文获取当前租户信息
+        var TenantId = App.HttpContext?.Items.Get<long>("TenantId", 0);
+
+        //接口过滤器 实现租户的数据隔离
+        db.QueryFilter.AddTableFilter<DataEntityBase>(it => it.TenantId == TenantId);
+        db.QueryFilter.AddTableFilter<SimpleEntityBase>(it => it.TenantId == TenantId);
+    }
+
 
     private static void WriteSqlLog(string msg)
     {
