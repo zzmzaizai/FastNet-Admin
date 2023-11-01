@@ -3,6 +3,7 @@
 /// 租户表实体
 /// </summary>
 [SugarTable("sys_tenant", TableDescription = "租户表")]
+[Tenant("FastNet")]
 public class SysTenant : BaseEntity
 {
     /// <summary>

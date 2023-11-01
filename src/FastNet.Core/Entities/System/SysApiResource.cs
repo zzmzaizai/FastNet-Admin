@@ -3,6 +3,7 @@
 /// Api资源表实体
 /// </summary>
 [SugarTable("sys_apiresource", TableDescription = "Api资源表")]
+[Tenant("FastNet")]
 public class SysApiResource : DataEntityBase
 {
 

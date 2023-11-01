@@ -3,6 +3,7 @@
 /// 角色表实体
 /// </summary>
 [SugarTable("sys_role", TableDescription = "角色表")]
+[Tenant("FastNet")]
 public class SysRole : DataEntityBase
 {
 

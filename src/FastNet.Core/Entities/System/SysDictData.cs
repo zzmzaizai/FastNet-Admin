@@ -4,6 +4,7 @@
 /// 字典数据表实体
 /// </summary>
 [SugarTable("sys_dictdata", TableDescription = "字典数据表")]
+[Tenant("FastNet")]
 public class SysDictData : SimpleEntityBase
 {
 

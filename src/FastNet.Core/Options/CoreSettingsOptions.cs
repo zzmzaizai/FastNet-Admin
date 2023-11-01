@@ -10,6 +10,6 @@ namespace FastNet.Core;
 /// <summary>
 /// 项目配置
 /// </summary>
-public class CoreSettingsOptions : BaseOptions, IConfigurableOptions
+public class DataSettingsOptions : BaseOptions, IConfigurableOptions
 {
 }

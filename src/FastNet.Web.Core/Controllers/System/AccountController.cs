@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace FastNet.Web.Core.Controllers;
 
@@ -14,9 +10,10 @@ namespace FastNet.Web.Core.Controllers;
 public class AccountController : IDynamicApiController
 {
 
-    public AccountController()
+    private readonly ISysUserRepository _userRep;
+    public AccountController(ISysUserRepository userRep)
     {
-        
+        _userRep = userRep;
     }
 
     /// <summary>
@@ -27,4 +24,27 @@ public class AccountController : IDynamicApiController
     {
         return $"现在时间是{DateTime.Now}";
     }
+
+    /// <summary>
+    /// 随便添加个用户
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SysUser> AddUser()
+    {
+        return await _userRep.AddUser();
+    }
+
+    /// <summary>
+    /// 获取所有用户
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<List<SysUser>> GetAllUsers()
+    {
+        return await _userRep.GetAllUsers();
+    }
+
+
+
 }

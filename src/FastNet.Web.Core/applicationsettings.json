@@ -37,5 +37,18 @@
       "x-access-token",
       "environment"
     ]
-  }
+  },
+  //系统层设置
+  "DataSettings": {
+    "InitTable": true, //是否初始化表结构
+    "InitSeedData": true //是否初始化种子数据
+  },
+  "ConnectionConfigs": [
+    {
+      "ConfigId": "FastNet", //租户ID
+      "ConnectionString": "Data Source=./Furion.db",
+      "DbType": "Sqlite",
+      "IsAutoCloseConnection": true
+    }
+  ]
 }

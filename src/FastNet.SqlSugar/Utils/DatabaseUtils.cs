@@ -15,7 +15,7 @@ namespace FastNet.SqlSugar
         /// <returns></returns>
         public static long GetDataId()
         {
-            return YitIdHelper.NextId();
+            return SnowFlakeSingle.Instance.NextId();
         }
     }
 }

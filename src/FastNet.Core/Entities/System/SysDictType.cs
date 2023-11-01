@@ -3,6 +3,7 @@
 /// 字典类型表实体
 /// </summary>
 [SugarTable("sys_dicttype", TableDescription = "字典类型表")]
+[Tenant("FastNet")]
 public class SysDictType : SimpleEntityBase
 {
 

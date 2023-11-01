@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastNet.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,10 @@ namespace FastNet.Web.Core.Controllers;
 [ApiDescriptionSettings(groups: "System", Order = 20)]
 public class ConfigController : IDynamicApiController
 {
-
-    public ConfigController()
+    private readonly ISysUserRepository _userRep;
+    public ConfigController(ISysUserRepository userRep)
     {
-        
+        _userRep = userRep;
     }
 
     /// <summary>
@@ -27,4 +28,6 @@ public class ConfigController : IDynamicApiController
     {
         return $"现在时间是{DateTime.Now}";
     }
+
+
 }

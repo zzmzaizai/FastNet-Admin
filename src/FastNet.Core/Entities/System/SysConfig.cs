@@ -3,6 +3,7 @@
 /// 系统配置表实体
 /// </summary>
 [SugarTable("sys_config", TableDescription = "系统配置表")]
+[Tenant("FastNet")]
 public class SysConfig : SimpleEntityBase
 {
 

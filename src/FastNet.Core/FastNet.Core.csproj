@@ -21,4 +21,16 @@
 	  <Folder Include="Entities\Business\" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+		<Content Include="SeedData\Json\*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <None Remove="SeedData\Json\seed_sys_tenant.json" />
+	</ItemGroup>
+
 </Project>

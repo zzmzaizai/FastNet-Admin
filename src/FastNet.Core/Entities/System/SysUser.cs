@@ -5,6 +5,7 @@
 /// 用户信息表实体
 ///</summary>
 [SugarTable("sys_user", TableDescription = "用户表")]
+[Tenant("FastNet")]
 public class SysUser : BaseEntity
 {
 

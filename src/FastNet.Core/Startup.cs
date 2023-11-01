@@ -20,7 +20,7 @@ public class Startup : AppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         //系统配置转实体
-        services.AddConfigurableOptions<CoreSettingsOptions>();
+        services.AddConfigurableOptions<DataSettingsOptions>();
 
     }
 
@@ -28,7 +28,7 @@ public class Startup : AppStartup
     {
         var fullName = Assembly.GetExecutingAssembly().FullName;//获取程序集全名
         //通过 App.GetOptions<TOptions> 获取选项
-        var settings = App.GetOptions<CoreSettingsOptions>();
+        var settings = App.GetOptions<DataSettingsOptions>();
         CodeFirstUtils.CodeFirst(settings, fullName);//CodeFirst
     }
 }

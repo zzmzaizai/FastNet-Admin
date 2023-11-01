@@ -3,6 +3,7 @@
 /// 菜单表实体
 /// </summary>
 [SugarTable("sys_menu", TableDescription = "菜单表")]
+[Tenant("FastNet")]
 public class SysMenu : DataEntityBase
 {
 

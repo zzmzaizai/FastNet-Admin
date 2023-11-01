@@ -6,6 +6,7 @@
 /// 客户端应用表实体
 /// </summary>
 [SugarTable("sys_clientapp", TableDescription = "客户端应用表")]
+[Tenant("FastNet")]
 public class SysClientApp : DataEntityBase
 {
     /// <summary>

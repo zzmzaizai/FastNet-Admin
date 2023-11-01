@@ -3,6 +3,7 @@
 /// 组织部门表实体
 /// </summary>
 [SugarTable("sys_organization", TableDescription = "组织部门表")]
+[Tenant("FastNet")]
 public class SysOrganization : DataEntityBase
 {
 

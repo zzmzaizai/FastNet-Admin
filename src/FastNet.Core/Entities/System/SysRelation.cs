@@ -4,6 +4,7 @@
 /// 系统关系表实体
 /// </summary>
 [SugarTable("sys_relation", TableDescription = "系统关系表")]
+[Tenant("FastNet")]
 public class SysRelation : SimpleEntityBase
 {
     /// <summary>
