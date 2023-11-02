@@ -17,3 +17,5 @@ global using SqlSugar;
 
 global using FastNet.Application;
 global using FastNet.Core;
+global using FastNet.Infrastructure.Extensions;
+global using Furion.DataEncryption.Extensions;

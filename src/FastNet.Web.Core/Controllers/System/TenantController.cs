@@ -1,10 +1,5 @@
-﻿using FastNet.Infrastructure.Extensions;
-using Furion.DataEncryption.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 
 namespace FastNet.Web.Core.Controllers;
 
@@ -13,16 +8,9 @@ namespace FastNet.Web.Core.Controllers;
 /// </summary>
 [Route("api/host/[controller]")]
 [ApiDescriptionSettings(groups: "Host", Order = 1)]
-public class TenantController : IDynamicApiController
+public class TenantController : BaseApiController
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly ISysTenantRepository _tenantRepository;
-    public TenantController(IHttpContextAccessor httpContextAccessor
-        , ISysTenantRepository tenantRepository)
-    {
-        _httpContextAccessor = httpContextAccessor;
-        _tenantRepository = tenantRepository;
-    }
+
 
     /// <summary>
     /// 获取当前租户信息
@@ -30,7 +18,7 @@ public class TenantController : IDynamicApiController
     /// <returns></returns>
     public async Task<SysTenant> GetCurrentTenant()
     {
-        return await _tenantRepository.GetItemByTenantId(_httpContextAccessor.HttpContext.Items.Get("TenantId", 0L));
+        return await sysTenantRep.GetItemByTenantId(httpContextAccessor.HttpContext.Items.Get("TenantId", 0L));
     }
 
     /// <summary>
@@ -39,7 +27,7 @@ public class TenantController : IDynamicApiController
     /// <returns></returns>
     public long GetCurrentTenantId()
     {
-        return _httpContextAccessor.HttpContext.Items.Get("TenantId", 0L);
+        return httpContextAccessor.HttpContext.Items.Get("TenantId", 0L);
     }
 
     /// <summary>
@@ -49,7 +37,7 @@ public class TenantController : IDynamicApiController
     [HttpPost]
     public async Task<SysTenant> FillDefaultTenant()
     {
-        return await _tenantRepository.FillDefaultTenant();
+        return await sysTenantRep.FillDefaultTenant();
     }
 
     /// <summary>
@@ -60,11 +48,11 @@ public class TenantController : IDynamicApiController
     [HttpPost]
     public async Task<bool> ChangeTenantSite(long TenantId)
     {
-        var TenantItem =  await _tenantRepository.GetItemByTenantId(TenantId);
+        var TenantItem =  await sysTenantRep.GetItemByTenantId(TenantId);
         if(TenantItem != null && TenantItem.Id > 0)
         {
-            _httpContextAccessor.HttpContext.Items.Set("TenantId", TenantId);
-            _httpContextAccessor.HttpContext.Response.Cookies.Append("TenantId", $"{TenantId}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
+            httpContextAccessor.HttpContext.Items.Set("TenantId", TenantId);
+            httpContextAccessor.HttpContext.Response.Cookies.Append("TenantId", $"{TenantId}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
             return true;
         }else
         {

@@ -12,22 +12,9 @@ namespace FastNet.Web.Core.Controllers;
 /// </summary>
 [Route("api/system/[controller]")]
 [ApiDescriptionSettings(groups: "System", Order = 20)]
-public class ConfigController : IDynamicApiController
+public class ConfigController : BaseApiController
 {
-    private readonly ISysUserRepository _userRep;
-    public ConfigController(ISysUserRepository userRep)
-    {
-        _userRep = userRep;
-    }
-
-    /// <summary>
-    /// 获取信息(测试用)
-    /// </summary>
-    /// <returns></returns>
-    public string GetInfo()
-    {
-        return $"现在时间是{DateTime.Now}";
-    }
+ 
 
 
 }

@@ -11,20 +11,7 @@ namespace FastNet.Web.Core.Controllers;
 /// </summary>
 [Route("api/system/[controller]")]
 [ApiDescriptionSettings(groups: "System", Order = 40)]
-public class ClientAppController : IDynamicApiController
+public class ClientAppController : BaseApiController
 {
-
-    public ClientAppController()
-    {
-        
-    }
-
-    /// <summary>
-    /// 获取信息(测试用)
-    /// </summary>
-    /// <returns></returns>
-    public string GetInfo()
-    {
-        return $"现在时间是{DateTime.Now}";
-    }
+     
 }
