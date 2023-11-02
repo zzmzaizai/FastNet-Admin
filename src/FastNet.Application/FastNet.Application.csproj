@@ -19,7 +19,6 @@
 		<Folder Include="Repositorys\System\Relation\Dto\" />
 		<Folder Include="Repositorys\System\Organization\Dto\" />
 		<Folder Include="Repositorys\System\Role\Dto\" />
-		<Folder Include="Repositorys\System\Tenant\Dto\" />
 		<Folder Include="Repositorys\System\User\Dto\" />
 	</ItemGroup>
 

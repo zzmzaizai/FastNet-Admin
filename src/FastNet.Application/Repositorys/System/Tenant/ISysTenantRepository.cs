@@ -21,10 +21,10 @@ public interface ISysTenantRepository : ITransient
     Task<SysTenant> GetItemByTenantId(long TenantId);
 
     /// <summary>
-    /// 获取所有租户
+    /// 获取分页数据
     /// </summary>
     /// <returns></returns>
-    Task<List<SysTenant>> GetAllList();
+    Task<List<SysTenant>> GetPage(TenantPagedInput input);
 
     /// <summary>
     /// 填充默认的租户

@@ -46,10 +46,10 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
     }
 
     /// <summary>
-    /// 获取所有租户
+    /// 获取分页数据
     /// </summary>
     /// <returns></returns>
-    public async Task<List< SysTenant>> GetAllList()
+    public async Task<List< SysTenant>> GetPage(TenantPagedInput input)
     {
         return await Context.Queryable<SysTenant>().ToListAsync();
     }
@@ -96,6 +96,51 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
             }
         return await Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable).OrderByDescending(x=>x.CreateTime).FirstAsync();
     }
+
+
+    #region "公用方法"
+
+
+    /// <summary>
+    /// 获取Sqlsugar的ISugarQueryable
+    /// </summary>  
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private async Task<ISugarQueryable<SysTenant>> GetQuery(TenantPagedInput input)
+    {
+        var query = Context.Queryable<SysTenant>()
+             .WhereIF(!string.IsNullOrEmpty(input.SearchText), u => u.Name.Contains(input.SearchText) || u.Domains.Contains(input.SearchText))//根据关键字查询
+              .OrderBy(u => u.Id)//排序
+              .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}");
+
+
+
+
+        //var query = Context.Queryable<SysTenant>().LeftJoin<SysOrg>((u, o) => u.OrgId == o.Id)
+        //    .LeftJoin<SysPosition>((u, o, p) => u.PositionId == p.Id)
+        //    .WhereIF(input.OrgId > 0, u => orgIds.Contains(u.OrgId))//根据组织
+        //    .WhereIF(input.Expression != null, input.Expression?.ToExpression())//动态查询
+        //    .WhereIF(!string.IsNullOrEmpty(input.UserStatus), u => u.UserStatus == input.UserStatus)//根据状态查询
+        //    .WhereIF(!string.IsNullOrEmpty(input.SearchKey), u => u.Name.Contains(input.SearchKey) || u.Account.Contains(input.SearchKey))//根据关键字查询
+        //    .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"u.{input.SortField} {input.SortOrder}")
+        //    .OrderBy(u => u.Id)//排序
+        //    .Select((u, o, p) => new SysUser
+        //    {
+        //        Id = u.Id.SelectAll(),
+        //        OrgName = o.Name,
+        //        PositionName = p.Name,
+        //        OrgNames = o.Names
+        //    })
+        //    .Mapper(u =>
+        //    {
+        //        u.Password = null;//密码清空
+        //        u.Phone = CryptogramUtil.Sm4Decrypt(u.Phone);//手机号解密
+        //    });
+        return query;
+    }
+
+
+    #endregion
 
 
 }
