@@ -44,12 +44,16 @@ namespace FastNet.Application
         {
             var Completed = false;
 
+            //获取当前域名
+            var HostDomian = context.Request.Host.ToString().ToLower();
+
             //判断Cookie中有无定义的TenantId
             if (context.Request.Cookies.ContainsKey("TenantId"))
             {
                 //解密Cookies中的TenantId
                 var TenantId = context.Request.Cookies["TenantId"].ToDESCDecrypt("abc123defas@#asd1AAAQs!").ParseToLong();
-                if(TenantId > 0)
+                var TenantDomain = context.Request.Cookies["TenantDomain"];
+                if (TenantDomain == HostDomian && TenantId > 0)
                 {
                     //将TenantId装在到上下文对象中
                     context.Items.Set("TenantId", TenantId);
@@ -63,8 +67,7 @@ namespace FastNet.Application
                 //** 后期可以在这里把域名和租户缓存起来
 
 
-                //获取当前域名
-                var HostDomian = context.Request.Host.ToString();
+              
                 //查找当前域名是否存在某个站点中，否则返回主租户信息
                 var TenantItem =  _tenantRepository.GetItemByHost(HostDomian);
                 if(TenantItem != null && TenantItem.Id > 0)
@@ -72,6 +75,7 @@ namespace FastNet.Application
                     //将租户编号存放到上下文和Cookies中
                     context.Items.Set("TenantId", TenantItem.Id);
                     context.Response.Cookies.Append("TenantId", $"{TenantItem.Id}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
+                    context.Response.Cookies.Append("TenantDomain", HostDomian);
                     Completed = true;
                 }
             }

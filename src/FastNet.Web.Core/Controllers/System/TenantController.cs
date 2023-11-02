@@ -18,7 +18,16 @@ public class TenantController : BaseApiController
     /// <returns></returns>
     public async Task<SysTenant> GetCurrentTenant()
     {
-        return await sysTenantRep.GetItemByTenantId(httpContextAccessor.HttpContext.Items.Get("TenantId", 0L));
+        return await sysTenantRep.GetItemByTenantId(httpContext.Items.Get("TenantId", 0L));
+    }
+
+    /// <summary>
+    /// 获取所有租户
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List< SysTenant>> GetAllList()
+    {
+        return await sysTenantRep.GetAllList();
     }
 
     /// <summary>
@@ -27,7 +36,7 @@ public class TenantController : BaseApiController
     /// <returns></returns>
     public long GetCurrentTenantId()
     {
-        return httpContextAccessor.HttpContext.Items.Get("TenantId", 0L);
+        return httpContext.Items.Get("TenantId", 0L);
     }
 
     /// <summary>
@@ -35,9 +44,9 @@ public class TenantController : BaseApiController
     /// </summary>
     /// <returns></returns>
     [HttpPost]
-    public async Task<SysTenant> FillDefaultTenant()
+    public async Task<SysTenant> FillTenant(bool IsDefault, string DomainName)
     {
-        return await sysTenantRep.FillDefaultTenant();
+        return await sysTenantRep.FillTenant(IsDefault, DomainName);
     }
 
     /// <summary>
@@ -51,8 +60,9 @@ public class TenantController : BaseApiController
         var TenantItem =  await sysTenantRep.GetItemByTenantId(TenantId);
         if(TenantItem != null && TenantItem.Id > 0)
         {
-            httpContextAccessor.HttpContext.Items.Set("TenantId", TenantId);
-            httpContextAccessor.HttpContext.Response.Cookies.Append("TenantId", $"{TenantId}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
+            httpContext.Items.Set("TenantId", TenantId);
+            httpContext.Response.Cookies.Append("TenantId", $"{TenantId}".ToDESCEncrypt("abc123defas@#asd1AAAQs!"));
+            httpContext.Response.Cookies.Append("TenantDomain", httpContext.Request.Host.ToString().ToLower());
             return true;
         }else
         {

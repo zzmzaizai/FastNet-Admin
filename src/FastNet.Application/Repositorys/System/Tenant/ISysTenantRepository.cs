@@ -21,9 +21,15 @@ public interface ISysTenantRepository : ITransient
     Task<SysTenant> GetItemByTenantId(long TenantId);
 
     /// <summary>
+    /// 获取所有租户
+    /// </summary>
+    /// <returns></returns>
+    Task<List<SysTenant>> GetAllList();
+
+    /// <summary>
     /// 填充默认的租户
     /// </summary>
     /// <returns></returns>
-    Task<SysTenant> FillDefaultTenant();
+    Task<SysTenant> FillTenant(bool IsDefault, string DomainName);
 }
 

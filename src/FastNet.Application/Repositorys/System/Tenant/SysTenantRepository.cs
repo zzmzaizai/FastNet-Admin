@@ -1,5 +1,6 @@
 ﻿using FastNet.Infrastructure.Extensions;
 using StackExchange.Profiling.Internal;
+using System.Collections.Generic;
 
 namespace FastNet.Application;
 
@@ -45,27 +46,55 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
     }
 
     /// <summary>
+    /// 获取所有租户
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List< SysTenant>> GetAllList()
+    {
+        return await Context.Queryable<SysTenant>().ToListAsync();
+    }
+
+
+
+    /// <summary>
     /// 填充默认的租户
     /// </summary>
     /// <returns></returns>
-    public async Task<SysTenant> FillDefaultTenant()
+    public async Task<SysTenant> FillTenant(bool IsDefault,string DomainName)
     {
-        var Query = Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && it.IsDefault);
-        if (!Query.Any())
-        {
-            //不存在则填充
-            await InsertAsync(new SysTenant
+      
+            if(IsDefault)
             {
-                Name = "Default",
-                Domains = $",{_httpContextAccessor.HttpContext.Request.Host.ToString()},",
-                IsDefault = true,
-                Email = "washala@qq.com",
-                Tel="",
-                Contact="",
-                Status = DataStatus.Enable
-            }); ;
-        }
-        return await Query.SingleAsync();
+                var Query = Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && it.IsDefault);
+                if (!Query.Any())
+                {
+                    //不存在则填充
+                    await InsertAsync(new SysTenant
+                    {
+                        Name = "Default",
+                        Domains = $",{_httpContextAccessor.HttpContext.Request.Host.ToString()},",
+                        IsDefault = true,
+                        Email = "washala@qq.com",
+                        Tel = "",
+                        Contact = "",
+                        Status = DataStatus.Enable
+                    });
+                }
+            }else
+            {
+                //不存在则填充
+                await InsertAsync(new SysTenant
+                {
+                    Name = DomainName,
+                    Domains = $",{DomainName},",
+                    IsDefault = false,
+                    Email = $"{Guid.NewGuid()}@qq.com",
+                    Tel = "",
+                    Contact = "",
+                    Status = DataStatus.Enable
+                }); ;
+            }
+        return await Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable).OrderByDescending(x=>x.CreateTime).FirstAsync();
     }
 
 
