@@ -209,6 +209,7 @@ public static class DatabaseContext
     /// <param name="db"></param>
     private static void LogicDeletedEntityFilter(SqlSugarScopeProvider db)
     {
+        db.QueryFilter.AddTableFilter<IDeletedTableFilter>(it => !it.IsDelete);
     }
 
     /// <summary>
@@ -221,8 +222,8 @@ public static class DatabaseContext
         var TenantId = App.HttpContext?.Items.Get<long>("TenantId", 0);
 
         //接口过滤器 实现租户的数据隔离
-        db.QueryFilter.AddTableFilter<DataEntityBase>(it => it.TenantId == TenantId);
-        db.QueryFilter.AddTableFilter<SimpleEntityBase>(it => it.TenantId == TenantId);
+        db.QueryFilter.AddTableFilter<ITenantTableFilter>(it => it.TenantId == TenantId);
+    
     }
 
 

@@ -22,7 +22,7 @@ namespace FastNet.SqlSugar
     /// <summary>
     /// 框架实体基类
     /// </summary>
-    public class BaseEntity : PrimaryKeyEntity
+    public class BaseEntity : PrimaryKeyEntity, IDeletedTableFilter
     {
         /// <summary>
         /// 创建时间
@@ -58,7 +58,7 @@ namespace FastNet.SqlSugar
     /// <summary>
     /// 业务数据实体基类(租户数据隔离)
     /// </summary>
-    public abstract class DataEntityBase : BaseEntity
+    public abstract class DataEntityBase : BaseEntity, ITenantTableFilter
     {
         /// <summary>
         /// 租户编号
@@ -70,7 +70,7 @@ namespace FastNet.SqlSugar
     /// <summary>
     /// 关系表用到的实体几类(主键、租户编号)
     /// </summary>
-    public abstract class SimpleEntityBase : PrimaryKeyEntity
+    public abstract class SimpleEntityBase : PrimaryKeyEntity, ITenantTableFilter
     {
         /// <summary>
         /// 租户编号
@@ -79,6 +79,26 @@ namespace FastNet.SqlSugar
         public virtual long TenantId { get; set; }
     }
 
+    /// <summary>
+    /// 租户实体的接口
+    /// </summary>
+    public interface ITenantTableFilter
+    {
+        /// <summary>
+        /// 租户编号
+        /// </summary>
+        long TenantId { get; set; }
+    }
 
+    /// <summary>
+    /// 软删除接口
+    /// </summary>
+    public interface IDeletedTableFilter
+    {
+        /// <summary>
+        /// 软删除
+        /// </summary>
+        bool IsDelete { get; set; }
+    }
 
 }
