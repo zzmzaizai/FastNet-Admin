@@ -12,7 +12,11 @@ namespace FastNet.Service
         /// <returns></returns>
         public static IApplicationBuilder UseMiddlewares(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<RequestTenantMiddleware>();
+            // 异常处理中间件
+            builder.UseMiddleware<GlobalExceptionMiddleware>();
+            // 租户逻辑处理中间件
+            builder.UseMiddleware<RequestTenantMiddleware>();
+            return builder;
         }
 
     }

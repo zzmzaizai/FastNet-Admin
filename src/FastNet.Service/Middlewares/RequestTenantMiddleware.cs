@@ -1,16 +1,5 @@
-﻿using Furion.DataEncryption.Extensions;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FastNet.Repository
+﻿using Microsoft.Extensions.Logging;
+namespace FastNet.Service
 {
     /// <summary>
     /// 租户请求中间件
