@@ -27,7 +27,14 @@ public interface ISysUserRepository :  ITransient
     /// <returns></returns>
     Task<SysUser> InsertUserAsync(InsertUserInput dto);
 
- 
+    /// <summary>
+    /// 更新用户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SysUser> UpdateUserAsync(UpdateUserInput dto);
+
+
     /// <summary>
     /// 获取所有用户
     /// </summary>

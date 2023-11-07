@@ -22,6 +22,17 @@ public class AccountService : BaseApiController
     }
 
     /// <summary>
+    /// 更新用户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<SysUser> UpdateUserAsync(UpdateUserInput dto)
+    {
+        return await sysUserRep.UpdateUserAsync(dto);
+    }
+
+    /// <summary>
     /// 获取所有用户
     /// </summary>
     /// <returns></returns>

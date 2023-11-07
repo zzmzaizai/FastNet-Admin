@@ -2,10 +2,15 @@
 namespace FastNet.Repositories;
 
 /// <summary>
-/// 用户插入DTO
+/// 用户更新DTO
 /// </summary>
-public class InsertUserInput
+public class UpdateUserInput
 {
+    /// <summary>
+    /// 用户编号
+    /// </summary>
+    public long Id { get; set; }
+
     /// <summary>
     /// 账号
     ///</summary>
