@@ -7,6 +7,28 @@
 /// </summary>
 public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
 {
+    /// <summary>
+    /// 根据用户名获取用户
+    /// </summary>
+    /// <param name="UserName">用户名</param>
+    /// <returns></returns>
+    public async Task<SysUser> GetUserAsync(string UserName)
+    {
+        return await Context.Queryable<SysUser>().FirstAsync(x => x.UserName == UserName);
+    }
+
+    /// <summary>
+    /// 根据用户Id获取用户
+    /// </summary>
+    /// <param name="UserId">用户名</param>
+    /// <returns></returns>
+    public async Task<SysUser> GetUserAsync(long UserId)
+    {
+        return await Context.Queryable<SysUser>().FirstAsync(x => x.Id == UserId);
+    }
+
+
+
     public async Task<SysUser> AddUser(bool IsSuperAdmin)
     {
         var user = new SysUser
@@ -16,7 +38,7 @@ public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
             Password = "12345567",
             Secret = Guid.NewGuid().ToString(),
             IsSuperAdmin = IsSuperAdmin,
-            Status = DataUserStatus.RoleMenu,
+            Status = DataUserStatus.Enable,
             CreateTime = DateTime.Now,
             CreateUserId = 0
         };

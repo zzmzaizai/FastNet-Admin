@@ -6,25 +6,14 @@
 public enum DataUserStatus
 {
     /// <summary>
-    /// 用户对角色
+    /// 禁用
     /// </summary>
-    UserRole = 0,
+    Disable = 0,
     /// <summary>
-    /// 用户对组织
+    /// 启用
     /// </summary>
-    UserOrg = 1,
-    /// <summary>
-    /// 角色对组织
-    /// </summary>
-    RoleOrg = 2,
-    /// <summary>
-    /// 角色对菜单
-    /// </summary>
-    RoleMenu = 3,
-    /// <summary>
-    /// 客户端对API资源
-    /// </summary>
-    ClientApi = 4
+    Enable = 1,
+
 
 
 

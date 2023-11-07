@@ -24,13 +24,21 @@ public class MenuService : BaseApiController
     }
 
 
-
-
-
-
-
-
-
-
-
+    /// <summary>
+    /// 获取指定用户的访问权限集合
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    public async Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId)
+    {
+        return await sysMenuRep.GetAuthButtonCodeList(userId);
     }
+
+
+
+
+
+
+
+
+}
