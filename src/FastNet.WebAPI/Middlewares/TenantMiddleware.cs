@@ -5,10 +5,10 @@ namespace FastNet.WebAPI;
 /// <summary>
 /// 租户请求中间件
 /// </summary>
-public class RequestTenantMiddleware
+public class TenantMiddleware
 {
     private readonly RequestDelegate _next;
-    private readonly ILogger<RequestTenantMiddleware> _logger;
+    private readonly ILogger<TenantMiddleware> _logger;
     /// <summary>
     /// 租户仓储
     /// </summary>
@@ -20,9 +20,9 @@ public class RequestTenantMiddleware
     /// <param name="next"></param>
     /// <param name="tenantRepository"></param>
     /// <param name="logger"></param>
-    public RequestTenantMiddleware(RequestDelegate next
+    public TenantMiddleware(RequestDelegate next
         , ISysTenantRepository tenantRepository
-        , ILogger<RequestTenantMiddleware> logger)
+        , ILogger<TenantMiddleware> logger)
     {
         _next = next;
         _logger = logger;

@@ -13,9 +13,9 @@ public static class MiddlewareExtensions
     public static IApplicationBuilder UseMiddlewares(this IApplicationBuilder builder)
     {
         // 异常处理中间件
-        builder.UseMiddleware<GlobalExceptionMiddleware>();
+        builder.UseMiddleware<ExceptionMiddleware>();
         // 租户逻辑处理中间件
-        builder.UseMiddleware<RequestTenantMiddleware>();
+        builder.UseMiddleware<TenantMiddleware>();
         return builder;
     }
 
