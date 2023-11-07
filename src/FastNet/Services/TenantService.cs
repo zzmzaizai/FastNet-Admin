@@ -1,14 +1,14 @@
 ﻿
 
 
-namespace FastNet.Service.Controllers;
+namespace FastNet.Services;
 
 /// <summary>
 /// 租户服务
 /// </summary>
 [Route("api/host/[controller]")]
 [ApiDescriptionSettings(groups: "Host", Order = 1)]
-public class TenantController : BaseApiController
+public class TenantService : BaseApiController
 {
 
 

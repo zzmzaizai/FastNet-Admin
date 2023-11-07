@@ -16,17 +16,14 @@ public class ClaimConst
     public const string Account = "Account";
 
     /// <summary>
-    /// 名称
-    /// </summary>
-    public const string Name = "Name";
-
-    /// <summary>
     /// 账号类型
     /// </summary>
     public const string IsSuperAdmin = "IsSuperAdmin";
 
     /// <summary>
-    /// 组织机构Id
+    /// 登录唯一ID
     /// </summary>
-    public const string OrgId = "OrgId";
+
+    public const string UuidKey = "UniqueId";
+
 }

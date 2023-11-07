@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.Service.Controllers;
+namespace FastNet.Services;
 
 /// <summary>
 /// 基础API控制器
@@ -59,6 +59,8 @@ public abstract class BaseApiController : IDynamicApiController
     /// </summary>
     public ISysRoleRepository sysRoleRep { get; set; }
 
+
+
     #endregion
 
 
@@ -73,6 +75,12 @@ public abstract class BaseApiController : IDynamicApiController
     /// HTTP 上下文属性
     /// </summary>
     public HttpContext httpContext { get; set; }
+
+
+    /// <summary>
+    /// 用户数据
+    /// </summary>
+    public AuthManager authManager { get; set; }
 
 
     #endregion
@@ -101,6 +109,7 @@ public abstract class BaseApiController : IDynamicApiController
         #region "注入的系统对象属性"
         httpContextAccessor = App.GetService<IHttpContextAccessor>();
         httpContext = httpContextAccessor.HttpContext;
+        authManager = App.GetService<AuthManager>();
         #endregion
     }
     #endregion

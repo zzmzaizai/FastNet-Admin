@@ -17,7 +17,6 @@
 	  <Folder Include="Repositories\Config\Dto\" />
 	  <Folder Include="Repositories\DictData\Dto\" />
 	  <Folder Include="Repositories\DictType\Dto\" />
-	  <Folder Include="Repositories\Menu\Dto\" />
 	  <Folder Include="Repositories\Organization\Dto\" />
 	  <Folder Include="Repositories\Relation\Dto\" />
 	  <Folder Include="Repositories\Role\Dto\" />

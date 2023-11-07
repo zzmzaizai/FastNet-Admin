@@ -1,13 +1,13 @@
 ﻿
 
-namespace FastNet.Service.Controllers;
+namespace FastNet.Services;
 
 /// <summary>
 /// 账号服务
 /// </summary>
 [Route("api/system/[controller]")]
 [ApiDescriptionSettings(groups: "System", Order = 100)]
-public class AccountController : BaseApiController
+public class AccountService : BaseApiController
 {
 
  

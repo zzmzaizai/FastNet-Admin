@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.Service.Controllers;
+namespace FastNet.Services;
 
 /// <summary>
-/// 菜单服务
+/// 账号服务
 /// </summary>
 [Route("api/system/[controller]")]
-[ApiDescriptionSettings(groups: "System", Order = 60)]
-public class MenuController : BaseApiController
+[ApiDescriptionSettings(groups: "System", Order = 90)]
+public class AuthService : BaseApiController
 {
 
-    
+ 
 }

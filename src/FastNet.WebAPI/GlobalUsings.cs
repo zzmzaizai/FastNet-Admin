@@ -16,6 +16,7 @@ global using System.ComponentModel.DataAnnotations;
 global using SqlSugar;
 global using FastNet.SqlSugar;
 global using FastNet.Models;
+global using FastNet.Services;
 global using FastNet.Repositories;
 global using FastNet.Infrastructure;
 

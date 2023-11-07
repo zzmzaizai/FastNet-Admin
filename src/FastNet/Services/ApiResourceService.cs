@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.Service.Controllers;
+namespace FastNet.Services;
 
 /// <summary>
-/// 授权角色服务
+/// API资源服务
 /// </summary>
 [Route("api/system/[controller]")]
-[ApiDescriptionSettings(groups: "System", Order = 80)]
-public class RoleController : BaseApiController
+[ApiDescriptionSettings(groups: "System", Order = 50)]
+public class ApiResourceService : BaseApiController
 {
 
+ 
  
 }
