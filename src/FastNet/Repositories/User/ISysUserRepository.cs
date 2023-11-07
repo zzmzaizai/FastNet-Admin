@@ -20,13 +20,14 @@ public interface ISysUserRepository :  ITransient
     /// <returns></returns>
     Task<SysUser> GetUserAsync(long UserId);
 
-
-
     /// <summary>
-    /// 随便添加个用户
+    /// 插入用户
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysUser> AddUser(bool IsSuperAdmin);
+    Task<SysUser> InsertUserAsync(InsertUserInput dto);
+
+ 
     /// <summary>
     /// 获取所有用户
     /// </summary>

@@ -1,4 +1,6 @@
-﻿namespace FastNet.Repositories;
+﻿using FastNet.Services;
+
+namespace FastNet.Repositories;
 
 
 
@@ -27,24 +29,26 @@ public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
         return await Context.Queryable<SysUser>().FirstAsync(x => x.Id == UserId);
     }
 
-
-
-    public async Task<SysUser> AddUser(bool IsSuperAdmin)
+    /// <summary>
+    /// 插入用户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysUser> InsertUserAsync(InsertUserInput dto)
     {
-        var user = new SysUser
-        {
-            UserName = $"User-{DateTime.Now.ToString("MM-dd-HH-mm-ss")}",
-            Email = $"mail_{DateTime.Now.ToString("MM_dd_HH_mm_ss")}@qq.com",
-            Password = "12345567",
-            Secret = Guid.NewGuid().ToString(),
-            IsSuperAdmin = IsSuperAdmin,
-            Status = DataUserStatus.Enable,
-            CreateTime = DateTime.Now,
-            CreateUserId = 0
-        };
+        var user = dto.Adapt<SysUser>();
+        user.CreateUserId = authManager.UserId;
+        user.CreateTime = DateTime.Now;
+        user.Secret = Guid.NewGuid().ToString();
+        user.Password = MD5Encryption.Encrypt($"{user.Secret}{dto.Password}");
         await InsertAsync(user);
         return user;
     }
+
+
+
+
+     
 
     public async Task<List<SysUser>> GetAllUsers()
     {

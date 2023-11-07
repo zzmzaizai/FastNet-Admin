@@ -6,22 +6,19 @@ namespace FastNet.Services;
 /// 账号服务
 /// </summary>
 [Route("api/system/[controller]")]
-[ApiDescriptionSettings(groups: "System", Order = 100)]
+[ApiDescriptionSettings(groups: "System", Order = 90)]
 public class AccountService : BaseApiController
 {
 
- 
-
-
-
     /// <summary>
-    /// 随便添加个用户
+    /// 插入用户
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpGet]
-    public async Task<SysUser> AddUser(bool IsSuperAdmin)
+    [HttpPost]
+    public async Task<SysUser> InsertUserAsync(InsertUserInput dto)
     {
-        return await sysUserRep.AddUser(IsSuperAdmin);
+        return await sysUserRep.InsertUserAsync(dto);
     }
 
     /// <summary>

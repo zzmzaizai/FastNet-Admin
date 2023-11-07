@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace FastNet.Services;
 
 /// <summary>
-/// 账号服务
+/// 授权服务
 /// </summary>
 [Route("api/system/[controller]")]
-[ApiDescriptionSettings(groups: "System", Order = 90)]
+[ApiDescriptionSettings(groups: "System", Order = 100)]
 public class AuthService : BaseApiController
 {
 
@@ -22,6 +22,7 @@ public class AuthService : BaseApiController
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPost]
+    [AllowAnonymous]
     public async Task SignIn(LoginInput dto)
     {
 
