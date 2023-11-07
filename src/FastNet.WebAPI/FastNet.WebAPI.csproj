@@ -5,15 +5,13 @@
 	<PropertyGroup>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
-
-
-	<ItemGroup>
-		<ProjectReference Include="..\FastNet.Service\FastNet.Service.csproj" />
-	</ItemGroup>
 	<ProjectExtensions>
 		<VisualStudio>
 			<UserProperties properties_4launchsettings_1json__JsonSchema="" />
 		</VisualStudio>
 	</ProjectExtensions>
+	<ItemGroup>
+	  <ProjectReference Include="..\FastNet\FastNet.csproj" />
+	</ItemGroup>
 
 </Project>
