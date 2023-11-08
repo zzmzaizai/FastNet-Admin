@@ -63,5 +63,56 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
         //}, TimeSpan.FromDays(1));
         //return cache.Value;
     }
+
+
+
+    /// <summary>
+    /// 根据菜单Id获取菜单
+    /// </summary>
+    /// <param name="MenuId">菜单编号</param>
+    /// <returns></returns>
+    public async Task<SysMenu> GetMenuAsync(long MenuId)
+    {
+        return await Context.Queryable<SysMenu>().FirstAsync(x => x.Id == MenuId);
+    }
+
+    /// <summary>
+    /// 插入菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysMenu> InsertMenuAsync(InsertMenuInput dto)
+    {
+        var user = dto.Adapt<SysMenu>();
+        user.CreateUserId = authManager.UserId;
+        user.CreateTime = DateTime.Now;
+        await InsertAsync(user);
+        return user;
+    }
+
+    /// <summary>
+    /// 更新菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysMenu> UpdateMenuAsync(UpdateMenuInput dto)
+    {
+        var role = dto.Adapt<SysMenu>();
+
+        var dbRole = await GetMenuAsync(dto.Id);
+        if (dbRole != null)
+        {
+            role.CreateUserId = dbRole.CreateUserId;
+            role.CreateTime = dbRole.CreateTime;
+            role.TenantId = dbRole.TenantId;
+            role.IsDelete = dbRole.IsDelete;
+        }
+        role.UpdateUserId = authManager.UserId;
+        role.UpdateTime = DateTime.Now;
+
+
+        await UpdateAsync(role);
+        return role;
+    }
 }
 

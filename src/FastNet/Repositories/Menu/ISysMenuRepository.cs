@@ -27,5 +27,29 @@ public interface ISysMenuRepository : IDatabaseRepository<SysMenu>, ITransient
     /// <param name="userId">系统用户id</param>
     /// <returns></returns>
     Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId);
+
+
+
+
+    /// <summary>
+    /// 根据菜单Id获取菜单
+    /// </summary>
+    /// <param name="MenuId">菜单编号</param>
+    /// <returns></returns>
+    Task<SysMenu> GetMenuAsync(long MenuId);
+
+    /// <summary>
+    /// 插入菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SysMenu> InsertMenuAsync(InsertMenuInput dto);
+
+    /// <summary>
+    /// 更新菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SysMenu> UpdateMenuAsync(UpdateMenuInput dto);
 }
 

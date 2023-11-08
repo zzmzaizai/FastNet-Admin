@@ -24,4 +24,36 @@ public class RoleService : BaseApiController
     {
         return await sysRoleRep.GetPageListAsync(dto);
     }
+
+
+
+    /// <summary>
+    /// 根据角色Id获取角色
+    /// </summary>
+    /// <param name="RoleId">角色编号</param>
+    /// <returns></returns>
+    public async Task<SysRole> GetAsync(long RoleId)
+    {
+        return await sysRoleRep.GetRoleAsync(RoleId);
+    }
+
+    /// <summary>
+    /// 插入角色
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysRole> InsertAsync(InsertRoleInput dto)
+    {
+        return await sysRoleRep.InsertRoleAsync(dto);
+    }
+
+    /// <summary>
+    /// 更新角色
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysRole> UpdateAsync(UpdateRoleInput dto)
+    {
+        return await sysRoleRep.UpdateRoleAsync(dto);
+    }
 }

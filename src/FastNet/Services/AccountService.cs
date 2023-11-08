@@ -29,6 +29,23 @@ public class AccountService : BaseApiController
     }
 
     /// <summary>
+    /// 切换超级用户状态
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto)
+    {
+        var User = await sysUserRep.GetUserAsync(dto.Id);
+        if(User == null)
+        {
+            throw Oops.Bah("用户没有找到");
+        }
+        User.IsSuperAdmin = dto.IsSuperAdmin;
+        return await sysUserRep.UpdateAsync(User);
+    }
+
+
+    /// <summary>
     /// 获取单个用户信息
     /// </summary>
     /// <param name="UserName">用户名</param>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StackExchange.Profiling.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
@@ -23,7 +24,7 @@ public class AuthService : BaseApiController
     /// <returns></returns>
     [HttpPost]
     [AllowAnonymous]
-    public async Task SignIn(LoginInput dto)
+    public async Task<object> SignIn(LoginInput dto)
     {
 
         //string signInErrorCacheKey = $"login.error.{dto.Account}";
@@ -65,9 +66,47 @@ public class AuthService : BaseApiController
         context.SigninToSwagger(token);
         context!.Response.Headers["access-token"] = token;
         context.Response.Headers["x-access-token"] = refreshToken;
+
+        return new {
+            RefreshToken = refreshToken,
+            AccessToken = token
+        };
     }
 
+    /// <summary>
+    /// 注册用户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<SysUser> Register(RegisterInput dto)
+    {
+
+        if (dto.Password != dto.SecondaryPassword)
+        {
+            throw Oops.Bah("两次输入密码不一致");
+        }
 
 
+        SysUser user = await sysUserRep.GetUserAsync(dto.UserName);
+        if (user != null)
+        {
+            throw Oops.Bah("用户名已存在");
+        }
 
+        var AddUser = dto.Adapt<InsertUserInput>();
+        AddUser.IsSuperAdmin = false;
+        AddUser.Status = DataUserStatus.Enable;
+        return await sysUserRep.InsertUserAsync(AddUser);
+    }
+
+    /// <summary>
+    /// 获取当前用户信息
+    /// </summary>
+    /// <returns></returns>
+    public async Task<SysUser> GetCurrent()
+    {
+        return await sysUserRep.GetUserAsync(authManager.UserId);
+    }
 }

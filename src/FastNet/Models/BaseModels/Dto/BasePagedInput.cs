@@ -21,11 +21,11 @@ public class BasePagedInput
     /// <summary>
     /// 排序集合
     /// </summary>
-    public List<OrderByModel> OrderConditions { get; set; } = new List<OrderByModel>();
+    public List<OrderByModel> OrderConditions { get; set; }
 
     /// <summary>
     /// 搜索集合（此集合中的会用作OR相连，并like）
     /// </summary>
-    public Dictionary<string, string> SearchFilterConditions { get; set; } = new Dictionary<string, string>();
+    public Dictionary<string, string> SearchFilterConditions { get; set; } 
 
 }

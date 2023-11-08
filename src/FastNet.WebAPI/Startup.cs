@@ -6,8 +6,13 @@ public class Startup : AppStartup
 {
     public void ConfigureServices(IServiceCollection services)
     {
+
+        services.AddControllers()
+                .AddInjectWithUnifyResult();
+
+
         services.AddConsoleFormatter();
-        services.AddJwt<JwtHandler>(enableGlobalAuthorize: false, jwtBearerConfigure: options =>
+        services.AddJwt<JwtHandler>(enableGlobalAuthorize: true, jwtBearerConfigure: options =>
         {
             options.Events = new JwtBearerEvents()
             {
@@ -30,8 +35,6 @@ public class Startup : AppStartup
 
         services.AddCorsAccessor();
 
-        services.AddControllers()
-                .AddInjectWithUnifyResult();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

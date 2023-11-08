@@ -16,6 +16,15 @@ public class ConfigService : BaseApiController
 {
 
     /// <summary>
+    /// 获取列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysConfig>> GetListAsync()
+    {
+        return await sysConfigRep.GetListAsync();
+    }
+
+    /// <summary>
     /// 分页列表查询
     /// </summary>
     /// <param name="dto"></param>

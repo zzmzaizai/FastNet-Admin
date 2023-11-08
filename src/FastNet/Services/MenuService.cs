@@ -8,10 +8,15 @@
 public class MenuService : BaseApiController
 {
 
-
-
-
-
+    /// <summary>
+    /// 获取列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysMenu>> GetListAsync()
+    {
+        return await sysMenuRep.GetListAsync();
+    }
+ 
     /// <summary>
     /// 校验权限
     /// </summary>
@@ -35,7 +40,35 @@ public class MenuService : BaseApiController
     }
 
 
+    /// <summary>
+    /// 根据菜单Id获取菜单
+    /// </summary>
+    /// <param name="MenuId">菜单编号</param>
+    /// <returns></returns>
+    public async Task<SysMenu> GetAsync(long MenuId)
+    {
+        return await sysMenuRep.GetMenuAsync(MenuId);
+    }
 
+    /// <summary>
+    /// 插入菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysMenu> InsertAsync(InsertMenuInput dto)
+    {
+        return await sysMenuRep.InsertMenuAsync(dto);
+    }
+
+    /// <summary>
+    /// 更新菜单
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysMenu> UpdateAsync(UpdateMenuInput dto)
+    {
+        return await sysMenuRep.UpdateMenuAsync(dto);
+    }
 
 
 
