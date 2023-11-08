@@ -3,7 +3,7 @@
 /// <summary>
 /// 翻页基础输入项
 /// </summary>
-public class BasePagedInput : IValidatableObject
+public class BasePagedInput
 {
     /// <summary>
     /// 当前页码
@@ -19,43 +19,13 @@ public class BasePagedInput : IValidatableObject
     public virtual int Size { get; set; } = 10;
 
     /// <summary>
-    /// 排序字段
+    /// 排序集合
     /// </summary>
-    public virtual string SortField { get; set; }
+    public List<OrderByModel> OrderConditions { get; set; } = new List<OrderByModel>();
 
     /// <summary>
-    /// 排序方式，升序：ascend；降序：descend"
+    /// 搜索集合（此集合中的会用作OR相连，并like）
     /// </summary>
-    public virtual string SortOrder { get; set; } = "desc";
+    public Dictionary<string, string> SearchFilterConditions { get; set; } = new Dictionary<string, string>();
 
-    /// <summary>
-    /// 搜索文本
-    /// </summary>
-    public virtual string SearchText { get; set; }
-
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        //配合小诺排序参数
-        if (SortOrder == "descend")
-        {
-            SortOrder = "desc";
-        }
-        else if (SortOrder == "ascend")
-        {
-            SortOrder = "asc";
-        }
-        if (!string.IsNullOrEmpty(SortField))
-        {
-            //分割排序字段
-            var fields = SortField.Split(" ");
-            if (fields.Length > 1)
-            {
-                yield return new ValidationResult($"排序字段错误", new[]
-                {
-                nameof(SortField)
-            });
-            }
-        }
-        yield break;
-    }
 }

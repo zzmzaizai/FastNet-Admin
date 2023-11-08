@@ -14,6 +14,15 @@ namespace FastNet.Services;
 public class ApiResourceService : BaseApiController
 {
 
- 
- 
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysApiResourcePageOutput>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto)
+    {
+        return await sysApiResourceRep.GetPageListAsync(dto);
+    }
+
 }

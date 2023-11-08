@@ -36,9 +36,10 @@ public interface ISysUserRepository : IDatabaseRepository<SysUser>, ITransient
 
 
     /// <summary>
-    /// 获取所有用户
+    /// 分页列表查询
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    Task<List<SysUser>> GetAllUsers();
+    Task<SqlSugarPagedList<SysUserPageOutput>> GetPageListAsync(QueryUserPagedInput dto);
 }
 

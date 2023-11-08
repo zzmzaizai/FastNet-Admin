@@ -1,4 +1,6 @@
-﻿namespace FastNet.Repositories;
+﻿using Furion.LinqBuilder;
+
+namespace FastNet.Repositories;
 
 
 
@@ -14,40 +16,85 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
         _httpContextAccessor = httpContextAccessor;
     }
 
-
-
     /// <summary>
     /// 根据主机名获取租户信息
     /// </summary>
-    /// <param name="HostName"></param>
-    /// <returns>主机名未找到时返回默认租户</returns>
-    public SysTenant GetItemByHost(string HostName)
+    /// <param name="HostName">用户名</param>
+    /// <returns>找不到时返回默认租户</returns>
+    public async Task<SysTenant> GetTenantAsync(string HostName)
     {
         var query = Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && !SqlFunc.IsNullOrEmpty(it.Domains) && it.Domains == $",{HostName},");
-        if(query.Count() > 0)
+        if (query.Count() > 0)
         {
-            return query.Single();
+            return await query.FirstAsync();
         }
-        return Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && it.IsDefault).Single();
+        return await Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && it.IsDefault).FirstAsync();
     }
 
     /// <summary>
-    /// 根据租户编号查询租户信息
+    /// 根据租户编号获取租户信息
     /// </summary>
-    /// <param name="TenantId"></param>
+    /// <param name="TenantId">租户编号</param>
     /// <returns></returns>
-    public async Task<SysTenant> GetItemByTenantId(long TenantId)
+    public async Task<SysTenant> GetTenantAsync(long TenantId)
     {
-        return await  Context.Queryable<SysTenant>().InSingleAsync(TenantId);
+        return await Context.Queryable<SysTenant>().FirstAsync(x => x.Id == TenantId);
     }
 
     /// <summary>
-    /// 获取分页数据
+    /// 插入租户信息
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<List< SysTenant>> GetPage(TenantPagedInput input)
+    public async Task<SysTenant> InsertTenantAsync(InsertTenantInput dto)
     {
-        return await Context.Queryable<SysTenant>().ToListAsync();
+        var tenant = dto.Adapt<SysTenant>();
+        tenant.CreateUserId = authManager.UserId;
+        tenant.CreateTime = DateTime.Now;
+        await InsertAsync(tenant);
+        return tenant;
+    }
+
+    /// <summary>
+    /// 更新租户信息
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysTenant> UpdateTenantAsync(UpdateTenantInput dto)
+    {
+        var tenant = dto.Adapt<SysTenant>();
+
+        var dbTenant = await GetTenantAsync(dto.Id);
+        if (dbTenant != null)
+        {
+            tenant.CreateUserId = dbTenant.CreateUserId;
+            tenant.CreateTime = dbTenant.CreateTime;
+            tenant.IsDelete = dbTenant.IsDelete;
+        }
+        tenant.UpdateUserId = authManager.UserId;
+        tenant.UpdateTime = DateTime.Now;
+
+        await UpdateAsync(tenant);
+        return tenant;
+    }
+
+
+ 
+     
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync(QueryTenantPagedInput dto)
+    {
+        return await Context.Queryable<SysTenant>()
+            .Where(x => x.Id > 0)
+            .FiltersConditions(dto.SearchFilterConditions)
+            .OrderConditions(dto.OrderConditions)
+            //.Select(x => x.Adapt<SysTenantPageOutput>())
+            .ToPagedListAsync<SysTenantPageOutput, SysTenant>(dto.Index, dto.Size);
     }
 
 
@@ -94,49 +141,7 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
     }
 
 
-    #region "公用方法"
-
-
-    /// <summary>
-    /// 获取Sqlsugar的ISugarQueryable
-    /// </summary>  
-    /// <param name="input"></param>
-    /// <returns></returns>
-    private async Task<ISugarQueryable<SysTenant>> GetQuery(TenantPagedInput input)
-    {
-        var query = Context.Queryable<SysTenant>()
-             .WhereIF(!string.IsNullOrEmpty(input.SearchText), u => u.Name.Contains(input.SearchText) || u.Domains.Contains(input.SearchText))//根据关键字查询
-              .OrderBy(u => u.Id)//排序
-              .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"{input.SortField} {input.SortOrder}");
-
-
-
-
-        //var query = Context.Queryable<SysTenant>().LeftJoin<SysOrg>((u, o) => u.OrgId == o.Id)
-        //    .LeftJoin<SysPosition>((u, o, p) => u.PositionId == p.Id)
-        //    .WhereIF(input.OrgId > 0, u => orgIds.Contains(u.OrgId))//根据组织
-        //    .WhereIF(input.Expression != null, input.Expression?.ToExpression())//动态查询
-        //    .WhereIF(!string.IsNullOrEmpty(input.UserStatus), u => u.UserStatus == input.UserStatus)//根据状态查询
-        //    .WhereIF(!string.IsNullOrEmpty(input.SearchKey), u => u.Name.Contains(input.SearchKey) || u.Account.Contains(input.SearchKey))//根据关键字查询
-        //    .OrderByIF(!string.IsNullOrEmpty(input.SortField), $"u.{input.SortField} {input.SortOrder}")
-        //    .OrderBy(u => u.Id)//排序
-        //    .Select((u, o, p) => new SysUser
-        //    {
-        //        Id = u.Id.SelectAll(),
-        //        OrgName = o.Name,
-        //        PositionName = p.Name,
-        //        OrgNames = o.Names
-        //    })
-        //    .Mapper(u =>
-        //    {
-        //        u.Password = null;//密码清空
-        //        u.Phone = CryptogramUtil.Sm4Decrypt(u.Phone);//手机号解密
-        //    });
-        return query;
-    }
-
-
-    #endregion
+ 
 
 
 }

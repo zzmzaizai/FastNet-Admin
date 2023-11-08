@@ -77,15 +77,21 @@ public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
     }
 
 
-
-    public async Task<List<SysUser>> GetAllUsers()
+    /// <summary>
+    /// 用户分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SqlSugarPagedList<SysUserPageOutput>> GetPageListAsync(QueryUserPagedInput dto)
     {
-        var query = Context.Queryable<SysUser>()
-                        
-                         .Where( it => it.Id > 0) 
-                     
-                         .OrderBy(it => it.CreateTime);//排序
-        return await query.ToListAsync();
+        return await Context.Queryable<SysUser>()
+
+            //.WhereIF(dto.Status.)
+            .Where(x => x.Id > 0)
+            .FiltersConditions(dto.SearchFilterConditions)
+            .OrderConditions(dto.OrderConditions)
+            //.Select(x => x.Adapt<SysUserPageOutput>())
+            .ToPagedListAsync<SysUserPageOutput, SysUser>(dto.Index, dto.Size);
     }
 
 }

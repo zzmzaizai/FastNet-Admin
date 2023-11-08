@@ -13,8 +13,7 @@ public class AccountService : BaseApiController
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpPost]
-    public async Task<SysUser> InsertUserAsync(InsertUserInput dto)
+    public async Task<SysUser> InsertAsync(InsertUserInput dto)
     {
         return await sysUserRep.InsertUserAsync(dto);
     }
@@ -24,20 +23,39 @@ public class AccountService : BaseApiController
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpPost]
-    public async Task<SysUser> UpdateUserAsync(UpdateUserInput dto)
+    public async Task<SysUser> UpdateAsync(UpdateUserInput dto)
     {
         return await sysUserRep.UpdateUserAsync(dto);
     }
 
     /// <summary>
-    /// 获取所有用户
+    /// 获取单个用户信息
     /// </summary>
+    /// <param name="UserName">用户名</param>
     /// <returns></returns>
-    [HttpGet]
-    public async Task<List<SysUser>> GetAllUsers()
+    public async Task<SysUser> GetUserByNameAsync(string UserName)
     {
-        return await sysUserRep.GetAllUsers();
+        return await sysUserRep.GetUserAsync(UserName);
+    }
+
+    /// <summary>
+    /// 获取单个用户信息
+    /// </summary>
+    /// <param name="UserId">用户Id</param>
+    /// <returns></returns>
+    public async Task<SysUser> GetAsync(long UserId)
+    {
+        return await sysUserRep.GetUserAsync(UserId);
+    }
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto)
+    {
+        return await sysUserRep.GetPageListAsync(dto);
     }
 
 

@@ -3,6 +3,12 @@
 	<PropertyGroup>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="SqlSugar\PagedList\**" />
+	  <EmbeddedResource Remove="SqlSugar\PagedList\**" />
+	  <None Remove="SqlSugar\PagedList\**" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.50" />
 		<PackageReference Include="Furion.Pure" Version="4.8.8.50" />
@@ -12,14 +18,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Extend\" />
-	  <Folder Include="Repositories\ApiResource\Dto\" />
-	  <Folder Include="Repositories\ClientApp\Dto\" />
-	  <Folder Include="Repositories\Config\Dto\" />
-	  <Folder Include="Repositories\DictData\Dto\" />
-	  <Folder Include="Repositories\DictType\Dto\" />
-	  <Folder Include="Repositories\Organization\Dto\" />
-	  <Folder Include="Repositories\Relation\Dto\" />
-	  <Folder Include="Repositories\Role\Dto\" />
 	</ItemGroup>
 
 </Project>

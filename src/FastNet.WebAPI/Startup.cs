@@ -7,7 +7,7 @@ public class Startup : AppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddConsoleFormatter();
-        services.AddJwt<JwtHandler>(enableGlobalAuthorize: true, jwtBearerConfigure: options =>
+        services.AddJwt<JwtHandler>(enableGlobalAuthorize: false, jwtBearerConfigure: options =>
         {
             options.Events = new JwtBearerEvents()
             {

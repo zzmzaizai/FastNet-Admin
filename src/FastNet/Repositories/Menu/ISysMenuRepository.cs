@@ -4,8 +4,15 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysMenuRepository : IDatabaseRepository<SysUser>, ITransient
+public interface ISysMenuRepository : IDatabaseRepository<SysMenu>, ITransient
 {
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SqlSugarPagedList<SysMenuPageOutput>> GetPageListAsync(QueryMenuPagedInput dto);
+
     /// <summary>
     /// 校验权限
     /// </summary>

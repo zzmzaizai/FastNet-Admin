@@ -12,23 +12,59 @@ public class TenantService : BaseApiController
 {
 
 
+
+
+    /// <summary>
+    /// 插入租户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysTenant> InsertAsync(InsertTenantInput dto)
+    {
+        return await sysTenantRep.InsertTenantAsync(dto);
+    }
+
+    /// <summary>
+    /// 更新租户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysTenant> UpdateAsync(UpdateTenantInput dto)
+    {
+        return await sysTenantRep.UpdateTenantAsync(dto);
+    }
+
+    /// <summary>
+    /// 根据主机名获取租户信息
+    /// </summary>
+    /// <param name="HostName">主机名</param>
+    /// <returns>找不到时返回默认租户</returns>
+    /// <returns></returns>
+    public async Task<SysTenant> GetTenantByHostNameAsync(string HostName)
+    {
+        return await sysTenantRep.GetTenantAsync(HostName);
+    }
+
+    /// <summary>
+    /// 获取单个租户信息
+    /// </summary>
+    /// <param name="TenantId">租户Id</param>
+    /// <returns></returns>
+    public async Task<SysTenant> GetAsync(long TenantId)
+    {
+        return await sysTenantRep.GetTenantAsync(TenantId);
+    }
+
     /// <summary>
     /// 获取当前租户信息
     /// </summary>
     /// <returns></returns>
-    public async Task<SysTenant> GetCurrentTenant()
+    public async Task<SysTenant> GetCurrent()
     {
-        return await sysTenantRep.GetItemByTenantId(httpContext.Items.Get("TenantId", 0L));
+        return await sysTenantRep.GetTenantAsync(httpContext.Items.Get("TenantId", 0L));
     }
 
-    ///// <summary>
-    ///// 获取所有租户
-    ///// </summary>
-    ///// <returns></returns>
-    //public async Task<List< SysTenant>> GetAllList()
-    //{
-    //    return await sysTenantRep.GetAllList();
-    //}
+   
 
     /// <summary>
     /// 获取当前租户Id
@@ -57,7 +93,7 @@ public class TenantService : BaseApiController
     [HttpPost]
     public async Task<bool> ChangeTenantSite(long TenantId)
     {
-        var TenantItem =  await sysTenantRep.GetItemByTenantId(TenantId);
+        var TenantItem =  await sysTenantRep.GetTenantAsync(TenantId);
         if(TenantItem != null && TenantItem.Id > 0)
         {
             httpContext.Items.Set("TenantId", TenantId);
@@ -68,5 +104,17 @@ public class TenantService : BaseApiController
         {
             return false;
         }
+    }
+
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto)
+    {
+        return await sysTenantRep.GetPageListAsync(dto);
     }
 }

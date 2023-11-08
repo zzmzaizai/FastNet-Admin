@@ -14,5 +14,14 @@ namespace FastNet.Services;
 public class RoleService : BaseApiController
 {
 
- 
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysRolePageOutput>> GetPageListAsync([FromQuery] QueryRolePagedInput dto)
+    {
+        return await sysRoleRep.GetPageListAsync(dto);
+    }
 }

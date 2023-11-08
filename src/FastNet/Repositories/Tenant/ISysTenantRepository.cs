@@ -4,27 +4,45 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysTenantRepository : IDatabaseRepository<SysUser>, ITransient
+public interface ISysTenantRepository : IDatabaseRepository<SysTenant>, ITransient
 {
+
     /// <summary>
     /// 根据主机名获取租户信息
     /// </summary>
-    /// <param name="HostName"></param>
-    /// <returns>主机名未找到时返回默认租户</returns>
-    SysTenant GetItemByHost(string HostName);
+    /// <param name="HostName">主机名</param>
+    /// <returns>找不到时返回默认租户</returns>
+    Task<SysTenant> GetTenantAsync(string HostName);
 
     /// <summary>
-    /// 根据租户编号查询租户信息
+    /// 根据租户编号获取租户信息
     /// </summary>
-    /// <param name="TenantId"></param>
+    /// <param name="TenantId">租户编号</param>
     /// <returns></returns>
-    Task<SysTenant> GetItemByTenantId(long TenantId);
+    Task<SysTenant> GetTenantAsync(long TenantId);
 
     /// <summary>
-    /// 获取分页数据
+    /// 插入租户信息
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    Task<List<SysTenant>> GetPage(TenantPagedInput input);
+    Task<SysTenant> InsertTenantAsync(InsertTenantInput dto);
+
+    /// <summary>
+    /// 更新租户信息
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SysTenant> UpdateTenantAsync(UpdateTenantInput dto);
+
+
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync(QueryTenantPagedInput dto);
 
     /// <summary>
     /// 填充默认的租户
