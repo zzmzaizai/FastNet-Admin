@@ -1,6 +1,4 @@
-﻿
-
-namespace FastNet.Services;
+﻿namespace FastNet.Services;
 
 /// <summary>
 /// 账号服务

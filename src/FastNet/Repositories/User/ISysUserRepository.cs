@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysUserRepository :  ITransient
+public interface ISysUserRepository : IDatabaseRepository<SysUser>, ITransient
 {
     /// <summary>
     /// 根据用户名获取用户

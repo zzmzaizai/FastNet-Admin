@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysApiResourceRepository : ITransient
+public interface ISysApiResourceRepository : IDatabaseRepository<SysUser>, ITransient
 {
 
 }

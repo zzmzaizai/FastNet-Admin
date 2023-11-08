@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysDictDataRepository : ITransient
+public interface ISysDictDataRepository : IDatabaseRepository<SysUser>, ITransient
 {
 
 }

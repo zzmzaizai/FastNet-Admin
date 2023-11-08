@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysMenuRepository : ITransient
+public interface ISysMenuRepository : IDatabaseRepository<SysUser>, ITransient
 {
     /// <summary>
     /// 校验权限

@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysRelationRepository : ITransient
+public interface ISysRelationRepository : IDatabaseRepository<SysUser>, ITransient
 {
 
 }

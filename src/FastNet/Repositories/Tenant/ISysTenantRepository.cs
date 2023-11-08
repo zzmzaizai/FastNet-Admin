@@ -4,7 +4,7 @@
 /// <summary>
 /// 
 /// </summary>
-public interface ISysTenantRepository : ITransient
+public interface ISysTenantRepository : IDatabaseRepository<SysUser>, ITransient
 {
     /// <summary>
     /// 根据主机名获取租户信息
