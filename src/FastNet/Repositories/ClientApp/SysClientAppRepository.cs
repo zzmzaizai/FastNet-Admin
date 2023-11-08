@@ -41,8 +41,6 @@ public class SysClientAppRepository : DatabaseRepository<SysClientApp>, ISysClie
     public async Task<SysClientApp> InsertClientAppAsync(InsertClientAppInput dto)
     {
         var user = dto.Adapt<SysClientApp>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         await InsertAsync(user);
         return user;
     }
@@ -64,10 +62,6 @@ public class SysClientAppRepository : DatabaseRepository<SysClientApp>, ISysClie
             role.TenantId = dbRole.TenantId;
             role.IsDelete = dbRole.IsDelete;
         }
-        role.UpdateUserId = authManager.UserId;
-        role.UpdateTime = DateTime.Now;
-
-
         await UpdateAsync(role);
         return role;
     }

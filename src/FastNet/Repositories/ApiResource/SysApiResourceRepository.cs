@@ -41,8 +41,6 @@ public class SysApiResourceRepository : DatabaseRepository<SysApiResource>, ISys
     public async Task<SysApiResource> InsertApiResourceAsync(InsertApiResourceInput dto)
     {
         var user = dto.Adapt<SysApiResource>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         await InsertAsync(user);
         return user;
     }
@@ -64,10 +62,6 @@ public class SysApiResourceRepository : DatabaseRepository<SysApiResource>, ISys
             role.TenantId = dbRole.TenantId;
             role.IsDelete = dbRole.IsDelete;
         }
-        role.UpdateUserId = authManager.UserId;
-        role.UpdateTime = DateTime.Now;
-
-
         await UpdateAsync(role);
         return role;
     }

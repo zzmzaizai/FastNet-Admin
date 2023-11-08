@@ -43,8 +43,6 @@ public class SysRoleRepository : DatabaseRepository<SysRole>, ISysRoleRepository
     public async Task<SysRole> InsertRoleAsync(InsertRoleInput dto)
     {
         var user = dto.Adapt<SysRole>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         await InsertAsync(user);
         return user;
     }
@@ -66,10 +64,6 @@ public class SysRoleRepository : DatabaseRepository<SysRole>, ISysRoleRepository
             role.TenantId = dbRole.TenantId;
             role.IsDelete = dbRole.IsDelete;
         }
-        role.UpdateUserId = authManager.UserId;
-        role.UpdateTime = DateTime.Now;
-
- 
         await UpdateAsync(role);
         return role;
     }

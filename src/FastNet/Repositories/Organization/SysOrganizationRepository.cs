@@ -41,8 +41,6 @@ public class SysOrganizationRepository : DatabaseRepository<SysOrganization>, IS
     public async Task<SysOrganization> InsertOrganizationAsync(InsertOrganizationInput dto)
     {
         var user = dto.Adapt<SysOrganization>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         await InsertAsync(user);
         return user;
     }
@@ -64,10 +62,6 @@ public class SysOrganizationRepository : DatabaseRepository<SysOrganization>, IS
             role.TenantId = dbRole.TenantId;
             role.IsDelete = dbRole.IsDelete;
         }
-        role.UpdateUserId = authManager.UserId;
-        role.UpdateTime = DateTime.Now;
-
-
         await UpdateAsync(role);
         return role;
     }

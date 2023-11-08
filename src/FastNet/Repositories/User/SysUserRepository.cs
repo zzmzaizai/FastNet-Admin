@@ -38,8 +38,6 @@ public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
     public async Task<SysUser> InsertUserAsync(InsertUserInput dto)
     {
         var user = dto.Adapt<SysUser>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         user.Secret = Guid.NewGuid().ToString();
         user.Password = MD5Encryption.Encrypt($"{user.Secret}{dto.Password}");
         await InsertAsync(user);
@@ -64,8 +62,6 @@ public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
             user.IsDelete = dbUser.IsDelete;
             user.Password = dbUser.Password;
         }
-        user.UpdateUserId = authManager.UserId;
-        user.UpdateTime = DateTime.Now;
 
         //填写了密码的情况下更改密码
         if (!dto.Password.IsNullOrEmpty())

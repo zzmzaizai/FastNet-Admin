@@ -141,10 +141,19 @@ public static class DatabaseContext
 
                 if (App.User != null)
                 {
-                    //创建人和创建机构ID
+                    //创建人
                     if (entityInfo.PropertyName == nameof(BaseEntity.CreateUserId))
                     {
-                        entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                        if (App.User != null)
+                        {
+                            entityInfo.SetValue(App.User.FindFirst(ClaimConst.UserId)?.Value);
+                        }
+                    }
+
+                    //创建时间
+                    if (entityInfo.PropertyName == nameof(BaseEntity.CreateTime))
+                    {
+                        entityInfo.SetValue(DateTime.Now);
                     }
 
                     //租户编号设置
@@ -162,7 +171,10 @@ public static class DatabaseContext
             {
                 //更新时间
                 if (entityInfo.PropertyName == nameof(BaseEntity.UpdateTime))
+                {
                     entityInfo.SetValue(DateTime.Now);
+                }
+                 
                 //更新人
                 if (App.User != null)
                 {

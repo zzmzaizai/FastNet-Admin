@@ -84,8 +84,6 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
     public async Task<SysMenu> InsertMenuAsync(InsertMenuInput dto)
     {
         var user = dto.Adapt<SysMenu>();
-        user.CreateUserId = authManager.UserId;
-        user.CreateTime = DateTime.Now;
         await InsertAsync(user);
         return user;
     }
@@ -107,10 +105,6 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
             role.TenantId = dbRole.TenantId;
             role.IsDelete = dbRole.IsDelete;
         }
-        role.UpdateUserId = authManager.UserId;
-        role.UpdateTime = DateTime.Now;
-
-
         await UpdateAsync(role);
         return role;
     }

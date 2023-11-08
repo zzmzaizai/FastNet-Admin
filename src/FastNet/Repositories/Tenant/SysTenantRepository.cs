@@ -49,8 +49,6 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
     public async Task<SysTenant> InsertTenantAsync(InsertTenantInput dto)
     {
         var tenant = dto.Adapt<SysTenant>();
-        tenant.CreateUserId = authManager.UserId;
-        tenant.CreateTime = DateTime.Now;
         await InsertAsync(tenant);
         return tenant;
     }
@@ -71,8 +69,6 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
             tenant.CreateTime = dbTenant.CreateTime;
             tenant.IsDelete = dbTenant.IsDelete;
         }
-        tenant.UpdateUserId = authManager.UserId;
-        tenant.UpdateTime = DateTime.Now;
 
         await UpdateAsync(tenant);
         return tenant;
