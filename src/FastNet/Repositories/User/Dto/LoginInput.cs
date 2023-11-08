@@ -15,13 +15,13 @@ namespace FastNet.Repositories
         /// <summary>
         /// 账号
         ///</summary>
-        public virtual string UserName { get; set; }
+        public string UserName { get; set; }
 
 
         /// <summary>
         /// 密码
         ///</summary>
-        public virtual string Password { get; set; }
+        public string Password { get; set; }
 
     }
 }

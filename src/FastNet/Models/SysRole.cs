@@ -11,19 +11,19 @@ public class SysRole : DataEntityBase
     /// 名称
     ///</summary>
     [SugarColumn(ColumnDescription = "名称", Length = 200, IsNullable = false)]
-    public virtual string Name { get; set; }
+    public string Name { get; set; }
 
 
     /// <summary>
     /// 备注
     ///</summary>
     [SugarColumn(ColumnDescription = "备注", Length = 500, IsNullable = true)]
-    public virtual string Remark { get; set; }
+    public string Remark { get; set; }
 
 
     /// <summary>
     /// 状态
     /// </summary>
     [SugarColumn(ColumnDescription = "状态", IsNullable = false)]
-    public virtual DataStatus Status { get; set; }
+    public DataStatus Status { get; set; }
 }

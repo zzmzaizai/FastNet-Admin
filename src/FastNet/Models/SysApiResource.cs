@@ -12,27 +12,27 @@ public class SysApiResource : DataEntityBase
     /// 名称
     ///</summary>
     [SugarColumn(ColumnDescription = "名称", Length = 200, IsNullable = false)]
-    public virtual string Name { get; set; }
+    public string Name { get; set; }
 
 
     /// <summary>
     /// 分组 - 用字典定义资源分组
     ///</summary>
     [SugarColumn(ColumnDescription = "分组", Length = 50, IsNullable = true)]
-    public virtual string Group { get; set; }
+    public string Group { get; set; }
 
     /// <summary>
     /// API路由
     ///</summary>
     [SugarColumn(ColumnDescription = "API路由", Length = 500, IsNullable = false)]
-    public virtual string Router { get; set; }
+    public string Router { get; set; }
 
 
     /// <summary>
     /// API资源路径
     ///</summary>
     [SugarColumn(ColumnDescription = "API资源路径", Length = 500, IsNullable = false)]
-    public virtual string Path { get; set; }
+    public string Path { get; set; }
 
 
 
@@ -40,19 +40,19 @@ public class SysApiResource : DataEntityBase
     /// API请求方法 - GET、POST
     ///</summary>
     [SugarColumn(ColumnDescription = "API请求方法", Length = 10, IsNullable = false)]
-    public virtual string Method { get; set; }
+    public string Method { get; set; }
 
     /// <summary>
     /// 摘要
     ///</summary>
     [SugarColumn(ColumnDescription = "摘要", Length = 150, IsNullable = true)]
-    public virtual string Summary { get; set; }
+    public string Summary { get; set; }
 
     /// <summary>
     /// 备注
     ///</summary>
     [SugarColumn(ColumnDescription = "备注", Length = 500, IsNullable = true)]
-    public virtual string Remark { get; set; }
+    public string Remark { get; set; }
 
 
     /// <summary>
@@ -64,6 +64,6 @@ public class SysApiResource : DataEntityBase
     /// 状态
     /// </summary>
     [SugarColumn(ColumnDescription = "状态", IsNullable = false)]
-    public virtual DataStatus Status { get; set; }
+    public DataStatus Status { get; set; }
 }
  

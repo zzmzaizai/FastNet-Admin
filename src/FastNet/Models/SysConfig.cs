@@ -11,7 +11,7 @@ public class SysConfig : SimpleEntityBase
     /// 配置名称
     ///</summary>
     [SugarColumn(ColumnDescription = "配置名称", Length = 200, IsNullable = true)]
-    public virtual string Lable { get; set; }
+    public string Lable { get; set; }
 
 
 
@@ -19,12 +19,12 @@ public class SysConfig : SimpleEntityBase
     /// 配置Key
     ///</summary>
     [SugarColumn(ColumnDescription = "配置Key", Length = 50, IsNullable = false)]
-    public virtual string Key { get; set; }
+    public string Key { get; set; }
 
 
     /// <summary>
     /// 配置值
     ///</summary>
     [SugarColumn(ColumnDescription = "配置值", IsNullable = true)]
-    public virtual string Value { get; set; }
+    public string Value { get; set; }
 }

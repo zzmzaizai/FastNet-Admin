@@ -12,7 +12,7 @@ public class SysDictType : SimpleEntityBase
     /// 字典类型名称
     ///</summary>
     [SugarColumn(ColumnDescription = "字典类型名称", Length = 50, IsNullable = false)]
-    public virtual string DictTypeName { get; set; }
+    public string DictTypeName { get; set; }
 
 
 
@@ -20,7 +20,7 @@ public class SysDictType : SimpleEntityBase
     /// 字典类型
     ///</summary>
     [SugarColumn(ColumnDescription = "字典类型", Length = 50, IsNullable = false)]
-    public virtual string DictType { get; set; }
+    public string DictType { get; set; }
 
 
 

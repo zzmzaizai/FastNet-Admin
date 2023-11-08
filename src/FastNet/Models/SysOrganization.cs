@@ -12,7 +12,7 @@ public class SysOrganization : DataEntityBase
     /// 名称
     ///</summary>
     [SugarColumn(ColumnDescription = "名称", Length = 200, IsNullable = false)]
-    public virtual string Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// 上级组织Id
@@ -25,26 +25,26 @@ public class SysOrganization : DataEntityBase
     /// 负责人
     ///</summary>
     [SugarColumn(ColumnDescription = "负责人", Length = 100, IsNullable = true)]
-    public virtual string Leader { get; set; }
+    public string Leader { get; set; }
 
     /// <summary>
     /// 电话
     ///</summary>
     [SugarColumn(ColumnDescription = "电话", Length = 100, IsNullable = true)]
-    public virtual string Tel { get; set; }
+    public string Tel { get; set; }
 
 
     /// <summary>
     /// 邮箱
     ///</summary>
     [SugarColumn(ColumnDescription = "邮箱", Length = 100, IsNullable = true)]
-    public virtual string Email { get; set; }
+    public string Email { get; set; }
 
     /// <summary>
     /// 备注
     ///</summary>
     [SugarColumn(ColumnDescription = "备注", Length = 500, IsNullable = true)]
-    public virtual string Remark { get; set; }
+    public string Remark { get; set; }
 
     /// <summary>
     /// 排序
@@ -56,6 +56,6 @@ public class SysOrganization : DataEntityBase
     /// 状态
     /// </summary>
     [SugarColumn(ColumnDescription = "状态", IsNullable = false)]
-    public virtual DataStatus Status { get; set; }
+    public DataStatus Status { get; set; }
 
 }

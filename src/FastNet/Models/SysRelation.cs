@@ -30,7 +30,7 @@ public class SysRelation : SimpleEntityBase
     /// 额外数据
     ///</summary>
     [SugarColumn(ColumnDescription = "额外数据", IsNullable = true)]
-    public virtual string ExtraData { get; set; }
+    public string ExtraData { get; set; }
 
 }
 
