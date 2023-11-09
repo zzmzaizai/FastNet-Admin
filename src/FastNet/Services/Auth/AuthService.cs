@@ -1,4 +1,5 @@
-﻿using StackExchange.Profiling.Internal;
+﻿using NetTaste;
+using StackExchange.Profiling.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,6 @@ public class AuthService : BaseApiController
     [AllowAnonymous]
     public async Task<object> SignIn(LoginInput dto)
     {
-
         //string signInErrorCacheKey = $"login.error.{dto.Account}";
         //CacheValue<int> value = await _easyCachingProvider.GetAsync<int>(signInErrorCacheKey);
         //var setting = await _customConfigService.Get<SysSecuritySetting>();
@@ -49,7 +49,7 @@ public class AuthService : BaseApiController
 
         if (user.Password != MD5Encryption.Encrypt($"{user.Secret}{dto.Password}"))
         {
-            //await _easyCachingProvider.SetAsync(signInErrorCacheKey, value.Value + 1, TimeSpan.FromMinutes(5));
+            //这里可以记录密码的重试次数
             throw Oops.Bah("用户名或密码错误");
         }
         long uniqueId = DatabaseUtils.GetDataId();
@@ -74,11 +74,28 @@ public class AuthService : BaseApiController
     }
 
     /// <summary>
-    /// 注册用户
+    /// 系统用户退出
     /// </summary>
-    /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpPatch]
+    public async Task<bool> SignOut()
+    {
+        var context = httpContextAccessor.HttpContext;
+        // 设置响应报文头
+        context.SignoutToSwagger();
+        context!.Response.Headers["access-token"] = "";
+        context.Response.Headers["x-access-token"] = "";
+
+        return await Task.FromResult(true);
+    }
+
+
+        /// <summary>
+        /// 注册用户
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        [HttpPost]
     [AllowAnonymous]
     public async Task<SysUser> Register(RegisterInput dto)
     {

@@ -5,12 +5,16 @@ namespace FastNet.Repositories;
 
 
 /// <summary>
-/// 
+/// 租户仓储
 /// </summary>
 public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepository
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
 
+    /// <summary>
+    /// 构造
+    /// </summary>
+    /// <param name="httpContextAccessor"></param>
     public SysTenantRepository(IHttpContextAccessor httpContextAccessor)
     {
         _httpContextAccessor = httpContextAccessor;
