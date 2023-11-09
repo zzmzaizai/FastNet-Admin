@@ -1,3 +1,16 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "Name": "Admin Role",
+      "Remark": "",
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "CreateTime": "2023-11-09 11:00:38",
+      "UpdateTime": null,
+      "CreateUserId": 1722441056835997696,
+      "UpdateUserId": null,
+      "IsDelete": false,
+      "Id": 1722449085182644224
+    }
+  ]
 }

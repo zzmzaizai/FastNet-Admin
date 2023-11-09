@@ -16,7 +16,7 @@ public class SysTenant : BaseEntity
     /// <summary>
     /// 绑定域名 - 多个域名逗号间隔
     ///</summary>
-    [SugarColumn(ColumnDescription = "绑定域名", Length = 500, IsNullable = false)]
+    [SugarColumn(ColumnDescription = "绑定域名", Length = 500, IsNullable = true)]
     public string Domains { get; set; }
 
 

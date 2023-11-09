@@ -41,6 +41,8 @@ public class SysClientAppRepository : DatabaseRepository<SysClientApp>, ISysClie
     public async Task<SysClientApp> InsertClientAppAsync(InsertClientAppInput dto)
     {
         var user = dto.Adapt<SysClientApp>();
+        user.ClientCode = Guid.NewGuid().ToString("N");
+        user.SecretKey = $"Secret-{user.ClientCode}-{DateTime.Now.Ticks.ToString()}".ToMD5Encrypt();
         await InsertAsync(user);
         return user;
     }
@@ -65,5 +67,24 @@ public class SysClientAppRepository : DatabaseRepository<SysClientApp>, ISysClie
         await UpdateAsync(role);
         return role;
     }
+
+    /// <summary>
+    /// 重置客户端APP的SecretKey
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<SysClientApp> ResetClientAppSecretAsync(ResetClientAppSecretInput dto)
+    {
+ 
+        var dbRole = await GetClientAppAsync(dto.Id);
+        if (dbRole != null)
+        {
+            dbRole.SecretKey = $"Secret-{dbRole.ClientCode}-{DateTime.Now.Ticks.ToString()}".ToMD5Encrypt();
+            await UpdateAsync(dbRole);
+        }
+       
+        return dbRole;
+    }
+
 }
 

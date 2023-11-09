@@ -1,3 +1,40 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "DictName": "Woman",
+      "DictType": "sex",
+      "DictValue": "Woman",
+      "Order": 2,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "Id": 1722456829365194752
+    },
+    {
+      "DictName": "Man",
+      "DictType": "sex",
+      "DictValue": "Man",
+      "Order": 1,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "Id": 1722456916774490112
+    },
+    {
+      "DictName": "CEO",
+      "DictType": "title",
+      "DictValue": "CEO",
+      "Order": 1,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "Id": 1722457086719299584
+    },
+    {
+      "DictName": "CFO",
+      "DictType": "title",
+      "DictValue": "CFO",
+      "Order": 2,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "Id": 1722457121766903808
+    }
+  ]
 }

@@ -35,5 +35,12 @@ public interface ISysClientAppRepository : IDatabaseRepository<SysClientApp>, IT
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<SysClientApp> UpdateClientAppAsync(UpdateClientAppInput dto);
+
+    /// <summary>
+    /// 重置客户端APP的SecretKey
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    Task<SysClientApp> ResetClientAppSecretAsync(ResetClientAppSecretInput dto);
 }
 

@@ -1,3 +1,21 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "Name": "People's Bank of China",
+      "ParentId": 0,
+      "Leader": "admin",
+      "Tel": "18888888888",
+      "Email": "admin@example.com",
+      "Remark": "",
+      "Order": 0,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "CreateTime": "2023-11-09 11:25:52",
+      "UpdateTime": null,
+      "CreateUserId": 1722441056835997696,
+      "UpdateUserId": null,
+      "IsDelete": false,
+      "Id": 1722455438101975040
+    }
+  ]
 }

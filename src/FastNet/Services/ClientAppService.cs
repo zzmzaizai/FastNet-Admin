@@ -56,7 +56,16 @@ public class ClientAppService : BaseApiController
         return await sysClientAppRep.UpdateClientAppAsync(dto);
     }
 
-
+    /// <summary>
+    /// 重置客户端APP的SecretKey
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPatch]
+    public async Task<SysClientApp> ResetSecretAsync(ResetClientAppSecretInput dto)
+    {
+        return await sysClientAppRep.ResetClientAppSecretAsync(dto);
+    }
 
     /// <summary>
     /// 下载种子数据

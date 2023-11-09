@@ -2,7 +2,7 @@
 namespace FastNet.Repositories;
 
 /// <summary>
-/// 角色更新DTO
+/// 客户端APP更新DTO
 /// </summary>
 public class UpdateClientAppInput
 {

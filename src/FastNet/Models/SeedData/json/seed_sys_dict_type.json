@@ -1,3 +1,18 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "DictTypeName": "Title",
+      "DictType": "title",
+      "Order": 1,
+      "TenantId": 1722439250500259840,
+      "Id": 1722456095097753600
+    },
+    {
+      "DictTypeName": "Sex",
+      "DictType": "sex",
+      "Order": 2,
+      "TenantId": 1722439250500259840,
+      "Id": 1722456139456712704
+    }
+  ]
 }

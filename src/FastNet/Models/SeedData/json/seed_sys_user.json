@@ -8,7 +8,7 @@
       "NickName": "admin",
       "FullName": null,
       "Avatar": null,
-      "Tel": null,
+      "Tel": "18888888888",
       "Sex": null,
       "Title": null,
       "IsSuperAdmin": false,
@@ -16,7 +16,7 @@
       "TenantId": 1722439250500259840,
       "CreateTime": "2023-11-09 09:42:02",
       "UpdateTime": null,
-      "CreateUserId": null,
+      "CreateUserId": 1722441056835997696,
       "UpdateUserId": null,
       "IsDelete": false,
       "Id": 1722441056835997696

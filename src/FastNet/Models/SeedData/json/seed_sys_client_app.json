@@ -1,3 +1,21 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "Name": "Mobile App",
+      "ClientCode": "350c4414-d9af-4e39-b096-808dc9d19f50",
+      "SecretKey": "786F45C772CC3AE2FF3791E5EF0B418C94A1A0DDE68E1B93F0903352B65EEE9DC86B5CE604C05D07",
+      "Tel": "18888888888",
+      "Email": "admin@example.com",
+      "Contact": "",
+      "Remark": "",
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "CreateTime": "2023-11-09 11:21:07",
+      "UpdateTime": null,
+      "CreateUserId": 1722441056835997696,
+      "UpdateUserId": null,
+      "IsDelete": false,
+      "Id": 1722454239948705792
+    }
+  ]
 }

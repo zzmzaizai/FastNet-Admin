@@ -2,7 +2,7 @@
 namespace FastNet.Repositories;
 
 /// <summary>
-/// 角色插入DTO
+/// 客户端APP插入DTO
 /// </summary>
 public class InsertClientAppInput
 {
@@ -10,16 +10,6 @@ public class InsertClientAppInput
     /// 名称
     ///</summary>
     public string Name { get; set; }
-
-    /// <summary>
-    /// 客户端编码
-    ///</summary>
-    public string ClientCode { get; set; }
-
-    /// <summary>
-    /// 私钥
-    ///</summary>
-    public string SecretKey { get; set; }
 
     /// <summary>
     /// 电话
