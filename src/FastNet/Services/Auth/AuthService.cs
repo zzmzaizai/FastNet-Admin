@@ -83,8 +83,6 @@ public class AuthService : BaseApiController
         var context = httpContextAccessor.HttpContext;
         // 设置响应报文头
         context.SignoutToSwagger();
-        context!.Response.Headers["access-token"] = "";
-        context.Response.Headers["x-access-token"] = "";
 
         return await Task.FromResult(true);
     }
