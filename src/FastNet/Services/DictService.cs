@@ -101,4 +101,44 @@ public class DictService : BaseApiController
     }
 
 
+    /// <summary>
+    /// 下载种子数据(字典数据)
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataDictDataAsync()
+    {
+        var list = await sysDictDataRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysDictData>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_dict_data.json" // 配置文件下载显示名
+        };
+    }
+
+
+    /// <summary>
+    /// 下载种子数据(字典类型)
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataDictTypeAsync()
+    {
+        var list = await sysDictTypeRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysDictType>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_dict_type.json" // 配置文件下载显示名
+        };
+    }
 }

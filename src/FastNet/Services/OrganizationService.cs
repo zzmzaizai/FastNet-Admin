@@ -51,4 +51,26 @@ public class OrganizationService : BaseApiController
     {
         return await sysOrganizationRep.UpdateOrganizationAsync(dto);
     }
+
+
+
+    /// <summary>
+    /// 下载种子数据
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataAsync()
+    {
+        var list = await sysOrganizationRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysOrganization>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_organization.json" // 配置文件下载显示名
+        };
+    }
 }

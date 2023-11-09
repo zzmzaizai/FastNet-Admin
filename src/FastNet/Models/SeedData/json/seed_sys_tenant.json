@@ -1,3 +1,22 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "Name": "Default",
+      "Domains": ",192.168.0.70:5000,192.168.0.70:5001,",
+      "StartDate": null,
+      "EndDate": null,
+      "Tel": "",
+      "Email": "washala@qq.com",
+      "Contact": "",
+      "Remark": null,
+      "IsDefault": true,
+      "Status": 1,
+      "CreateTime": "2023-11-09 10:21:33",
+      "UpdateTime": null,
+      "CreateUserId": null,
+      "UpdateUserId": null,
+      "IsDelete": false,
+      "Id": 1722439250500259840
+    }
+  ]
 }

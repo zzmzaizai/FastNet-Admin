@@ -57,4 +57,26 @@ public class ApiResourceService : BaseApiController
         return await sysApiResourceRep.UpdateApiResourceAsync(dto);
     }
 
+
+
+    /// <summary>
+    /// 下载种子数据
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataAsync()
+    {
+        var list = await sysApiResourceRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysApiResource>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_api_resource.json" // 配置文件下载显示名
+        };
+    }
+
 }

@@ -1,3 +1,25 @@
 {
-  "RECORDS": []
+  "Records": [
+    {
+      "UserName": "admin",
+      "Password": "8dfbc4a65d3c9e73a4385bab5fc6ac9d",
+      "Secret": "fdd7a792-fa0a-4c5d-acbd-901b7544241f",
+      "Email": "admin@example.com",
+      "NickName": "admin",
+      "FullName": null,
+      "Avatar": null,
+      "Tel": null,
+      "Sex": null,
+      "Title": null,
+      "IsSuperAdmin": false,
+      "Status": 1,
+      "TenantId": 1722439250500259840,
+      "CreateTime": "2023-11-09 09:42:02",
+      "UpdateTime": null,
+      "CreateUserId": null,
+      "UpdateUserId": null,
+      "IsDelete": false,
+      "Id": 1722441056835997696
+    }
+  ]
 }

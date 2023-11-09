@@ -200,6 +200,7 @@ public static class DatabaseContext
     {
         db.CurrentConnectionConfig.MoreSettings = new ConnMoreSettings
         {
+            IsNoReadXmlDescription = true,
             SqlServerCodeFirstNvarchar = true//设置默认nvarchar
         };
     }

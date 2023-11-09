@@ -117,4 +117,25 @@ public class TenantService : BaseApiController
     {
         return await sysTenantRep.GetPageListAsync(dto);
     }
+
+
+    /// <summary>
+    /// 下载种子数据
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataAsync()
+    {
+        var list = await sysTenantRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysTenant>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_tenant.json" // 配置文件下载显示名
+        };
+    }
 }

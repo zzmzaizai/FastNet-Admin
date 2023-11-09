@@ -117,35 +117,38 @@ public abstract class BaseApiController : IDynamicApiController
 
 
 
-//#if DEBUG
-//    /// <summary>
-//    /// 获取当前时间
-//    /// </summary>
-//    /// <returns></returns>
-//    public string GetDateNow()
-//    {
-//        return $"现在时间是{DateTime.Now}";
-//    }
+    //#if DEBUG
+    //    /// <summary>
+    //    /// 获取当前时间
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public string GetDateNow()
+    //    {
+    //        return $"现在时间是{DateTime.Now}";
+    //    }
 
-//    /// <summary>
-//    /// 获取当前控制器的名称
-//    /// </summary>
-//    /// <returns></returns>
-//    public string GetClassName()
-//    {
-//        return this.GetType().FullName;
-//    }
+    //    /// <summary>
+    //    /// 获取当前控制器的名称
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public string GetClassName()
+    //    {
+    //        return this.GetType().FullName;
+    //    }
 
-//    /// <summary>
-//    /// 获取当前控制器的方法集合
-//    /// </summary>
-//    /// <returns></returns>
-//    public object GetClassMethods()
-//    {
-//        return this.GetType().GetMethods().Where(x=>x.IsPublic && x.MemberType == System.Reflection.MemberTypes.Method).Select(x=> new { Name = x.Name, ReturnType = x.ReturnType.Name }).ToList();
-//    }
+    //    /// <summary>
+    //    /// 获取当前控制器的方法集合
+    //    /// </summary>
+    //    /// <returns></returns>
+    //    public object GetClassMethods()
+    //    {
+    //        return this.GetType().GetMethods().Where(x=>x.IsPublic && x.MemberType == System.Reflection.MemberTypes.Method).Select(x=> new { Name = x.Name, ReturnType = x.ReturnType.Name }).ToList();
+    //    }
 
-//#endif
+    //#endif
+
+
+
 
 }
 

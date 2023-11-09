@@ -72,7 +72,7 @@ public static class CodeFirstUtils
             var hasDataMethod = seedType.GetMethod("SeedData");
             //判断是否有种子数据
             var seedData = ((IEnumerable)hasDataMethod?.Invoke(instance, null))?.Cast<object>();
-            if (seedData == null) continue;//没有种子数据就下一个
+            if (seedData == null || !seedData.Any()) continue;//没有种子数据就下一个
             var entityType = seedType.GetInterfaces().First().GetGenericArguments().First();//获取实体类型
             var tenantAtt = entityType.GetCustomAttribute<TenantAttribute>();//获取sqlsugar租户特性
             if (tenantAtt == null) continue;//如果没有租户特性就下一个

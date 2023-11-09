@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Reflection;
 
 namespace FastNet.WebAPI;
 
@@ -12,7 +13,7 @@ public class Startup : AppStartup
 
 
         services.AddConsoleFormatter();
-        services.AddJwt<JwtHandler>(enableGlobalAuthorize: true, jwtBearerConfigure: options =>
+        services.AddJwt<JwtHandler>(enableGlobalAuthorize: false, jwtBearerConfigure: options =>
         {
             options.Events = new JwtBearerEvents()
             {
@@ -34,7 +35,6 @@ public class Startup : AppStartup
         });
 
         services.AddCorsAccessor();
-
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

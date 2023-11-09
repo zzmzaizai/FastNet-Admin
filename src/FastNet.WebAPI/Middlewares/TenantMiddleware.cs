@@ -63,7 +63,7 @@ public class TenantMiddleware
 
           
             //查找当前域名是否存在某个站点中，否则返回主租户信息
-            var TenantItem =  _tenantRepository.GetTenantAsync(HostDomian);
+            var TenantItem = await _tenantRepository.GetTenantAsync(HostDomian);
             if(TenantItem != null && TenantItem.Id > 0)
             {
                 //将租户编号存放到上下文和Cookies中

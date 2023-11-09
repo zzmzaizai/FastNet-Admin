@@ -1,4 +1,6 @@
-﻿namespace FastNet.Services;
+﻿using System;
+
+namespace FastNet.Services;
 
 /// <summary>
 /// 账号服务
@@ -36,7 +38,7 @@ public class AccountService : BaseApiController
     public async Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto)
     {
         var User = await sysUserRep.GetUserAsync(dto.Id);
-        if(User == null)
+        if (User == null)
         {
             throw Oops.Bah("用户没有找到");
         }
@@ -75,6 +77,24 @@ public class AccountService : BaseApiController
         return await sysUserRep.GetPageListAsync(dto);
     }
 
+    /// <summary>
+    /// 下载种子数据
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataAsync()
+    {
+        var list = await sysUserRep.GetListAsync();
 
+        var json =  new SeedDataRecords<SysUser>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_user.json" // 配置文件下载显示名
+        };
+    }
 
 }

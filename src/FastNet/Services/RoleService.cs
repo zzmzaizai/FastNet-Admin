@@ -56,4 +56,25 @@ public class RoleService : BaseApiController
     {
         return await sysRoleRep.UpdateRoleAsync(dto);
     }
+
+
+    /// <summary>
+    /// 下载种子数据
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet, NonUnify]
+    public async Task<IActionResult> DownloadSeedDataAsync()
+    {
+        var list = await sysRoleRep.GetListAsync();
+
+        var json = new SeedDataRecords<SysRole>
+        {
+            Records = list
+        }.ToJson();
+
+        return new FileContentResult(Encoding.UTF8.GetBytes(json), "application/octet-stream")
+        {
+            FileDownloadName = "seed_sys_role.json" // 配置文件下载显示名
+        };
+    }
 }

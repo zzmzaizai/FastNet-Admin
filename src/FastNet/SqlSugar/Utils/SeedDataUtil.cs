@@ -9,7 +9,7 @@ public class SeedDataUtil
     {
         var seedData = new List<T>();//种子数据结果
         var basePath = AppContext.BaseDirectory;//获取项目目录
-        var json = Path.Combine(basePath,"SeedData", "Json", jsonName); //获取文件路径
+        var json = Path.Combine(basePath, "Models", "SeedData", "Json", jsonName); //获取文件路径
         var dataString = File.ReadAllText(json); ;//读取文件
         if (!string.IsNullOrEmpty(dataString))//如果有内容
         {
