@@ -5,11 +5,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="SqlSugar\PagedList\**" />
-	  <EmbeddedResource Remove="SqlSugar\PagedList\**" />
-	  <None Remove="SqlSugar\PagedList\**" />
-	</ItemGroup>
-	<ItemGroup>
 		<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.50" />
 		<PackageReference Include="Furion.Pure" Version="4.8.8.50" />
 		<PackageReference Include="Furion.Extras.DatabaseAccessor.SqlSugar" Version="4.8.8.50" />
@@ -17,7 +12,10 @@
 		<PackageReference Include="SqlSugarCore" Version="5.1.4.112" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="Extend\" />
+		<Content Include="Models\SeedData\Json\*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
+ 
 
 </Project>
