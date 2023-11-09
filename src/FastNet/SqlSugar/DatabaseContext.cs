@@ -238,7 +238,7 @@ public static class DatabaseContext
         var TenantId = App.HttpContext?.Items.Get<long>("TenantId", 0);
 
         //接口过滤器 实现租户的数据隔离
-        db.QueryFilter.AddTableFilter<ITenantTableFilter>(it => it.TenantId == TenantId);
+        db.QueryFilter.AddTableFilterIF<ITenantTableFilter>(TenantId.HasValue && TenantId.Value >0,  it => it.TenantId == TenantId);
     
     }
 
