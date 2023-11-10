@@ -40,6 +40,11 @@ public class TenantMiddleware
 
         //获取当前域名
         var HostDomian = context.Request.Host.ToString().ToLower();
+        if(context.Request.Headers.ContainsKey("x-domain"))
+        {
+            //取API请求服务代理过来的域名
+            HostDomian = context.Request.Headers["x-domain"];
+        }
 
         //判断Cookie中有无定义的TenantId
         if (context.Request.Cookies.ContainsKey("TenantId"))

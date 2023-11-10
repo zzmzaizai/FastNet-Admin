@@ -1,41 +1,44 @@
-using AntDesign.ProLayout;
+Serve.Run(RunOptions.Default.WithArgs(args));
 
-using Microsoft.AspNetCore.Components;
 
-var builder = WebApplication.CreateBuilder(args);
+//using AntDesign.ProLayout;
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddAntDesign();
-builder.Services.AddScoped(sp => new HttpClient
-{
-    BaseAddress = new Uri(sp.GetService<NavigationManager>()!.BaseUri)
-});
-builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
-builder.Services.AddScoped<IChartService, ChartService>();
-builder.Services.AddScoped<IProjectService, ProjectService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IAccountService, AccountService>();
-builder.Services.AddScoped<IProfileService, ProfileService>();
+//using Microsoft.AspNetCore.Components;
 
-var app = builder.Build();
+//var builder = WebApplication.CreateBuilder(args);
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
+//// Add services to the container.
+//builder.Services.AddRazorPages();
+//builder.Services.AddServerSideBlazor();
+//builder.Services.AddAntDesign();
+//builder.Services.AddScoped(sp => new HttpClient
+//{
+//    BaseAddress = new Uri(sp.GetService<NavigationManager>()!.BaseUri)
+//});
+//builder.Services.Configure<ProSettings>(builder.Configuration.GetSection("ProSettings"));
+//builder.Services.AddScoped<IChartService, ChartService>();
+//builder.Services.AddScoped<IProjectService, ProjectService>();
+//builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IAccountService, AccountService>();
+//builder.Services.AddScoped<IProfileService, ProfileService>();
 
-app.UseHttpsRedirection();
+//var app = builder.Build();
 
-app.UseStaticFiles();
+//// Configure the HTTP request pipeline.
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Error");
+//    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+//    app.UseHsts();
+//}
 
-app.UseRouting();
+//app.UseHttpsRedirection();
 
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+//app.UseStaticFiles();
 
-app.Run();
+//app.UseRouting();
+
+//app.MapBlazorHub();
+//app.MapFallbackToPage("/_Host");
+
+//app.Run();
