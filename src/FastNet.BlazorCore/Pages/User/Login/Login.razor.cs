@@ -13,7 +13,7 @@ namespace FastNet.BlazorCore.Pages.User
 
         [Inject] public NavigationManager NavigationManager { get; set; }
 
-        [Inject] public IAccountService AccountService { get; set; }
+        //[Inject] public IAccountService AccountService { get; set; }
 
         [Inject] public MessageService Message { get; set; }
 
@@ -37,8 +37,8 @@ namespace FastNet.BlazorCore.Pages.User
 
         public async Task GetCaptcha()
         {
-            var captcha = await AccountService.GetCaptchaAsync(_model.Mobile);
-            await Message.Success($"Verification code validated successfully! The verification code is: {captcha}");
+            //var captcha = await AccountService.GetCaptchaAsync(_model.Mobile);
+            //await Message.Success($"Verification code validated successfully! The verification code is: {captcha}");
         }
     }
 }

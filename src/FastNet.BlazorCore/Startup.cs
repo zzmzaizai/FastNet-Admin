@@ -25,6 +25,8 @@ public class Startup : AppStartup
         services.AddRazorPages().AddInjectBase();
         services.AddServerSideBlazor();
 
+        services.AddInjectMini();
+
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddAntDesign();
@@ -46,7 +48,7 @@ public class Startup : AppStartup
         services.AddScoped<IChartService, ChartService>();
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IAccountService, AccountService>();
+        //services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IProfileService, ProfileService>();
     }
 
