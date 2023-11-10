@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Services
 {
-    public interface IProjectService
+    public interface IProjectService : ITransient
     {
         Task<NoticeType[]> GetProjectNoticeAsync();
         Task<ActivitiesType[]> GetActivitiesAsync();

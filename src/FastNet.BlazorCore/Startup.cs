@@ -36,7 +36,7 @@ public class Startup : AppStartup
         });
         services.AddRemoteRequest(options =>
         {
-            // 配置 Base Web Api 基本信息
+            // 配置 System Web Api 基本信息
             options.AddHttpClient("system", c =>
             {
                 c.BaseAddress = new Uri("https://localhost:5001");
@@ -45,11 +45,6 @@ public class Startup : AppStartup
         });
 
         services.Configure<ProSettings>(App.Configuration.GetSection("ProSettings"));
-        services.AddScoped<IChartService, ChartService>();
-        services.AddScoped<IProjectService, ProjectService>();
-        services.AddScoped<IUserService, UserService>();
-        //services.AddScoped<IAccountService, AccountService>();
-        services.AddScoped<IProfileService, ProfileService>();
     }
 
     /// <summary>

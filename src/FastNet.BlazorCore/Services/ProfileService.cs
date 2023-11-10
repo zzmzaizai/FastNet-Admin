@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Services
 {
-    public interface IProfileService
+    public interface IProfileService : ITransient
     {
         Task<BasicProfileDataType> GetBasicAsync();
         Task<AdvancedProfileData> GetAdvancedAsync();

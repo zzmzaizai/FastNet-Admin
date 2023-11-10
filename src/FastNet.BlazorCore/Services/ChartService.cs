@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Services
 {
-    public interface IChartService
+    public interface IChartService: ITransient
     {
         Task<ChartDataItem[]> GetVisitDataAsync();
         Task<ChartDataItem[]> GetVisitData2Async();

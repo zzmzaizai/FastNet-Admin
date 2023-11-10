@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Services
 {
-    public interface IUserService
+    public interface IUserService : ITransient
     {
         Task<CurrentUser> GetCurrentUserAsync();
     }
