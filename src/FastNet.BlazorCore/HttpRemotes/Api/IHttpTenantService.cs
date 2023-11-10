@@ -61,7 +61,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <returns></returns>
     [Get("/api/host/tenant/current-tenant-id")]
-    public long GetCurrentTenantId();
+    Task<long> GetCurrentTenantId();
 
     /// <summary>
     /// 填充一个默认租户

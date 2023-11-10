@@ -13,10 +13,6 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HttpRemotes\Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\FastNet.Model\FastNet.Model.csproj" />
   </ItemGroup>
 

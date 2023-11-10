@@ -2,6 +2,7 @@
 using FastNet.BlazorCore.Models;
 using FastNet.BlazorCore.Services;
 using Microsoft.AspNetCore.Components;
+using StackExchange.Profiling.Internal;
 using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Pages.User
@@ -16,11 +17,18 @@ namespace FastNet.BlazorCore.Pages.User
 
         [Inject] public MessageService Message { get; set; }
 
+        [Inject] public AuthService authService { get; set; }
+
         public void HandleSubmit()
         {
-            if (_model.UserName == "admin" && _model.Password == "ant.design")
+            if (_model.UserName == "admin" && !_model.Password.IsNullOrWhiteSpace())
             {
-                NavigationManager.NavigateTo("/");
+
+               var LoginData = authService.SignIn(_model.Adapt<LoginInput>());
+
+
+
+                //NavigationManager.NavigateTo("/");
                 return;
             }
 

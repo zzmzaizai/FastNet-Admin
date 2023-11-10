@@ -11,9 +11,6 @@ namespace FastNet.Service;
 public class TenantService : BaseApiController
 {
 
-
-
-
     /// <summary>
     /// 插入租户
     /// </summary>
@@ -64,15 +61,15 @@ public class TenantService : BaseApiController
         return await sysTenantRep.GetTenantAsync(httpContext.Items.Get("TenantId", 0L));
     }
 
-   
+
 
     /// <summary>
     /// 获取当前租户Id
     /// </summary>
     /// <returns></returns>
-    public long GetCurrentTenantId()
+    public async Task<long> GetCurrentTenantId()
     {
-        return httpContext.Items.Get("TenantId", 0L);
+        return await Task.FromResult(httpContext.Items.Get("TenantId", 0L));
     }
 
     /// <summary>
