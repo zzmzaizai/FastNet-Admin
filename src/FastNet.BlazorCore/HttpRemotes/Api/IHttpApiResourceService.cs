@@ -1,4 +1,7 @@
 ﻿
+using SqlSugar;
+using System.Text;
+
 namespace FastNet.BlazorCore;
 
 
@@ -8,14 +11,42 @@ namespace FastNet.BlazorCore;
 [Client("system")]
 public interface IHttpApiResourceService : IBaseHttpRemote
 {
+ 
     /// <summary>
-    /// 测试
+    /// 分页列表查询
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/get")]
-    Task<HttpResponseMessage> GetTestAsync();
+    [Get("/api/system/api-resource/page-list")]
+    Task<SqlSugarPagedList<SysApiResourcePageOutput>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto);
 
 
-     
+
+    /// <summary>
+    /// 根据API资源Id获取API资源
+    /// </summary>
+    /// <param name="ApiResourceId">API资源编号</param>
+    /// <returns></returns>
+    [Get("/api/system/api-resource/{apiresourceid}")]
+    Task<SysApiResource> GetAsync(long ApiResourceId);
+
+    /// <summary>
+    /// 插入API资源
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Post("/api/system/api-resource")]
+    Task<SysApiResource> InsertAsync(InsertApiResourceInput dto);
+
+    /// <summary>
+    /// 更新API资源
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Put("/api/system/api-resource")]
+    Task<SysApiResource> UpdateAsync(UpdateApiResourceInput dto);
+
+
+
 
 }

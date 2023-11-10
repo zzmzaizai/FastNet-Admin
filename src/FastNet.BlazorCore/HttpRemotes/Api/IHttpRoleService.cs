@@ -1,4 +1,7 @@
 ﻿
+using SqlSugar;
+using System.Text;
+
 namespace FastNet.BlazorCore;
 
 
@@ -8,14 +11,42 @@ namespace FastNet.BlazorCore;
 [Client("system")]
 public interface IHttpRoleService : IBaseHttpRemote
 {
+ 
     /// <summary>
-    /// 测试
+    /// 分页列表查询
     /// </summary>
+    /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/get")]
-    Task<HttpResponseMessage> GetTestAsync();
+    [Get("/api/system/role/page-list")]
+    [HttpGet]
+    Task<SqlSugarPagedList<SysRolePageOutput>> GetPageListAsync([FromQuery] QueryRolePagedInput dto);
 
 
-     
+
+    /// <summary>
+    /// 根据角色Id获取角色
+    /// </summary>
+    /// <param name="RoleId">角色编号</param>
+    /// <returns></returns>
+    [Get("/api/system/role/{roleid}")]
+    Task<SysRole> GetAsync(long RoleId);
+
+    /// <summary>
+    /// 插入角色
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Post("/api/system/role")]
+    Task<SysRole> InsertAsync(InsertRoleInput dto);
+
+    /// <summary>
+    /// 更新角色
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Put("/api/system/role")]
+    Task<SysRole> UpdateAsync(UpdateRoleInput dto);
+
+ 
 
 }

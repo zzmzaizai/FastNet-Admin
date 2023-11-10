@@ -15,3 +15,12 @@ global using System.ComponentModel.DataAnnotations;
 
 
 global using Furion.RemoteRequest;
+
+global using FastNet;
+global using FastNet.SqlSugar;
+global using FastNet.Cache;
+global using FastNet.Auth;
+global using FastNet.Model.Entities;
+global using FastNet.Model.Dto;
+global using FastNet.Model.SeedData;
+global using FastNet.Infrastructure;

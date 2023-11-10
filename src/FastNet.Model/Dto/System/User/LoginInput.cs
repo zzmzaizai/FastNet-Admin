@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.Repositories
-{
+namespace FastNet.Model.Dto;
+
     /// <summary>
     /// 用户登录输入项
     /// </summary>
@@ -26,4 +26,4 @@ namespace FastNet.Repositories
         public string Password { get; set; }
 
     }
-}
+

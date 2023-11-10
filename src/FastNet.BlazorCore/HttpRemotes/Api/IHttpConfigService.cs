@@ -1,4 +1,7 @@
 ﻿
+using SqlSugar;
+using System.Text;
+
 namespace FastNet.BlazorCore;
 
 
@@ -8,14 +11,24 @@ namespace FastNet.BlazorCore;
 [Client("system")]
 public interface IHttpConfigService : IBaseHttpRemote
 {
+ 
     /// <summary>
-    /// 测试
+    /// 获取列表
     /// </summary>
     /// <returns></returns>
-    [Get("/get")]
-    Task<HttpResponseMessage> GetTestAsync();
+    [Get("/api/system/config/list")]
+    Task<List<SysConfig>> GetListAsync();
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Get("/api/system/config/page-list")]
+    Task<SqlSugarPagedList<SysConfigPageOutput>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto);
 
 
-     
+
+
 
 }
