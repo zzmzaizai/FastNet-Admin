@@ -51,7 +51,7 @@ Soybean Admin ÊÇÒ»¸ö»ùÓÚ Vue3¡¢Vite3¡¢TypeScript¡¢NaiveUI¡¢Pinia ºÍ UnoCSS µÄÇåĞ
 	* FastNet.Infrastructure `Í¨ÓÃ·½·¨£¬À©Õ¹·½·¨`
 	* FastNet.SqlSugar `SqlSugar µÄ»ù´¡·â×°`
 	* FastNet.Model `ÊµÌå¡¢Ã¶¾Ù¡¢³£Á¿`
-	* FastNet.Repositories `²Ö´¢¡¢ÖĞ¼ä¼ş¡¢ÈÕÖ¾¡¢Âß¼­`
+	* FastNet.Repository `²Ö´¢¡¢ÖĞ¼ä¼ş¡¢ÈÕÖ¾¡¢Âß¼­`
 * Web `UI²¿·ÖµÄ´¦ÀíÏîÄ¿`
 	* FastNet.BlazorCore `Blazor Ò³ÃæÂß¼­µÈ`
 	* FastNet.Service `Web ·şÎñ API`

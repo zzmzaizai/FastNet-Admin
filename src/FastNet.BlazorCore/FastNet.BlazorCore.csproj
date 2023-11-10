@@ -10,12 +10,14 @@
 		<PackageReference Include="AntDesign.Charts" Version="0.3.1" />
 		<PackageReference Include="AntDesign.ProLayout" Version="0.14.4" />
 		<PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
-	  <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.8.8.50" />
-	  <PackageReference Include="Furion.Pure" Version="4.8.8.50" />
 	</ItemGroup>
 
   <ItemGroup>
     <Folder Include="HttpRemotes\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FastNet.Model\FastNet.Model.csproj" />
   </ItemGroup>
 
 

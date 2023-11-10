@@ -11,7 +11,7 @@
 		</VisualStudio>
 	</ProjectExtensions>
 	<ItemGroup>
-	  <ProjectReference Include="..\FastNet\FastNet.csproj" />
+	  <ProjectReference Include="..\FastNet.Service\FastNet.Service.csproj" />
 	</ItemGroup>
 
 </Project>

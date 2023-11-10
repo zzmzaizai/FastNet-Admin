@@ -26,9 +26,5 @@ global using SqlSugar;
 global using FastNet;
 global using FastNet.SqlSugar;
 global using FastNet.Cache;
-global using FastNet.Models;
-global using FastNet.Repositories;
-global using FastNet.Services;
+global using FastNet.Auth;
 global using FastNet.Infrastructure;
-
-//global using FastNet.Infrastructure;

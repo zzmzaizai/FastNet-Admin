@@ -11,11 +11,6 @@
 		<PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.8.8.50" />
 		<PackageReference Include="SqlSugarCore" Version="5.1.4.112" />
 	</ItemGroup>
-	<ItemGroup>
-		<Content Include="Models\SeedData\Json\*.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
  
 
 </Project>
