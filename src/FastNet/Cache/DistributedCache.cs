@@ -61,4 +61,47 @@ public class DistributedCache : ICache
     {
         _cache.Remove(key);
     }
+
+
+    /// <summary>
+    /// Gets the model with the specified key from cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <returns>The cached model, null it wasn't found</returns>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    public async Task<T> GetAsync<T>(string key, CancellationToken token = default)
+    {
+        var json = await _cache.GetStringAsync(key);
+
+        if (!string.IsNullOrEmpty(json))
+        {
+            return JsonConvert.DeserializeObject<T>(json, _jsonSettings);
+        }
+        return default(T);
+    }
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    public async Task SetAsync<T>(string key, T value, CancellationToken token = default)
+    {
+        await _cache.SetStringAsync(key, JsonConvert.SerializeObject(value, _jsonSettings));
+    }
+
+    /// <summary>
+    /// Removes the model with the specified key from cache.
+    /// </summary>
+    /// <param name="key">The unique key</param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    public async Task RemoveAsync(string key, CancellationToken token = default)
+    {
+        await _cache.RemoveAsync(key);
+    }
+
+
 }
