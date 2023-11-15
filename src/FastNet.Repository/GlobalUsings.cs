@@ -25,7 +25,6 @@ global using SqlSugar;
 
 global using FastNet;
 global using FastNet.SqlSugar;
-global using FastNet.Cache;
 global using FastNet.Auth;
 global using FastNet.Model.Entities;
 global using FastNet.Model.Dto;

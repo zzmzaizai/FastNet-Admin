@@ -6,28 +6,24 @@ global using Furion.DynamicApiController;
 global using Furion.Extensions;
 global using Furion.FriendlyException;
 global using Furion.Logging;
-global using Furion.RemoteRequest;
+global using Furion.DataEncryption.Extensions;
 global using Mapster;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;
+global using System.Linq.Expressions;
 global using Microsoft.CodeAnalysis;
 global using System.ComponentModel.DataAnnotations;
+global using System.Collections;
+global using System.ComponentModel;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
+global using System.Text;
+global using System.Text.RegularExpressions;
 
-global using AntDesign;
-global using AntDesign.Form;
-global using AntDesign.ProLayout;
-global using AntDesign.Core;
+global using Microsoft.Extensions.Caching.Memory;
 
-global using SqlSugar;
+global using Microsoft.Extensions.Caching.Distributed;
+global using Microsoft.Extensions.DependencyInjection;
 
 
-global using FastNet;
-global using FastNet.SqlSugar;
-global using FastNet.Plugin.Caching;
-global using FastNet.Auth;
-global using FastNet.Model.Entities;
-global using FastNet.Model.Dto;
-global using FastNet.Model.SeedData;
-global using FastNet.Infrastructure;
-global using FastNet.BlazorCore.HttpRemotes;

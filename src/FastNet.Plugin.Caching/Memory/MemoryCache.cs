@@ -1,8 +1,4 @@
-
-
-using Microsoft.Extensions.Caching.Memory;
-
-namespace FastNet.Cache;
+namespace FastNet.Plugin.Caching;
 
 /// <summary>
 /// Simple in memory cache.
@@ -70,6 +66,43 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpiration"></param>
+    public void Set<T>(string key, T value, DateTimeOffset? absoluteExpiration = null)
+    {
+        if (absoluteExpiration.HasValue )
+        {
+            _cache.Set(key, value, absoluteExpiration.Value);
+        }else
+        {
+            _cache.Set(key, value);
+        }
+    }
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpirationRelativeToNow"></param>
+    public void Set<T>(string key, T value, TimeSpan? absoluteExpirationRelativeToNow = null)
+    {
+        if (absoluteExpirationRelativeToNow.HasValue)
+        {
+            _cache.Set(key, value, absoluteExpirationRelativeToNow.Value);
+        }
+        else
+        {
+            _cache.Set(key, value);
+        }
+    }
+
+    /// <summary>
     /// Removes the model with the specified key from cache.
     /// </summary>
     /// <param name="key">The unique key</param>
@@ -104,6 +137,34 @@ public class MemoryCache : ICache
     }
 
     /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpiration"></param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    public async Task SetAsync<T>(string key, T value, DateTimeOffset? absoluteExpiration = null, CancellationToken token = default)
+    {
+        Set<T>(key, value, absoluteExpiration);
+        await Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpirationRelativeToNow"></param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    public async Task SetAsync<T>(string key, T value, TimeSpan? absoluteExpirationRelativeToNow = null, CancellationToken token = default)
+    {
+        Set<T>(key, value, absoluteExpirationRelativeToNow);
+        await Task.CompletedTask;
+    }
+
+    /// <summary>
     /// Removes the model with the specified key from cache.
     /// </summary>
     /// <param name="key">The unique key</param>
@@ -113,4 +174,7 @@ public class MemoryCache : ICache
         Remove(key);
         await Task.CompletedTask;
     }
+
+
+
 }

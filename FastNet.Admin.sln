@@ -43,11 +43,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Web.Vue", "4.Web.Vue", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastNet", "src\FastNet\FastNet.csproj", "{B4A35B17-597F-4587-B197-9B3CAAEB9074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastNet.Model", "src\FastNet.Model\FastNet.Model.csproj", "{255B6631-E7E6-480C-B96B-ACD8F095B0A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastNet.Model", "src\FastNet.Model\FastNet.Model.csproj", "{255B6631-E7E6-480C-B96B-ACD8F095B0A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastNet.Repository", "src\FastNet.Repository\FastNet.Repository.csproj", "{04B1DD8D-36E5-4681-9507-3777AC172E8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastNet.Repository", "src\FastNet.Repository\FastNet.Repository.csproj", "{04B1DD8D-36E5-4681-9507-3777AC172E8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastNet.Service", "src\FastNet.Service\FastNet.Service.csproj", "{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastNet.Service", "src\FastNet.Service\FastNet.Service.csproj", "{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastNet.Plugin.Caching", "src\FastNet.Plugin.Caching\FastNet.Plugin.Caching.csproj", "{2328B295-B487-459E-9DE0-7FF5C9FC7BD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2328B295-B487-459E-9DE0-7FF5C9FC7BD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2328B295-B487-459E-9DE0-7FF5C9FC7BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2328B295-B487-459E-9DE0-7FF5C9FC7BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2328B295-B487-459E-9DE0-7FF5C9FC7BD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{255B6631-E7E6-480C-B96B-ACD8F095B0A9} = {E0733222-BE30-429D-869B-D12220EBC206}
 		{04B1DD8D-36E5-4681-9507-3777AC172E8F} = {E0733222-BE30-429D-869B-D12220EBC206}
 		{2F3DDB50-F8EB-4404-B2F4-ADCF84D3C57E} = {E0733222-BE30-429D-869B-D12220EBC206}
+		{2328B295-B487-459E-9DE0-7FF5C9FC7BD1} = {EF2FA876-EA1A-4628-B0FE-E8DDE234FE32}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B2073C2C-0FD3-452B-8047-8134D68E12CE}

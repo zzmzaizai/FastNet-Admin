@@ -11,6 +11,10 @@
 		<PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.8.8.50" />
 		<PackageReference Include="SqlSugarCore" Version="5.1.4.112" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Interfaces\" />
+	</ItemGroup>
  
 
 </Project>

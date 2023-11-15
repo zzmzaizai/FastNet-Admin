@@ -3,7 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace FastNet.Cache;
+namespace FastNet.Plugin.Caching;
 
 /// <summary>
 /// Simple in memory cache.

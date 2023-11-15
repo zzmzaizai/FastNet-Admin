@@ -1,4 +1,4 @@
-﻿namespace FastNet;
+﻿namespace FastNet.Plugin.Caching;
 
 /// <summary>
 /// 缓存结构
@@ -36,8 +36,48 @@ public interface ICache
     /// <typeparam name="T">The model type</typeparam>
     /// <param name="key">The unique key</param>
     /// <param name="value">The model</param>
+    /// <param name="absoluteExpiration"></param>
+    void Set<T>(string key, T value, DateTimeOffset? absoluteExpiration = null);
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpirationRelativeToNow"></param>
+    void Set<T>(string key, T value, TimeSpan? absoluteExpirationRelativeToNow = null);
+
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
     /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
     Task SetAsync<T>(string key, T value, CancellationToken token = default);
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpiration"></param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    Task SetAsync<T>(string key, T value, DateTimeOffset? absoluteExpiration = null, CancellationToken token = default);
+
+
+    /// <summary>
+    /// Sets the given model in the cache.
+    /// </summary>
+    /// <typeparam name="T">The model type</typeparam>
+    /// <param name="key">The unique key</param>
+    /// <param name="value">The model</param>
+    /// <param name="absoluteExpirationRelativeToNow"></param>
+    /// <param name="token">Optional. The System.Threading.CancellationToken used to propagate notifications that the operation should be canceled.</param>
+    Task SetAsync<T>(string key, T value, TimeSpan? absoluteExpirationRelativeToNow = null, CancellationToken token = default);
 
     /// <summary>
     /// Removes the model with the specified key from cache.
