@@ -11,6 +11,7 @@ public class Startup : AppStartup
         services.AddControllers()
                 .AddInjectWithUnifyResult();
 
+        services.AddFastNetMemoryCache();
 
         services.AddConsoleFormatter();
         services.AddJwt<JwtHandler>(enableGlobalAuthorize: false, jwtBearerConfigure: options =>
