@@ -116,6 +116,38 @@ public class AuthService : BaseApiController
         return await sysUserRep.InsertUserAsync(AddUser);
     }
 
+
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<bool> ChangePassword(ChangePasswordInput dto)
+    {
+        if (dto.NewPassword != dto.SecondaryPassword)
+        {
+            throw Oops.Bah("两次输入密码不一致");
+        }
+
+        SysUser user = await sysUserRep.GetUserAsync(authManager.UserId);
+        if (user == null)
+        {
+            throw Oops.Bah("用户没有找到");
+        }
+
+        if (user.Password != MD5Encryption.Encrypt($"{user.Secret}{dto.OldPassword}"))
+        {
+            throw Oops.Bah("原密码错误");
+        }
+
+        user.Secret = Guid.NewGuid().ToString();
+        user.Password = MD5Encryption.Encrypt($"{user.Secret}{dto.NewPassword}");
+        return await sysUserRep.UpdateAsync(user);
+    }   
+
+
+
     /// <summary>
     /// 获取当前用户信息
     /// </summary>

@@ -37,6 +37,11 @@ public class AccountService : BaseApiController
     /// <returns></returns>
     public async Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto)
     {
+        if(!(authManager.UserId > 0 && authManager.IsSuperAdmin && authManager.UserId != dto.Id) )
+        {
+            throw Oops.Bah("无权修改");
+        }
+ 
         var User = await sysUserRep.GetUserAsync(dto.Id);
         if (User == null)
         {
