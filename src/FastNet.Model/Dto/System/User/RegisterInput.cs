@@ -36,5 +36,11 @@ public class RegisterInput
     /// 昵称
     ///</summary>
     public string NickName { get; set; }
+
+    /// <summary>
+    /// 电话
+    /// </summary>
+    [Required]
+    public string Phone { get; set; }
 }
 

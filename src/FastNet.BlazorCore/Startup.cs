@@ -39,7 +39,7 @@ public class Startup : AppStartup
             // 配置 System Web Api 基本信息
             options.AddHttpClient("system", c =>
             {
-                c.BaseAddress = new Uri("https://localhost:5001");
+                c.BaseAddress = new Uri("http://192.168.0.70:5000");
                 c.DefaultRequestHeaders.Add("Accept", "application/json");
             });
         });

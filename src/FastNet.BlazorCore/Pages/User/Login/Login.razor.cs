@@ -21,7 +21,7 @@ namespace FastNet.BlazorCore.Pages.User
 
         public void HandleSubmit()
         {
-            if (_model.UserName == "admin" && !_model.Password.IsNullOrWhiteSpace())
+            if ( !_model.Password.IsNullOrWhiteSpace())
             {
 
                var LoginData = authService.SignIn(_model.Adapt<LoginInput>());
