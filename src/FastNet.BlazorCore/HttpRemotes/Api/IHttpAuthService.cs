@@ -26,7 +26,6 @@ public interface IHttpAuthService : IBaseHttpRemote
     [Patch("/api/system/auth/sign-out")]
     Task<bool> SignOut();
 
-
     /// <summary>
     /// 注册用户
     /// </summary>
@@ -34,6 +33,14 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// <returns></returns>
     [Post("/api/system/auth/register")]
     Task<SysUser> Register(RegisterInput dto);
+
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Post("/api/system/auth/change-password")]
+    Task<bool> ChangePassword(ChangePasswordInput dto);
 
     /// <summary>
     /// 获取当前用户信息

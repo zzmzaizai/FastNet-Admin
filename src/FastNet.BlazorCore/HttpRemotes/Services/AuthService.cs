@@ -21,6 +21,13 @@ public interface IAuthService: ITransient
 
 
     /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <returns></returns>
+    Task<bool> ChangePassword(ChangePasswordInput dto);
+
+
+    /// <summary>
     /// 注册用户
     /// </summary>
     /// <param name="dto"></param>
@@ -74,13 +81,22 @@ public class AuthService : IAuthService
         return await authHttp.SignOut();
     }
 
-
     /// <summary>
-    /// 注册用户
+    /// 修改密码
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysUser> Register(RegisterInput dto)
+    public async Task<bool> ChangePassword(ChangePasswordInput dto)
+    {
+        return await authHttp.ChangePassword(dto);
+    }
+
+        /// <summary>
+        /// 注册用户
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
+        public async Task<SysUser> Register(RegisterInput dto)
     {
         return await authHttp.Register(dto);
     }

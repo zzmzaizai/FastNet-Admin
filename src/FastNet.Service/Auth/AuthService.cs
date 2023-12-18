@@ -88,12 +88,12 @@ public class AuthService : BaseApiController
     }
 
 
-        /// <summary>
-        /// 注册用户
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        [HttpPost]
+    /// <summary>
+    /// 注册用户
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPost]
     [AllowAnonymous]
     public async Task<SysUser> Register(RegisterInput dto)
     {
@@ -144,7 +144,7 @@ public class AuthService : BaseApiController
         user.Secret = Guid.NewGuid().ToString();
         user.Password = MD5Encryption.Encrypt($"{user.Secret}{dto.NewPassword}");
         return await sysUserRep.UpdateAsync(user);
-    }   
+    }
 
 
 
