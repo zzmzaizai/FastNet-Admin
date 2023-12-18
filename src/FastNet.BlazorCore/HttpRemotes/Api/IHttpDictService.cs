@@ -18,7 +18,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Get("api/system/dict/dict-data-page-list")]
-    Task<SqlSugarPagedList<SysDictDataPageOutput>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto);
 
 
     /// <summary>
@@ -27,7 +27,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Get("api/system/dict/dict-type-page-list")]
-    Task<SqlSugarPagedList<SysDictTypePageOutput>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto);
 
 
 
@@ -37,7 +37,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="DictTypeId">字典类型编号</param>
     /// <returns></returns>
     [Get("api/system/dict/dict-type/{dicttypeid}")]
-    Task<SysDictType> GetDictTypeAsync(long DictTypeId);
+    Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId);
 
     /// <summary>
     /// 插入字典类型
@@ -45,7 +45,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/dict/dict-type")]
-    Task<SysDictType> InsertDictTypeAsync([Body("application/json")] InsertDictTypeInput dto);
+    Task<RESTfulResult<SysDictType>> InsertDictTypeAsync([Body("application/json")] InsertDictTypeInput dto);
 
     /// <summary>
     /// 更新字典类型
@@ -53,7 +53,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/dict/dict-type")]
-    Task<SysDictType> UpdateDictTypeAsync([Body("application/json")] UpdateDictTypeInput dto);
+    Task<RESTfulResult<SysDictType>> UpdateDictTypeAsync([Body("application/json")] UpdateDictTypeInput dto);
 
 
 
@@ -63,7 +63,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="DictDataId">字典数据编号</param>
     /// <returns></returns>
     [Get("api/system/dict/dict-data/{dictdataid}")]
-    Task<SysDictData> GetDictDataAsync(long DictDataId);
+    Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId);
 
     /// <summary>
     /// 插入字典数据
@@ -71,7 +71,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/dict/dict-data")]
-    Task<SysDictData> InsertDictDataAsync([Body("application/json")] InsertDictDataInput dto);
+    Task<RESTfulResult<SysDictData>> InsertDictDataAsync([Body("application/json")] InsertDictDataInput dto);
 
     /// <summary>
     /// 更新字典数据
@@ -79,7 +79,7 @@ public interface IHttpDictService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/dict/dict-data")]
-    Task<SysDictData> UpdateDictDataAsync([Body("application/json")] UpdateDictDataInput dto);
+    Task<RESTfulResult<SysDictData>> UpdateDictDataAsync([Body("application/json")] UpdateDictDataInput dto);
 
      
 

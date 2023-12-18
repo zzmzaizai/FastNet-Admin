@@ -19,14 +19,14 @@ public interface IAuthService: ITransient
     /// 系统用户退出
     /// </summary>
     /// <returns></returns>
-    Task<bool> SignOut();
+    Task<RESTfulResult<bool>> SignOut();
 
 
     /// <summary>
     /// 修改密码
     /// </summary>
     /// <returns></returns>
-    Task<bool> ChangePassword(ChangePasswordInput dto);
+    Task<RESTfulResult<bool>> ChangePassword(ChangePasswordInput dto);
 
 
     /// <summary>
@@ -34,13 +34,13 @@ public interface IAuthService: ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysUser> Register(RegisterInput dto);
+    Task<RESTfulResult<SysUser>> Register(RegisterInput dto);
 
     /// <summary>
     /// 获取当前用户信息
     /// </summary>
     /// <returns></returns>
-    Task<SysUser> GetCurrent();
+    Task<RESTfulResult<SysUser>> GetCurrent();
 }
 
 /// <summary>
@@ -78,7 +78,7 @@ public class AuthService : IAuthService
     /// 系统用户退出
     /// </summary>
     /// <returns></returns>
-    public async Task<bool> SignOut()
+    public async Task<RESTfulResult<bool>> SignOut()
     {
         return await authHttp.SignOut();
     }
@@ -88,7 +88,7 @@ public class AuthService : IAuthService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<bool> ChangePassword(ChangePasswordInput dto)
+    public async Task<RESTfulResult<bool>> ChangePassword(ChangePasswordInput dto)
     {
         return await authHttp.ChangePassword(dto);
     }
@@ -98,7 +98,7 @@ public class AuthService : IAuthService
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<SysUser> Register(RegisterInput dto)
+        public async Task<RESTfulResult<SysUser>> Register(RegisterInput dto)
     {
         return await authHttp.Register(dto);
     }
@@ -107,7 +107,7 @@ public class AuthService : IAuthService
     /// 获取当前用户信息
     /// </summary>
     /// <returns></returns>
-    public async Task<SysUser> GetCurrent()
+    public async Task<RESTfulResult<SysUser>> GetCurrent()
     {
         return await authHttp.GetCurrent();
     }

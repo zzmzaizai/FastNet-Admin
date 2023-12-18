@@ -18,7 +18,7 @@ public interface IHttpApiResourceService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Get("api/system/api-resource/page-list")]
-    Task<SqlSugarPagedList<SysApiResourcePageOutput>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysApiResourcePageOutput>>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto);
 
 
 
@@ -28,7 +28,7 @@ public interface IHttpApiResourceService : IBaseHttpRemote
     /// <param name="ApiResourceId">API资源编号</param>
     /// <returns></returns>
     [Get("api/system/api-resource/{apiresourceid}")]
-    Task<SysApiResource> GetAsync(long ApiResourceId);
+    Task<RESTfulResult<SysApiResource>> GetAsync(long ApiResourceId);
 
     /// <summary>
     /// 插入API资源
@@ -36,7 +36,7 @@ public interface IHttpApiResourceService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/api-resource")]
-    Task<SysApiResource> InsertAsync([Body("application/json")] InsertApiResourceInput dto);
+    Task<RESTfulResult<SysApiResource>> InsertAsync([Body("application/json")] InsertApiResourceInput dto);
 
     /// <summary>
     /// 更新API资源
@@ -44,7 +44,7 @@ public interface IHttpApiResourceService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/api-resource")]
-    Task<SysApiResource> UpdateAsync([Body("application/json")] UpdateApiResourceInput dto);
+    Task<RESTfulResult<SysApiResource>> UpdateAsync([Body("application/json")] UpdateApiResourceInput dto);
 
 
 

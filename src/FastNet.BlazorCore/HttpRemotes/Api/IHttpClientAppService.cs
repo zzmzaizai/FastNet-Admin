@@ -1,4 +1,5 @@
 ﻿
+
 using SqlSugar;
 using System.Text;
 
@@ -18,7 +19,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Get("api/system/client/page-list")]
-    Task<SqlSugarPagedList<SysClientAppPageOutput>> GetPageListAsync([FromQuery] QueryClientAppPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysClientAppPageOutput>>> GetPageListAsync([FromQuery] QueryClientAppPagedInput dto);
 
 
 
@@ -28,7 +29,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// <param name="ClientAppId">客户端APP编号</param>
     /// <returns></returns>
     [Get("api/system/client/{clientappid}")]
-    Task<SysClientApp> GetAsync(long ClientAppId);
+    Task<RESTfulResult<SysClientApp>> GetAsync(long ClientAppId);
 
     /// <summary>
     /// 插入客户端APP
@@ -36,7 +37,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/client")]
-    Task<SysClientApp> InsertAsync([Body("application/json")] InsertClientAppInput dto);
+    Task<RESTfulResult<SysClientApp>> InsertAsync([Body("application/json")] InsertClientAppInput dto);
 
     /// <summary>
     /// 更新客户端APP
@@ -44,7 +45,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/client")]
-    Task<SysClientApp> UpdateAsync([Body("application/json")] UpdateClientAppInput dto);
+    Task<RESTfulResult<SysClientApp>> UpdateAsync([Body("application/json")] UpdateClientAppInput dto);
 
     /// <summary>
     /// 重置客户端APP的SecretKey
@@ -52,7 +53,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Patch("api/system/client/reset-secret")]
-    Task<SysClientApp> ResetSecretAsync([Body("application/json")] ResetClientAppSecretInput dto);
+    Task<RESTfulResult<SysClientApp>> ResetSecretAsync([Body("application/json")] ResetClientAppSecretInput dto);
 
 
 

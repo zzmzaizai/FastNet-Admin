@@ -12,14 +12,14 @@ public interface ITenantService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysTenant> InsertAsync(InsertTenantInput dto);
+    Task<RESTfulResult<SysTenant>> InsertAsync(InsertTenantInput dto);
 
     /// <summary>
     /// 更新租户
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysTenant> UpdateAsync(UpdateTenantInput dto);
+    Task<RESTfulResult<SysTenant>> UpdateAsync(UpdateTenantInput dto);
 
     /// <summary>
     /// 根据主机名获取租户信息
@@ -27,20 +27,20 @@ public interface ITenantService : ITransient
     /// <param name="HostName">主机名</param>
     /// <returns>找不到时返回默认租户</returns>
     /// <returns></returns>
-    Task<SysTenant> GetTenantByHostNameAsync(string HostName);
+    Task<RESTfulResult<SysTenant>> GetTenantByHostNameAsync(string HostName);
 
     /// <summary>
     /// 获取单个租户信息
     /// </summary>
     /// <param name="TenantId">租户Id</param>
     /// <returns></returns>
-    Task<SysTenant> GetAsync(long TenantId);
+    Task<RESTfulResult<SysTenant>> GetAsync(long TenantId);
 
     /// <summary>
     /// 获取当前租户信息
     /// </summary>
     /// <returns></returns>
-    Task<SysTenant> GetCurrent();
+    Task<RESTfulResult<SysTenant>> GetCurrent();
 
 
 
@@ -48,20 +48,20 @@ public interface ITenantService : ITransient
     /// 获取当前租户Id
     /// </summary>
     /// <returns></returns>
-    Task<long> GetCurrentTenantId();
+    Task<RESTfulResult<long>> GetCurrentTenantId();
 
     /// <summary>
     /// 填充一个默认租户
     /// </summary>
     /// <returns></returns>
-    Task<SysTenant> FillTenant(bool IsDefault, string DomainName);
+    Task<RESTfulResult<SysTenant>> FillTenant(bool IsDefault, string DomainName);
 
     /// <summary>
     /// 切换租户站点
     /// </summary>
     /// <param name="TenantId">租户编号</param>
     /// <returns></returns>
-    Task<bool> ChangeTenantSite(long TenantId);
+    Task<RESTfulResult<bool>> ChangeTenantSite(long TenantId);
 
 
     /// <summary>
@@ -69,7 +69,7 @@ public interface ITenantService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysTenantPageOutput>>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto);
 }
 
 
@@ -99,7 +99,7 @@ public class TenantService : ITenantService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysTenant> InsertAsync(InsertTenantInput dto)
+    public async Task<RESTfulResult<SysTenant>> InsertAsync(InsertTenantInput dto)
     {
         return await tenantHttp.InsertAsync(dto);
     }
@@ -109,7 +109,7 @@ public class TenantService : ITenantService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysTenant> UpdateAsync(UpdateTenantInput dto)
+    public async Task<RESTfulResult<SysTenant>> UpdateAsync(UpdateTenantInput dto)
     {
         return await tenantHttp.UpdateAsync(dto);
     }
@@ -120,7 +120,7 @@ public class TenantService : ITenantService
     /// <param name="HostName">主机名</param>
     /// <returns>找不到时返回默认租户</returns>
     /// <returns></returns>
-    public async Task<SysTenant> GetTenantByHostNameAsync(string HostName)
+    public async Task<RESTfulResult<SysTenant>> GetTenantByHostNameAsync(string HostName)
     {
         return await tenantHttp.GetTenantByHostNameAsync(HostName);
     }
@@ -130,7 +130,7 @@ public class TenantService : ITenantService
     /// </summary>
     /// <param name="TenantId">租户Id</param>
     /// <returns></returns>
-    public async Task<SysTenant> GetAsync(long TenantId)
+    public async Task<RESTfulResult<SysTenant>> GetAsync(long TenantId)
     {
         return await tenantHttp.GetAsync(TenantId);
     }
@@ -139,7 +139,7 @@ public class TenantService : ITenantService
     /// 获取当前租户信息
     /// </summary>
     /// <returns></returns>
-    public async Task<SysTenant> GetCurrent()
+    public async Task<RESTfulResult<SysTenant>> GetCurrent()
     {
         return await tenantHttp.GetCurrent();
     }
@@ -150,7 +150,7 @@ public class TenantService : ITenantService
     /// 获取当前租户Id
     /// </summary>
     /// <returns></returns>
-    public async Task<long> GetCurrentTenantId()
+    public async Task<RESTfulResult<long>> GetCurrentTenantId()
     {
         return await tenantHttp.GetCurrentTenantId();
     }
@@ -159,7 +159,7 @@ public class TenantService : ITenantService
     /// 填充一个默认租户
     /// </summary>
     /// <returns></returns>
-    public async Task<SysTenant> FillTenant(bool IsDefault, string DomainName)
+    public async Task<RESTfulResult<SysTenant>> FillTenant(bool IsDefault, string DomainName)
     {
         return await tenantHttp.FillTenant(IsDefault,DomainName);
     }
@@ -169,7 +169,7 @@ public class TenantService : ITenantService
     /// </summary>
     /// <param name="TenantId">租户编号</param>
     /// <returns></returns>
-    public async Task<bool> ChangeTenantSite(long TenantId)
+    public async Task<RESTfulResult<bool>> ChangeTenantSite(long TenantId)
     {
         return await tenantHttp.ChangeTenantSite(TenantId);
     }
@@ -180,7 +180,7 @@ public class TenantService : ITenantService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysTenantPageOutput>>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto)
     {
         return await tenantHttp.GetPageListAsync(dto);
     }

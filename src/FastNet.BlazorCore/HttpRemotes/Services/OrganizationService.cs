@@ -11,28 +11,28 @@ public interface IOrganizationService : ITransient
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    Task<List<SysOrganization>> GetListAsync();
+    Task<RESTfulResult<List<SysOrganization>>> GetListAsync();
 
     /// <summary>
     /// 根据组织架构Id获取组织架构
     /// </summary>
     /// <param name="OrganizationId">组织架构编号</param>
     /// <returns></returns>
-    Task<SysOrganization> GetAsync(long OrganizationId);
+    Task<RESTfulResult<SysOrganization>> GetAsync(long OrganizationId);
 
     /// <summary>
     /// 插入组织架构
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysOrganization> InsertAsync(InsertOrganizationInput dto);
+    Task<RESTfulResult<SysOrganization>> InsertAsync(InsertOrganizationInput dto);
 
     /// <summary>
     /// 更新组织架构
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysOrganization> UpdateAsync(UpdateOrganizationInput dto);
+    Task<RESTfulResult<SysOrganization>> UpdateAsync(UpdateOrganizationInput dto);
 }
 
 
@@ -59,7 +59,7 @@ public class OrganizationService : IOrganizationService
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    public async Task<List<SysOrganization>> GetListAsync()
+    public async Task<RESTfulResult<List<SysOrganization>>> GetListAsync()
     {
         return await organizationHttp.GetListAsync();
     }
@@ -69,7 +69,7 @@ public class OrganizationService : IOrganizationService
     /// </summary>
     /// <param name="OrganizationId">组织架构编号</param>
     /// <returns></returns>
-    public async Task<SysOrganization> GetAsync(long OrganizationId)
+    public async Task<RESTfulResult<SysOrganization>> GetAsync(long OrganizationId)
     {
         return await organizationHttp.GetAsync(OrganizationId);
     }
@@ -79,7 +79,7 @@ public class OrganizationService : IOrganizationService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysOrganization> InsertAsync(InsertOrganizationInput dto)
+    public async Task<RESTfulResult<SysOrganization>> InsertAsync(InsertOrganizationInput dto)
     {
         return await organizationHttp.InsertAsync(dto);
     }
@@ -89,7 +89,7 @@ public class OrganizationService : IOrganizationService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysOrganization> UpdateAsync(UpdateOrganizationInput dto)
+    public async Task<RESTfulResult<SysOrganization>> UpdateAsync(UpdateOrganizationInput dto)
     {
         return await organizationHttp.UpdateAsync(dto);
     }

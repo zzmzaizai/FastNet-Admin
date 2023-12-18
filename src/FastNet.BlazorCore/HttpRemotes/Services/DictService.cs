@@ -12,7 +12,7 @@ public interface IDictService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysDictDataPageOutput>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto);
 
 
     /// <summary>
@@ -20,7 +20,7 @@ public interface IDictService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysDictTypePageOutput>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto);
 
 
 
@@ -29,42 +29,42 @@ public interface IDictService : ITransient
     /// </summary>
     /// <param name="DictTypeId">字典类型编号</param>
     /// <returns></returns>
-    Task<SysDictType> GetDictTypeAsync(long DictTypeId);
+    Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId);
 
     /// <summary>
     /// 插入字典类型
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysDictType> InsertDictTypeAsync(InsertDictTypeInput dto);
+    Task<RESTfulResult<SysDictType>> InsertDictTypeAsync(InsertDictTypeInput dto);
 
     /// <summary>
     /// 更新字典类型
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysDictType> UpdateDictTypeAsync(UpdateDictTypeInput dto);
+    Task<RESTfulResult<SysDictType>> UpdateDictTypeAsync(UpdateDictTypeInput dto);
 
     /// <summary>
     /// 根据字典数据Id获取字典数据
     /// </summary>
     /// <param name="DictDataId">字典数据编号</param>
     /// <returns></returns>
-    Task<SysDictData> GetDictDataAsync(long DictDataId);
+    Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId);
 
     /// <summary>
     /// 插入字典数据
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysDictData> InsertDictDataAsync(InsertDictDataInput dto);
+    Task<RESTfulResult<SysDictData>> InsertDictDataAsync(InsertDictDataInput dto);
 
     /// <summary>
     /// 更新字典数据
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysDictData> UpdateDictDataAsync(UpdateDictDataInput dto);
+    Task<RESTfulResult<SysDictData>> UpdateDictDataAsync(UpdateDictDataInput dto);
 }
 
 
@@ -92,7 +92,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysDictDataPageOutput>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto)
     {
         return await dictHttp.GetDictDataPageListAsync(dto);
     }
@@ -103,7 +103,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysDictTypePageOutput>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto)
     {
         return await dictHttp.GetDictTypePageListAsync(dto);
     }
@@ -115,7 +115,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="DictTypeId">字典类型编号</param>
     /// <returns></returns>
-    public async Task<SysDictType> GetDictTypeAsync(long DictTypeId)
+    public async Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId)
     {
         return await dictHttp.GetDictTypeAsync(DictTypeId);
     }
@@ -125,7 +125,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysDictType> InsertDictTypeAsync(InsertDictTypeInput dto)
+    public async Task<RESTfulResult<SysDictType>> InsertDictTypeAsync(InsertDictTypeInput dto)
     {
         return await dictHttp.InsertDictTypeAsync(dto);
     }
@@ -135,7 +135,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysDictType> UpdateDictTypeAsync(UpdateDictTypeInput dto)
+    public async Task<RESTfulResult<SysDictType>> UpdateDictTypeAsync(UpdateDictTypeInput dto)
     {
         return await dictHttp.UpdateDictTypeAsync(dto);
     }
@@ -147,7 +147,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="DictDataId">字典数据编号</param>
     /// <returns></returns>
-    public async Task<SysDictData> GetDictDataAsync(long DictDataId)
+    public async Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId)
     {
         return await dictHttp.GetDictDataAsync(DictDataId);
     }
@@ -157,7 +157,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysDictData> InsertDictDataAsync(InsertDictDataInput dto)
+    public async Task<RESTfulResult<SysDictData>> InsertDictDataAsync(InsertDictDataInput dto)
     {
         return await dictHttp.InsertDictDataAsync(dto);
     }
@@ -167,7 +167,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysDictData> UpdateDictDataAsync(UpdateDictDataInput dto)
+    public async Task<RESTfulResult<SysDictData>> UpdateDictDataAsync(UpdateDictDataInput dto)
     {
         return await dictHttp.UpdateDictDataAsync(dto);
     }

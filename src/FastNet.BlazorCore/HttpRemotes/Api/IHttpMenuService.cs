@@ -15,7 +15,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// </summary>
     /// <returns></returns>
     [Get("api/system/menu/list")]
-    Task<List<SysMenu>> GetListAsync();
+    Task<RESTfulResult<List<SysMenu>>> GetListAsync();
 
     /// <summary>
     /// 校验权限
@@ -23,7 +23,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="code">权限标识</param>
     /// <returns></returns>
     [Post("api/system/menu/check-permission/{code}")]
-    Task<bool> CheckPermission(string code);
+    Task<RESTfulResult<bool>> CheckPermission(string code);
 
 
     /// <summary>
@@ -32,7 +32,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="userId">系统用户id</param>
     /// <returns></returns>
     [Get("api/system/menu/auth-button-code-list/{userid}")]
-    Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId);
+    Task<RESTfulResult<List<CheckPermissionOutput>>> GetAuthButtonCodeList(long userId);
 
 
     /// <summary>
@@ -41,7 +41,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="MenuId">菜单编号</param>
     /// <returns></returns>
     [Get("api/system/menu/{menuid}")]
-    Task<SysMenu> GetAsync(long MenuId);
+    Task<RESTfulResult<SysMenu>> GetAsync(long MenuId);
 
     /// <summary>
     /// 插入菜单
@@ -49,7 +49,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/menu")]
-    Task<SysMenu> InsertAsync([Body("application/json")] InsertMenuInput dto);
+    Task<RESTfulResult<SysMenu>> InsertAsync([Body("application/json")] InsertMenuInput dto);
 
     /// <summary>
     /// 更新菜单
@@ -57,7 +57,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/menu")]
-    Task<SysMenu> UpdateAsync([Body("application/json")] UpdateMenuInput dto);
+    Task<RESTfulResult<SysMenu>> UpdateAsync([Body("application/json")] UpdateMenuInput dto);
 
 
 

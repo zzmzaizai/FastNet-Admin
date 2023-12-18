@@ -10,14 +10,14 @@ public interface IConfigService : ITransient
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    Task<List<SysConfig>> GetListAsync();
+    Task<RESTfulResult<List<SysConfig>>> GetListAsync();
 
     /// <summary>
     /// 分页列表查询
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysConfigPageOutput>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysConfigPageOutput>>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto);
 }
 
 
@@ -44,7 +44,7 @@ public class ConfigService : IConfigService
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    public async Task<List<SysConfig>> GetListAsync()
+    public async Task<RESTfulResult<List<SysConfig>>> GetListAsync()
     {
         return await configHttp.GetListAsync();
     }
@@ -54,7 +54,7 @@ public class ConfigService : IConfigService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysConfigPageOutput>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysConfigPageOutput>>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto)
     {
         return await configHttp.GetPageListAsync(dto);
     }

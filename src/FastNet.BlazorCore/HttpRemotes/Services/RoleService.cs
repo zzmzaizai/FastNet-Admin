@@ -11,28 +11,28 @@ public interface IRoleService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysRolePageOutput>> GetPageListAsync([FromQuery] QueryRolePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysRolePageOutput>>> GetPageListAsync([FromQuery] QueryRolePagedInput dto);
 
     /// <summary>
     /// 根据角色Id获取角色
     /// </summary>
     /// <param name="RoleId">角色编号</param>
     /// <returns></returns>
-    Task<SysRole> GetAsync(long RoleId);
+    Task<RESTfulResult<SysRole>> GetAsync(long RoleId);
 
     /// <summary>
     /// 插入角色
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysRole> InsertAsync(InsertRoleInput dto);
+    Task<RESTfulResult<SysRole>> InsertAsync(InsertRoleInput dto);
 
     /// <summary>
     /// 更新角色
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysRole> UpdateAsync(UpdateRoleInput dto);
+    Task<RESTfulResult<SysRole>> UpdateAsync(UpdateRoleInput dto);
 }
 
 
@@ -62,7 +62,7 @@ public class RoleService : IRoleService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysRolePageOutput>> GetPageListAsync([FromQuery] QueryRolePagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysRolePageOutput>>> GetPageListAsync([FromQuery] QueryRolePagedInput dto)
     {
         return await roleHttp.GetPageListAsync(dto);
     }
@@ -74,7 +74,7 @@ public class RoleService : IRoleService
     /// </summary>
     /// <param name="RoleId">角色编号</param>
     /// <returns></returns>
-    public async Task<SysRole> GetAsync(long RoleId)
+    public async Task<RESTfulResult<SysRole>> GetAsync(long RoleId)
     {
         return await roleHttp.GetAsync(RoleId);
     }
@@ -84,7 +84,7 @@ public class RoleService : IRoleService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysRole> InsertAsync(InsertRoleInput dto)
+    public async Task<RESTfulResult<SysRole>> InsertAsync(InsertRoleInput dto)
     {
         return await roleHttp.InsertAsync(dto);
     }
@@ -94,7 +94,7 @@ public class RoleService : IRoleService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysRole> UpdateAsync(UpdateRoleInput dto)
+    public async Task<RESTfulResult<SysRole>> UpdateAsync(UpdateRoleInput dto)
     {
         return await roleHttp.UpdateAsync(dto);
     }

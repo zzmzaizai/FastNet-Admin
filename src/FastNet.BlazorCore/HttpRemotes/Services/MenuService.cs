@@ -11,14 +11,14 @@ public interface IMenuService : ITransient
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    Task<List<SysMenu>> GetListAsync();
+    Task<RESTfulResult<List<SysMenu>>> GetListAsync();
 
     /// <summary>
     /// 校验权限
     /// </summary>
     /// <param name="code">权限标识</param>
     /// <returns></returns>
-    Task<bool> CheckPermission(string code);
+    Task<RESTfulResult<bool>> CheckPermission(string code);
 
 
     /// <summary>
@@ -26,7 +26,7 @@ public interface IMenuService : ITransient
     /// </summary>
     /// <param name="userId">系统用户id</param>
     /// <returns></returns>
-    Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId);
+    Task<RESTfulResult<List<CheckPermissionOutput>>> GetAuthButtonCodeList(long userId);
 
 
     /// <summary>
@@ -34,21 +34,21 @@ public interface IMenuService : ITransient
     /// </summary>
     /// <param name="MenuId">菜单编号</param>
     /// <returns></returns>
-    Task<SysMenu> GetAsync(long MenuId);
+    Task<RESTfulResult<SysMenu>> GetAsync(long MenuId);
 
     /// <summary>
     /// 插入菜单
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysMenu> InsertAsync(InsertMenuInput dto);
+    Task<RESTfulResult<SysMenu>> InsertAsync(InsertMenuInput dto);
 
     /// <summary>
     /// 更新菜单
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysMenu> UpdateAsync(UpdateMenuInput dto);
+    Task<RESTfulResult<SysMenu>> UpdateAsync(UpdateMenuInput dto);
 }
 
 
@@ -75,7 +75,7 @@ public class MenuService : IMenuService
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    public async Task<List<SysMenu>> GetListAsync()
+    public async Task<RESTfulResult<List<SysMenu>>> GetListAsync()
     {
         return await menuHttp.GetListAsync();
     }
@@ -85,7 +85,7 @@ public class MenuService : IMenuService
     /// </summary>
     /// <param name="code">权限标识</param>
     /// <returns></returns>
-    public async Task<bool> CheckPermission( string code)
+    public async Task<RESTfulResult<bool>> CheckPermission( string code)
     {
         return await menuHttp.CheckPermission(code);
     }
@@ -96,7 +96,7 @@ public class MenuService : IMenuService
     /// </summary>
     /// <param name="userId">系统用户id</param>
     /// <returns></returns>
-    public async Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId)
+    public async Task<RESTfulResult<List<CheckPermissionOutput>>> GetAuthButtonCodeList(long userId)
     {
         return await menuHttp.GetAuthButtonCodeList(userId);
     }
@@ -107,7 +107,7 @@ public class MenuService : IMenuService
     /// </summary>
     /// <param name="MenuId">菜单编号</param>
     /// <returns></returns>
-    public async Task<SysMenu> GetAsync(long MenuId)
+    public async Task<RESTfulResult<SysMenu>> GetAsync(long MenuId)
     {
         return await menuHttp.GetAsync(MenuId);
     }
@@ -117,7 +117,7 @@ public class MenuService : IMenuService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysMenu> InsertAsync(InsertMenuInput dto)
+    public async Task<RESTfulResult<SysMenu>> InsertAsync(InsertMenuInput dto)
     {
         return await menuHttp.InsertAsync(dto);
     }
@@ -127,7 +127,7 @@ public class MenuService : IMenuService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysMenu> UpdateAsync(UpdateMenuInput dto)
+    public async Task<RESTfulResult<SysMenu>> UpdateAsync(UpdateMenuInput dto)
     {
         return await menuHttp.UpdateAsync(dto);
     }

@@ -20,7 +20,7 @@ global using AntDesign.ProLayout;
 global using AntDesign.Core;
 
 global using SqlSugar;
-
+global using Furion.UnifyResult;
 
 global using FastNet;
 global using FastNet.SqlSugar;

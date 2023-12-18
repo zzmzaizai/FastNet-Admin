@@ -18,28 +18,28 @@ public interface IApiResourceService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpGet]
-    Task<SqlSugarPagedList<SysApiResourcePageOutput>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysApiResourcePageOutput>>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto);
 
     /// <summary>
     /// 根据API资源Id获取API资源
     /// </summary>
     /// <param name="ApiResourceId">API资源编号</param>
     /// <returns></returns>
-    Task<SysApiResource> GetAsync(long ApiResourceId);
+    Task<RESTfulResult<SysApiResource>> GetAsync(long ApiResourceId);
 
     /// <summary>
     /// 插入API资源
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysApiResource> InsertAsync(InsertApiResourceInput dto);
+    Task<RESTfulResult<SysApiResource>> InsertAsync(InsertApiResourceInput dto);
 
     /// <summary>
     /// 更新API资源
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysApiResource> UpdateAsync(UpdateApiResourceInput dto);
+    Task<RESTfulResult<SysApiResource>> UpdateAsync(UpdateApiResourceInput dto);
 }
 
 
@@ -67,7 +67,7 @@ public class ApiResourceService : IApiResourceService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysApiResourcePageOutput>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysApiResourcePageOutput>>> GetPageListAsync([FromQuery] QueryApiResourcePagedInput dto)
     {
         return await apiResourceHttp.GetPageListAsync(dto);
     }
@@ -79,7 +79,7 @@ public class ApiResourceService : IApiResourceService
     /// </summary>
     /// <param name="ApiResourceId">API资源编号</param>
     /// <returns></returns>
-    public async Task<SysApiResource> GetAsync(long ApiResourceId)
+    public async Task<RESTfulResult<SysApiResource>> GetAsync(long ApiResourceId)
     {
         return await apiResourceHttp.GetAsync(ApiResourceId);
     }
@@ -89,7 +89,7 @@ public class ApiResourceService : IApiResourceService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysApiResource> InsertAsync(InsertApiResourceInput dto)
+    public async Task<RESTfulResult<SysApiResource>> InsertAsync(InsertApiResourceInput dto)
     {
         return await apiResourceHttp.InsertAsync(dto);
     }
@@ -99,7 +99,7 @@ public class ApiResourceService : IApiResourceService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysApiResource> UpdateAsync(UpdateApiResourceInput dto)
+    public async Task<RESTfulResult<SysApiResource>> UpdateAsync(UpdateApiResourceInput dto)
     {
         return await apiResourceHttp.UpdateAsync(dto);
     }

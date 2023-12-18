@@ -25,7 +25,7 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// </summary>
     /// <returns></returns>
     [Patch("api/system/auth/sign-out")]
-    Task<bool> SignOut();
+    Task<RESTfulResult<bool>> SignOut();
 
     /// <summary>
     /// 注册用户
@@ -33,7 +33,7 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/auth/register")]
-    Task<SysUser> Register([Body("application/json")] RegisterInput dto);
+    Task<RESTfulResult<SysUser>> Register([Body("application/json")] RegisterInput dto);
 
     /// <summary>
     /// 修改密码
@@ -41,13 +41,13 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/auth/change-password")]
-    Task<bool> ChangePassword([Body("application/json")] ChangePasswordInput dto);
+    Task<RESTfulResult<bool>> ChangePassword([Body("application/json")] ChangePasswordInput dto);
 
     /// <summary>
     /// 获取当前用户信息
     /// </summary>
     /// <returns></returns>
     [Get("api/system/auth/current")]
-    Task<SysUser> GetCurrent();
+    Task<RESTfulResult<SysUser>> GetCurrent();
 
 }

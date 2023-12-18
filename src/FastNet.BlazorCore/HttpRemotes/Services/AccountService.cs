@@ -12,21 +12,21 @@ public interface IAccountService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysUser> InsertAsync(InsertUserInput dto);
+    Task<RESTfulResult<SysUser>> InsertAsync(InsertUserInput dto);
 
     /// <summary>
     /// 更新用户
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SysUser> UpdateAsync(UpdateUserInput dto);
+    Task<RESTfulResult<SysUser>> UpdateAsync(UpdateUserInput dto);
 
     /// <summary>
     /// 切换超级用户状态
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto);
+    Task<RESTfulResult<bool>> ChangeSuperUserAsync(ChangeUserSuperInput dto);
 
 
     /// <summary>
@@ -34,21 +34,21 @@ public interface IAccountService : ITransient
     /// </summary>
     /// <param name="UserName">用户名</param>
     /// <returns></returns>
-    Task<SysUser> GetUserByNameAsync(string UserName);
+    Task<RESTfulResult<SysUser>> GetUserByNameAsync(string UserName);
 
     /// <summary>
     /// 获取单个用户信息
     /// </summary>
     /// <param name="UserId">用户Id</param>
     /// <returns></returns>
-    Task<SysUser> GetAsync(long UserId);
+    Task<RESTfulResult<SysUser>> GetAsync(long UserId);
 
     /// <summary>
     /// 分页列表查询
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
 }
 
 
@@ -76,7 +76,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysUser> InsertAsync(InsertUserInput dto)
+    public async Task<RESTfulResult<SysUser>> InsertAsync(InsertUserInput dto)
     {
         return await accountHttp.InsertAsync(dto);
     }
@@ -86,7 +86,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SysUser> UpdateAsync(UpdateUserInput dto)
+    public async Task<RESTfulResult<SysUser>> UpdateAsync(UpdateUserInput dto)
     {
         return await accountHttp.UpdateAsync(dto);
     }
@@ -96,7 +96,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto)
+    public async Task<RESTfulResult<bool>> ChangeSuperUserAsync(ChangeUserSuperInput dto)
     {
         return await accountHttp.ChangeSuperUserAsync(dto);
     }
@@ -107,7 +107,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="UserName">用户名</param>
     /// <returns></returns>
-    public async Task<SysUser> GetUserByNameAsync(string UserName)
+    public async Task<RESTfulResult<SysUser>> GetUserByNameAsync(string UserName)
     {
         return await accountHttp.GetUserByNameAsync(UserName);
     }
@@ -117,7 +117,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="UserId">用户Id</param>
     /// <returns></returns>
-    public async Task<SysUser> GetAsync(long UserId)
+    public async Task<RESTfulResult<SysUser>> GetAsync(long UserId)
     {
         return await accountHttp.GetAsync(UserId);
     }
@@ -127,7 +127,7 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto)
     {
         return await accountHttp.GetPageAsync(dto);
     }

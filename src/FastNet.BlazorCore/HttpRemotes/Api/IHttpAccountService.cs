@@ -16,7 +16,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/account")]
-    Task<SysUser> InsertAsync([Body("application/json")] InsertUserInput dto);
+    Task<RESTfulResult<SysUser>> InsertAsync([Body("application/json")] InsertUserInput dto);
 
     /// <summary>
     /// 更新用户
@@ -24,7 +24,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Put("api/system/account")]
-    Task<SysUser> UpdateAsync([Body("application/json")] UpdateUserInput dto);
+    Task<RESTfulResult<SysUser>> UpdateAsync([Body("application/json")] UpdateUserInput dto);
 
     /// <summary>
     /// 切换超级用户状态
@@ -32,7 +32,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Post("api/system/account/change-super-user")]
-    Task<bool> ChangeSuperUserAsync([Body("application/json")] ChangeUserSuperInput dto);
+    Task<RESTfulResult<bool>> ChangeSuperUserAsync([Body("application/json")] ChangeUserSuperInput dto);
 
 
     /// <summary>
@@ -41,7 +41,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="UserName">用户名</param>
     /// <returns></returns>
     [Get("api/system/account/user-by-name/{username}")]
-    Task<SysUser> GetUserByNameAsync(string UserName);
+    Task<RESTfulResult<SysUser>> GetUserByNameAsync(string UserName);
 
     /// <summary>
     /// 获取单个用户信息
@@ -49,7 +49,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="UserId">用户Id</param>
     /// <returns></returns>
     [Get("api/system/account/{userid}")]
-    Task<SysUser> GetAsync(long UserId);
+    Task<RESTfulResult<SysUser>> GetAsync(long UserId);
 
     /// <summary>
     /// 分页列表查询
@@ -57,7 +57,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="dto"></param>
     /// <returns></returns>
     [Get("api/system/account/page")]
-    Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
 
 
 
