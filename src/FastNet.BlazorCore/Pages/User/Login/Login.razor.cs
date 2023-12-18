@@ -19,20 +19,22 @@ namespace FastNet.BlazorCore.Pages.User
 
         [Inject] public AuthService authService { get; set; }
 
+        /// <summary>
+        /// 登录提交按钮处理
+        /// </summary>
         public async Task HandleSubmit()
         {
-            if ( !_model.Password.IsNullOrWhiteSpace())
-            {
-
-               var LoginData = await authService.SignIn(_model.Adapt<LoginInput>());
-
-
-
-                //NavigationManager.NavigateTo("/");
-                return;
-            }
-
-            if (_model.UserName == "user" && _model.Password == "ant.design") NavigationManager.NavigateTo("/");
+          
+                var LoginData = await authService.SignIn(_model.Adapt<LoginInput>());
+                if (LoginData.Succeeded)
+                {
+                    NavigationManager.NavigateTo("/");
+                }
+                else
+                {
+                    await Message.Warning(LoginData.Errors.ToString());
+                }
+          
         }
 
         public async Task GetCaptcha()
