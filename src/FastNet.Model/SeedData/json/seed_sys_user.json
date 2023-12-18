@@ -11,7 +11,7 @@
       "Tel": "18888888888",
       "Sex": null,
       "Title": null,
-      "IsSuperAdmin": false,
+      "IsSuperAdmin": true,
       "Status": 1,
       "TenantId": 1722439250500259840,
       "CreateTime": "2023-11-09 09:42:02",

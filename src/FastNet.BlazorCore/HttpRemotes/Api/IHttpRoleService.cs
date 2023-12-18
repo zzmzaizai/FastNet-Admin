@@ -17,7 +17,7 @@ public interface IHttpRoleService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/api/system/role/page-list")]
+    [Get("api/system/role/page-list")]
     [HttpGet]
     Task<SqlSugarPagedList<SysRolePageOutput>> GetPageListAsync([FromQuery] QueryRolePagedInput dto);
 
@@ -28,7 +28,7 @@ public interface IHttpRoleService : IBaseHttpRemote
     /// </summary>
     /// <param name="RoleId">角色编号</param>
     /// <returns></returns>
-    [Get("/api/system/role/{roleid}")]
+    [Get("api/system/role/{roleid}")]
     Task<SysRole> GetAsync(long RoleId);
 
     /// <summary>
@@ -36,16 +36,16 @@ public interface IHttpRoleService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/role")]
-    Task<SysRole> InsertAsync(InsertRoleInput dto);
+    [Post("api/system/role")]
+    Task<SysRole> InsertAsync([Body("application/json")] InsertRoleInput dto);
 
     /// <summary>
     /// 更新角色
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("/api/system/role")]
-    Task<SysRole> UpdateAsync(UpdateRoleInput dto);
+    [Put("api/system/role")]
+    Task<SysRole> UpdateAsync([Body("application/json")] UpdateRoleInput dto);
 
  
 

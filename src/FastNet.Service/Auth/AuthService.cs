@@ -25,7 +25,7 @@ public class AuthService : BaseApiController
     /// <returns></returns>
     [HttpPost]
     [AllowAnonymous]
-    public async Task<object> SignIn(LoginInput dto)
+    public async Task<SigninToken> SignIn(LoginInput dto)
     {
         //string signInErrorCacheKey = $"login.error.{dto.Account}";
         //CacheValue<int> value = await _easyCachingProvider.GetAsync<int>(signInErrorCacheKey);
@@ -40,8 +40,7 @@ public class AuthService : BaseApiController
         {
             throw Oops.Bah("用户名或密码错误");
         }
-
-        var context = httpContextAccessor.HttpContext;
+ 
         if (user.Status == DataUserStatus.Disable)
         {
             throw Oops.Bah("您的账号被锁定");
@@ -52,25 +51,31 @@ public class AuthService : BaseApiController
             //这里可以记录密码的重试次数
             throw Oops.Bah("用户名或密码错误");
         }
+
+
         long uniqueId = DatabaseUtils.GetDataId();
-        string token = JWTEncryption.Encrypt(new Dictionary<string, object>()
+        var ClaimConsts = new Dictionary<string, object>()
         {
             [ClaimConst.UserId] = user.Id,
             [ClaimConst.Account] = user.UserName,
             [ClaimConst.UuidKey] = uniqueId,
             [ClaimConst.IsSuperAdmin] = user.IsSuperAdmin
-        });
+        };
+        string token = JWTEncryption.Encrypt(ClaimConsts);
+
+        var context = httpContextAccessor.HttpContext;
         // 获取刷新 token
         var refreshToken = JWTEncryption.GenerateRefreshToken(token);
         // 设置响应报文头
         context.SigninToSwagger(token);
         context!.Response.Headers["access-token"] = token;
         context.Response.Headers["x-access-token"] = refreshToken;
+        //设置返回值
+        var st = user.Adapt<SigninToken>();
+        st.AccessToken = token;
+        st.RefreshToken = refreshToken;
 
-        return new {
-            RefreshToken = refreshToken,
-            AccessToken = token
-        };
+        return st;
     }
 
     /// <summary>

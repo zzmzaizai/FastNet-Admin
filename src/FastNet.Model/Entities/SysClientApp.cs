@@ -24,7 +24,7 @@ public class SysClientApp : DataEntityBase
     /// <summary>
     /// 私钥
     ///</summary>
-    [SugarColumn(ColumnDescription = "私钥", Length = 50, IsNullable = false)]
+    [SugarColumn(ColumnDescription = "私钥", Length = 100, IsNullable = false)]
     public string SecretKey { get; set; }
  
     /// <summary>

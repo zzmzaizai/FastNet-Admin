@@ -1,4 +1,6 @@
 ﻿
+using Furion.UnifyResult;
+
 namespace FastNet.BlazorCore.HttpRemotes;
 
 /// <summary>
@@ -11,7 +13,7 @@ public interface IAuthService: ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<object> SignIn(LoginInput dto);
+    Task<RESTfulResult<SigninToken>> SignIn(LoginInput dto);
 
     /// <summary>
     /// 系统用户退出
@@ -67,7 +69,7 @@ public class AuthService : IAuthService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<object> SignIn(LoginInput dto)
+    public async Task<RESTfulResult<SigninToken>> SignIn(LoginInput dto)
     {
          return await authHttp.SignIn(dto);
     }

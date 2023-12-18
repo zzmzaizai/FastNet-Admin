@@ -15,24 +15,24 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/account")]
-    Task<SysUser> InsertAsync(InsertUserInput dto);
+    [Post("api/system/account")]
+    Task<SysUser> InsertAsync([Body("application/json")] InsertUserInput dto);
 
     /// <summary>
     /// 更新用户
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("/api/system/account")]
-    Task<SysUser> UpdateAsync(UpdateUserInput dto);
+    [Put("api/system/account")]
+    Task<SysUser> UpdateAsync([Body("application/json")] UpdateUserInput dto);
 
     /// <summary>
     /// 切换超级用户状态
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/account/change-super-user")]
-    Task<bool> ChangeSuperUserAsync(ChangeUserSuperInput dto);
+    [Post("api/system/account/change-super-user")]
+    Task<bool> ChangeSuperUserAsync([Body("application/json")] ChangeUserSuperInput dto);
 
 
     /// <summary>
@@ -40,7 +40,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// </summary>
     /// <param name="UserName">用户名</param>
     /// <returns></returns>
-    [Get("/api/system/account/user-by-name/{username}")]
+    [Get("api/system/account/user-by-name/{username}")]
     Task<SysUser> GetUserByNameAsync(string UserName);
 
     /// <summary>
@@ -48,7 +48,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// </summary>
     /// <param name="UserId">用户Id</param>
     /// <returns></returns>
-    [Get("/api/system/account/{userid}")]
+    [Get("api/system/account/{userid}")]
     Task<SysUser> GetAsync(long UserId);
 
     /// <summary>
@@ -56,7 +56,7 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/api/system/account/page")]
+    [Get("api/system/account/page")]
     Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
 
 

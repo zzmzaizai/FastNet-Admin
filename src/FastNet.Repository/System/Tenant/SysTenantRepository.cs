@@ -27,7 +27,7 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
     /// <returns>找不到时返回默认租户</returns>
     public async Task<SysTenant> GetTenantAsync(string HostName)
     {
-        var query = Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && !SqlFunc.IsNullOrEmpty(it.Domains) && it.Domains == $",{HostName},");
+        var query = Context.Queryable<SysTenant>().Where(it => !it.IsDelete && it.Status == DataStatus.Enable && !SqlFunc.IsNullOrEmpty(it.Domains) && it.Domains.Contains($",{HostName},"));
         if (query.Count() > 0)
         {
             return await query.FirstAsync();

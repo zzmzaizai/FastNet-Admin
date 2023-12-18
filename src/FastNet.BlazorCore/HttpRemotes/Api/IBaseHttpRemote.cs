@@ -1,4 +1,6 @@
 ﻿using Furion.RemoteRequest;
+using System.Net.Http.Headers;
+using System.Net.Http;
 namespace FastNet.BlazorCore;
 
 
@@ -14,7 +16,16 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
     [Get("/get")]
     Task<HttpResponseMessage> GetAsync();
 
-
+    /// <summary>
+    /// 请求成功拦截
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="res"></param>
+    [Interceptor(InterceptorTypes.Response)]
+    static void OnResponsing2(HttpClient client, HttpResponseMessage res)
+    {
+    
+    }
 
 
     /// <summary>
@@ -30,8 +41,12 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
     {
         var httpContextAccessor = App.GetService<IHttpContextAccessor>();
 
+
+       
+
         //设置授权
         //req.Headers.TryAddWithoutValidation("Authorization", "Bearer 你的token");
+        //req.Headers.TryAddWithoutValidation("X-Authorization", "Bearer 你的刷新token");
 
         //转发当前域名到API中
         req.Headers.TryAddWithoutValidation("x-domain", httpContextAccessor.HttpContext.Request.Host.ToString().ToLower());
@@ -40,5 +55,20 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
         req.Headers.TryAddWithoutValidation("x-ip-v4", httpContextAccessor.HttpContext.GetRemoteIpAddressToIPv4());
         req.Headers.TryAddWithoutValidation("x-ip-v6", httpContextAccessor.HttpContext.GetRemoteIpAddressToIPv6());
     }
+
+
+
+    /// <summary>
+    /// 全局请求异常拦截
+    /// </summary>
+    /// <param name="client"></param>
+    /// <param name="res"></param>
+    /// <param name="errors"></param>
+    [Interceptor(InterceptorTypes.Exception)]
+    static void OnException1(HttpClient client, HttpResponseMessage res, string errors)
+    {
+        
+    }
+
 
 }

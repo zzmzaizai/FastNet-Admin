@@ -19,12 +19,12 @@ namespace FastNet.BlazorCore.Pages.User
 
         [Inject] public AuthService authService { get; set; }
 
-        public void HandleSubmit()
+        public async Task HandleSubmit()
         {
             if ( !_model.Password.IsNullOrWhiteSpace())
             {
 
-               var LoginData = authService.SignIn(_model.Adapt<LoginInput>());
+               var LoginData = await authService.SignIn(_model.Adapt<LoginInput>());
 
 
 

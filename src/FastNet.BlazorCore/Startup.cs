@@ -7,6 +7,7 @@ using System.Reflection;
 using AntDesign.ProLayout;
 using Microsoft.AspNetCore.Components;
 using FastNet.BlazorCore.Services;
+using System.Net.Http;
 
 namespace FastNet.BlazorCore;
 
@@ -39,8 +40,9 @@ public class Startup : AppStartup
             // 配置 System Web Api 基本信息
             options.AddHttpClient("system", c =>
             {
-                c.BaseAddress = new Uri("http://192.168.0.70:5000");
-                c.DefaultRequestHeaders.Add("Accept", "application/json");
+                c.BaseAddress = new Uri("http://webapi.dnntest.com/");
+                c.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
             });
         });
 

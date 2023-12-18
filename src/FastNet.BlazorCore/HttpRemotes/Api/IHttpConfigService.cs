@@ -16,7 +16,7 @@ public interface IHttpConfigService : IBaseHttpRemote
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    [Get("/api/system/config/list")]
+    [Get("api/system/config/list")]
     Task<List<SysConfig>> GetListAsync();
 
     /// <summary>
@@ -24,7 +24,7 @@ public interface IHttpConfigService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/api/system/config/page-list")]
+    [Get("api/system/config/page-list")]
     Task<SqlSugarPagedList<SysConfigPageOutput>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto);
 
 

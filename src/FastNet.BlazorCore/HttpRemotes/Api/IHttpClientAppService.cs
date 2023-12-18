@@ -17,7 +17,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/api/system/client/page-list")]
+    [Get("api/system/client/page-list")]
     Task<SqlSugarPagedList<SysClientAppPageOutput>> GetPageListAsync([FromQuery] QueryClientAppPagedInput dto);
 
 
@@ -27,7 +27,7 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// </summary>
     /// <param name="ClientAppId">客户端APP编号</param>
     /// <returns></returns>
-    [Get("/api/system/client/{clientappid}")]
+    [Get("api/system/client/{clientappid}")]
     Task<SysClientApp> GetAsync(long ClientAppId);
 
     /// <summary>
@@ -35,24 +35,24 @@ public interface IHttpClientAppService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/client")]
-    Task<SysClientApp> InsertAsync(InsertClientAppInput dto);
+    [Post("api/system/client")]
+    Task<SysClientApp> InsertAsync([Body("application/json")] InsertClientAppInput dto);
 
     /// <summary>
     /// 更新客户端APP
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("/api/system/client")]
-    Task<SysClientApp> UpdateAsync(UpdateClientAppInput dto);
+    [Put("api/system/client")]
+    Task<SysClientApp> UpdateAsync([Body("application/json")] UpdateClientAppInput dto);
 
     /// <summary>
     /// 重置客户端APP的SecretKey
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Patch("/api/system/client/reset-secret")]
-    Task<SysClientApp> ResetSecretAsync(ResetClientAppSecretInput dto);
+    [Patch("api/system/client/reset-secret")]
+    Task<SysClientApp> ResetSecretAsync([Body("application/json")] ResetClientAppSecretInput dto);
 
 
 

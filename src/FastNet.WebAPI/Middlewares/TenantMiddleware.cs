@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.Logging;
+using StackExchange.Profiling.Internal;
 namespace FastNet.WebAPI;
 
 /// <summary>
@@ -40,10 +41,10 @@ public class TenantMiddleware
 
         //获取当前域名
         var HostDomian = context.Request.Host.ToString().ToLower();
-        if(context.Request.Headers.ContainsKey("x-domain"))
+        if(context.Request.Headers.ContainsKey("x-domain") && !context.Request.Headers["x-domain"].ToString().IsNullOrWhiteSpace())
         {
             //取API请求服务代理过来的域名
-            HostDomian = context.Request.Headers["x-domain"];
+            HostDomian = context.Request.Headers["x-domain"].ToString();
         }
 
         //判断Cookie中有无定义的TenantId

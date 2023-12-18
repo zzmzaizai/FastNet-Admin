@@ -15,7 +15,7 @@ public interface IHttpOrganizationService : IBaseHttpRemote
     /// 获取列表
     /// </summary>
     /// <returns></returns>
-    [Get("/api/system/organization/list")]
+    [Get("api/system/organization/list")]
     Task<List<SysOrganization>> GetListAsync();
 
     /// <summary>
@@ -23,7 +23,7 @@ public interface IHttpOrganizationService : IBaseHttpRemote
     /// </summary>
     /// <param name="OrganizationId">组织架构编号</param>
     /// <returns></returns>
-    [Get("/api/system/organization/{organizationid}")]
+    [Get("api/system/organization/{organizationid}")]
     Task<SysOrganization> GetAsync(long OrganizationId);
 
     /// <summary>
@@ -31,16 +31,16 @@ public interface IHttpOrganizationService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/organization")]
-    Task<SysOrganization> InsertAsync(InsertOrganizationInput dto);
+    [Post("api/system/organization")]
+    Task<SysOrganization> InsertAsync([Body("application/json")] InsertOrganizationInput dto);
 
     /// <summary>
     /// 更新组织架构
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("/api/system/organization")]
-    Task<SysOrganization> UpdateAsync(UpdateOrganizationInput dto);
+    [Put("api/system/organization")]
+    Task<SysOrganization> UpdateAsync([Body("application/json")] UpdateOrganizationInput dto);
 
 
 

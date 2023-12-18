@@ -1,5 +1,6 @@
 ﻿
 using FastNet.Repositories;
+using Furion.UnifyResult;
 
 namespace FastNet.BlazorCore;
 
@@ -14,8 +15,8 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// 测试
     /// </summary>
     /// <returns></returns>
-    [Get("/api/system/auth/sign-in")]
-    Task<object> SignIn(LoginInput dto);
+    [Post("api/system/auth/sign-in")]
+    Task<RESTfulResult<  SigninToken>> SignIn([Body("application/json")]LoginInput dto);
 
 
 
@@ -23,7 +24,7 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// 系统用户退出
     /// </summary>
     /// <returns></returns>
-    [Patch("/api/system/auth/sign-out")]
+    [Patch("api/system/auth/sign-out")]
     Task<bool> SignOut();
 
     /// <summary>
@@ -31,22 +32,22 @@ public interface IHttpAuthService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/auth/register")]
-    Task<SysUser> Register(RegisterInput dto);
+    [Post("api/system/auth/register")]
+    Task<SysUser> Register([Body("application/json")] RegisterInput dto);
 
     /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/auth/change-password")]
-    Task<bool> ChangePassword(ChangePasswordInput dto);
+    [Post("api/system/auth/change-password")]
+    Task<bool> ChangePassword([Body("application/json")] ChangePasswordInput dto);
 
     /// <summary>
     /// 获取当前用户信息
     /// </summary>
     /// <returns></returns>
-    [Get("/api/system/auth/current")]
+    [Get("api/system/auth/current")]
     Task<SysUser> GetCurrent();
 
 }

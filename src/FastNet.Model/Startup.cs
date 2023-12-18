@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace FastNet;
+namespace FastNet.Model;
 
 /// <summary>
 /// AppStartup启动类

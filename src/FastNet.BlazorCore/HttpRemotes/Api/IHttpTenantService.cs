@@ -15,16 +15,16 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("/api/system/role")]
-    Task<SysTenant> InsertAsync(InsertTenantInput dto);
+    [Post("api/system/role")]
+    Task<SysTenant> InsertAsync([Body("application/json")] InsertTenantInput dto);
 
     /// <summary>
     /// 更新租户
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("/api/system/role")]
-    Task<SysTenant> UpdateAsync(UpdateTenantInput dto);
+    [Put("api/system/role")]
+    Task<SysTenant> UpdateAsync([Body("application/json")] UpdateTenantInput dto);
 
     /// <summary>
     /// 根据主机名获取租户信息
@@ -32,7 +32,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// <param name="HostName">主机名</param>
     /// <returns>找不到时返回默认租户</returns>
     /// <returns></returns>
-    [Get("/api/host/tenant/tenant-by-host-name/{hostname}")]
+    [Get("api/host/tenant/tenant-by-host-name/{hostname}")]
     Task<SysTenant> GetTenantByHostNameAsync(string HostName);
 
     /// <summary>
@@ -40,14 +40,14 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="TenantId">租户Id</param>
     /// <returns></returns>
-    [Get("/api/host/tenant/{tenantid}")]
+    [Get("api/host/tenant/{tenantid}")]
     Task<SysTenant> GetAsync(long TenantId);
 
     /// <summary>
     /// 获取当前租户信息
     /// </summary>
     /// <returns></returns>
-    [Get("/api/host/tenant/current")]
+    [Get("api/host/tenant/current")]
     Task<SysTenant> GetCurrent();
 
 
@@ -56,14 +56,14 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// 获取当前租户Id
     /// </summary>
     /// <returns></returns>
-    [Get("/api/host/tenant/current-tenant-id")]
+    [Get("api/host/tenant/current-tenant-id")]
     Task<long> GetCurrentTenantId();
 
     /// <summary>
     /// 填充一个默认租户
     /// </summary>
     /// <returns></returns>
-    [Post("/api/host/tenant/fill-tenant/{isdefault}/{domainname}")]
+    [Post("api/host/tenant/fill-tenant/{isdefault}/{domainname}")]
     Task<SysTenant> FillTenant(bool IsDefault, string DomainName);
 
     /// <summary>
@@ -71,7 +71,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="TenantId">租户编号</param>
     /// <returns></returns>
-    [Post("/api/host/tenant/change-tenant-site/{tenantid}")]
+    [Post("api/host/tenant/change-tenant-site/{tenantid}")]
     Task<bool> ChangeTenantSite(long TenantId);
 
 
@@ -80,7 +80,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("/api/host/tenant/page-list")]
+    [Get("api/host/tenant/page-list")]
     Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto);
 
 
