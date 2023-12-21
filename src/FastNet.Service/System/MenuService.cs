@@ -40,6 +40,29 @@ public class MenuService : BaseApiController
     }
 
 
+
+    /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<List<SysMenu>> GetMenuListAsync(long userId)
+    {
+        return await sysMenuRep.GetMenuListAsync(userId);
+    }
+
+
+    /// <summary>
+    /// 获取用户菜单树形列表
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<List<SysMenu>> GetMenuTreeAsync(long userId)
+    {
+        return await sysMenuRep.GetMenuTreeAsync(userId);
+    }
+
+
     /// <summary>
     /// 根据菜单Id获取菜单
     /// </summary>

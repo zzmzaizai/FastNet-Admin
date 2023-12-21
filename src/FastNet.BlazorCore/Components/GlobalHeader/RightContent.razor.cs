@@ -97,7 +97,7 @@ namespace FastNet.BlazorCore.Components
             var LoginData = await AuthStateProvider.Logout();
             if (LoginData.Succeeded)
             {
-                await MessageService.Success($"尊贵的用户 {CurrentUser?.UserName}已经离开");
+                await MessageService.Success($"尊贵的用户{CurrentUser?.UserName}已经离开");
                 NavigationManager.NavigateTo("/user/login");
             }
             else

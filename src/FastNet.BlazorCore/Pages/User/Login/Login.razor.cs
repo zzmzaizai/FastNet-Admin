@@ -38,8 +38,8 @@ namespace FastNet.BlazorCore.Pages.User
             if (LoginData.Succeeded)
             {
                 var CurrentUser = await AuthStateProvider.GetCurrentUserAsync();
+                await Message.Success($"欢迎{CurrentUser?.UserName}回来");
 
- 
                 if (!string.IsNullOrWhiteSpace(ReturnUrl))
                 {
                     NavigationManager.NavigateTo($"/{ReturnUrl}");
@@ -48,7 +48,7 @@ namespace FastNet.BlazorCore.Pages.User
                 {
                     NavigationManager.NavigateTo("/");
                 }
-                await Message.Success($"欢迎{CurrentUser.UserName}回来");
+               
             }
             else
             {

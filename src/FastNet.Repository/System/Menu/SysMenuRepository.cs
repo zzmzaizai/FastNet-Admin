@@ -12,7 +12,6 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpGet]
     public async Task<SqlSugarPagedList<SysMenuPageOutput>> GetPageListAsync([FromQuery] QueryMenuPagedInput dto)
     {
         return await Context.Queryable<SysMenu>()
@@ -65,13 +64,50 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
     }
 
 
+    /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    public async Task<List<SysMenu>> GetMenuListAsync(long userId)
+    {
+        //var cache = await _easyCachingProvider.GetAsync($"{CacheConst.PermissionButtonCodeKey}{userId}", async () =>
+        //{
+        var queryable = Context.Queryable<SysRole>()
+            .InnerJoin<SysRelation>((role, userRole) => role.Id == userRole.TargetId && userRole.RelationType == DataRelationType.UserRole)
+            .InnerJoin<SysRelation>((role, userRole, roleMenu) => role.Id == roleMenu.SourceId && userRole.RelationType == DataRelationType.RoleMenu)
+            .Where(role => role.Status == DataStatus.Enable)
+            .Select((role, userRole, roleMenu) => roleMenu);
+
+
+        var list = await Context.Queryable<SysMenu>().LeftJoin(queryable, (menu, roleMenu) => menu.Id == roleMenu.TargetId && roleMenu.RelationType == DataRelationType.RoleMenu)
+               .Where(menu => menu.Type == DataMenuType.Catalog || menu.Type == DataMenuType.Menu)
+               .Select((menu, roleMenu) => menu).ToListAsync();
+        return list.Distinct().ToList();
+        //}, TimeSpan.FromDays(1));
+        //return cache.Value;
+    }
+
 
     /// <summary>
-    /// 根据菜单Id获取菜单
+    /// 获取用户菜单树形列表
     /// </summary>
-    /// <param name="MenuId">菜单编号</param>
+    /// <param name="userId"></param>
     /// <returns></returns>
-    public async Task<SysMenu> GetMenuAsync(long MenuId)
+    public async Task<List<SysMenu>> GetMenuTreeAsync(long userId)
+    {
+        //这里未完工
+        return await GetMenuListAsync(userId);
+    }
+
+
+
+        /// <summary>
+        /// 根据菜单Id获取菜单
+        /// </summary>
+        /// <param name="MenuId">菜单编号</param>
+        /// <returns></returns>
+        public async Task<SysMenu> GetMenuAsync(long MenuId)
     {
         return await Context.Queryable<SysMenu>().FirstAsync(x => x.Id == MenuId);
     }

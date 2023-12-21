@@ -29,6 +29,20 @@ public interface ISysMenuRepository : IDatabaseRepository<SysMenu>, ITransient
     Task<List<CheckPermissionOutput>> GetAuthButtonCodeList(long userId);
 
 
+    /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task<List<SysMenu>> GetMenuListAsync(long userId);
+
+
+    /// <summary>
+    /// 获取用户菜单树形列表
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task<List<SysMenu>> GetMenuTreeAsync(long userId);
 
 
     /// <summary>
