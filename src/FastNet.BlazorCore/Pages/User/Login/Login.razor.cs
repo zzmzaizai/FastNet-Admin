@@ -23,7 +23,11 @@ namespace FastNet.BlazorCore.Pages.User
         [Inject]
         JwtAuthenticationStateProvider AuthStateProvider { get; set; }
 
-        //[Inject] public AuthService authService { get; set; }
+        /// <summary>
+        /// 返回值URL
+        /// </summary>
+        [Parameter]
+        public string ReturnUrl { get; set; }
 
         /// <summary>
         /// 登录提交按钮处理
@@ -34,7 +38,16 @@ namespace FastNet.BlazorCore.Pages.User
             if (LoginData.Succeeded)
             {
                 var CurrentUser = await AuthStateProvider.GetCurrentUserAsync();
-                NavigationManager.NavigateTo("/");
+
+ 
+                if (!string.IsNullOrWhiteSpace(ReturnUrl))
+                {
+                    NavigationManager.NavigateTo($"/{ReturnUrl}");
+                }
+                else
+                {
+                    NavigationManager.NavigateTo("/");
+                }
                 await Message.Success($"欢迎{CurrentUser.UserName}回来");
             }
             else
