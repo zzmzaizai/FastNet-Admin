@@ -1,11 +1,43 @@
-<Router AppAssembly="@typeof(FastNet.BlazorCore.Startup).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(FastNet.BlazorCore.BasicLayout)" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(FastNet.BlazorCore.BasicLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<CascadingAuthenticationState>  
+    <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="new[] { typeof(FastNet.BlazorCore.Startup).Assembly }" >
+        <Found Context="routeData">
+                <AuthorizeView>
+                    <Authorized>
+                        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(FastNet.BlazorCore.BasicLayout)" />
+                    </Authorized>
+                    <NotAuthorized>
+                        @if (context.User.Identity == null ||  !context.User.Identity.IsAuthenticated)
+                        {
+                            <FastNet.BlazorCore.Pages.User.RedirectToLogin />
+                            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(FastNet.BlazorCore.UserLayout)" />
+                        }
+                        else
+                        {
+                            <p>You are not authorized to access!</p>
+                        }
+                    </NotAuthorized>
+                </AuthorizeView>
+           
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(FastNet.BlazorCore.BasicLayout)">
+                <FastNet.BlazorCore.Pages.Exception._404></FastNet.BlazorCore.Pages.Exception._404>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>  
+
 <AntContainer />
+
+@code {
+    [Inject]
+    public JwtAuthenticationStateProvider AuthStateProvider { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+           await AuthStateProvider.RefreshAsync();
+        }
+    }
+}

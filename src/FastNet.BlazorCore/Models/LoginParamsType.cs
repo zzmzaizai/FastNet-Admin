@@ -4,9 +4,9 @@ namespace FastNet.BlazorCore.Models
 {
     public class LoginParamsType
     {
-        [Required] public string UserName { get; set; }
+        [Required] public string UserName { get; set; } = "admin";
 
-        [Required] public string Password { get; set; }
+        [Required] public string Password { get; set; } = "admin";
 
         public string Captcha { get; set; }
 

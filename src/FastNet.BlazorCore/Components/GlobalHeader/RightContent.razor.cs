@@ -11,6 +11,7 @@ namespace FastNet.BlazorCore.Components
 {
     public partial class RightContent
     {
+        private SigninToken _signinUser = new SigninToken();
         private CurrentUser _currentUser = new CurrentUser();
         private NoticeIconData[] _notifications = { };
         private NoticeIconData[] _messages = { };
@@ -50,10 +51,14 @@ namespace FastNet.BlazorCore.Components
         [Inject] protected IProjectService ProjectService { get; set; }
         [Inject] protected MessageService MessageService { get; set; }
 
+        [Inject]
+        JwtAuthenticationStateProvider AuthStateProvider { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             SetClassMap();
+            _signinUser = await AuthStateProvider.GetCurrentUserAsync();
             _currentUser = await UserService.GetCurrentUserAsync();
             var notices = await ProjectService.GetNoticesAsync();
             _notifications = notices.Where(x => x.Type == "notification").Cast<NoticeIconData>().ToArray();
@@ -69,7 +74,7 @@ namespace FastNet.BlazorCore.Components
                 .Add("right");
         }
 
-        public void HandleSelectUser(MenuItem item)
+        public async Task HandleSelectUser(MenuItem item)
         {
             switch (item.Key)
             {
@@ -80,9 +85,26 @@ namespace FastNet.BlazorCore.Components
                     NavigationManager.NavigateTo("/account/settings");
                     break;
                 case "logout":
-                    NavigationManager.NavigateTo("/user/login");
+                   await HandleLogout(item);
                     break;
             }
+        }
+
+
+        public async Task HandleLogout(MenuItem item)
+        {
+            var CurrentUser = await AuthStateProvider.GetCurrentUserAsync();
+            var LoginData = await AuthStateProvider.Logout();
+            if (LoginData.Succeeded)
+            {
+                await MessageService.Success($"尊贵的用户 {CurrentUser?.UserName}已经离开");
+                NavigationManager.NavigateTo("/user/login");
+            }
+            else
+            {
+                await MessageService.Warning(LoginData.Errors.ToString());
+            }
+           
         }
 
         public void HandleSelectLang(MenuItem item)
@@ -110,5 +132,8 @@ namespace FastNet.BlazorCore.Components
         {
             await MessageService.Info("Click on view more");
         }
+
+
+
     }
 }

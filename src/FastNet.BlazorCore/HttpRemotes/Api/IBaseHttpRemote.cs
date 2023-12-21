@@ -1,20 +1,16 @@
-﻿using Furion.RemoteRequest;
-using System.Net.Http.Headers;
-using System.Net.Http;
+﻿
+using FastNet.BlazorCore.Services;
 namespace FastNet.BlazorCore;
 
 
 /// <summary>
 /// WEB API 远程请求接口封装
 /// </summary>
+[RetryPolicy(3, 1000)]
 public interface IBaseHttpRemote : IHttpDispatchProxy
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
-    [Get("/get")]
-    Task<HttpResponseMessage> GetAsync();
+
+
 
     /// <summary>
     /// 请求成功拦截
@@ -22,9 +18,9 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
     /// <param name="client"></param>
     /// <param name="res"></param>
     [Interceptor(InterceptorTypes.Response)]
-    static void OnResponsing2(HttpClient client, HttpResponseMessage res)
+    static void OnResponsing(HttpClient client, HttpResponseMessage res)
     {
-    
+
     }
 
 
@@ -42,11 +38,19 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
         var httpContextAccessor = App.GetService<IHttpContextAccessor>();
 
 
-       
+        //当前登录用户授权到API
+        if (httpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+        {
+            var JwtAuth = App.GetService<JwtAuthenticationStateProvider>();
+            var UserAuth = JwtAuth.GetCurrentUserAsync().Result;
 
-        //设置授权
-        //req.Headers.TryAddWithoutValidation("Authorization", "Bearer 你的token");
-        //req.Headers.TryAddWithoutValidation("X-Authorization", "Bearer 你的刷新token");
+            if (UserAuth != null && UserAuth.UserId > 0)
+            {
+                //设置授权
+                req.Headers.TryAddWithoutValidation("Authorization", $"Bearer {UserAuth.AccessToken}");
+                req.Headers.TryAddWithoutValidation("X-Authorization", $"Bearer {UserAuth.RefreshToken}");
+            }
+        }
 
         //转发当前域名到API中
         req.Headers.TryAddWithoutValidation("x-domain", httpContextAccessor.HttpContext.Request.Host.ToString().ToLower());
@@ -65,9 +69,9 @@ public interface IBaseHttpRemote : IHttpDispatchProxy
     /// <param name="res"></param>
     /// <param name="errors"></param>
     [Interceptor(InterceptorTypes.Exception)]
-    static void OnException1(HttpClient client, HttpResponseMessage res, string errors)
+    static void OnException(HttpClient client, HttpResponseMessage res, string errors)
     {
-        
+
     }
 
 

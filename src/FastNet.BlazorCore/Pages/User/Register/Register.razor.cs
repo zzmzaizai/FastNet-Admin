@@ -22,20 +22,19 @@ namespace FastNet.BlazorCore.Pages.User
         /// <summary>
         /// 用户注册按钮触发
         /// </summary>
-        public void HandleSubmit()
+        public async Task HandleSubmit()
         {
-            if (!_user.UserName.IsNullOrWhiteSpace())
+            var RegData = await authService.Register(_user);
+            if (RegData.Succeeded)
             {
-
-                var RegData = authService.Register(_user);
-
-
-
-                NavigationManager.NavigateTo("/");
-                return;
+                await Message.Success("注册成功,请登录");
+                NavigationManager.NavigateTo("/user/login");
             }
-
-            
+            else
+            {
+                await Message.Warning(RegData.Errors.ToString());
+            }
+ 
         }
     }
 }

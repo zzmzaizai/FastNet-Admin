@@ -1,6 +1,7 @@
 ﻿@namespace FastNet.BlazorCore
 @inherits LayoutComponentBase
 
+@attribute [Authorize]
 <AntDesign.ProLayout.BasicLayout 
     Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
     MenuData="_menuData">
@@ -11,7 +12,7 @@
         @Body
     </ChildContent>
     <FooterRender>
-        <FooterView Copyright="2021 Ant Design Blazor" Links="Links"></FooterView>
+        <FooterView Copyright="2022 Ant Design Blazor" Links="Links"></FooterView>
     </FooterRender>
 </AntDesign.ProLayout.BasicLayout>
 <SettingDrawer />

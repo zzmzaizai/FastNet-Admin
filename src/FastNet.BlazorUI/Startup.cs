@@ -19,7 +19,19 @@ public class Startup : AppStartup
     /// <param name="services"></param>
     public void ConfigureServices(IServiceCollection services)
     {
-       
+        AppDomain.CurrentDomain.UnhandledException += (sender, args) =>
+        {
+            // 处理未处理的异常
+            Exception exception = (Exception)args.ExceptionObject;
+            
+        };
+
+        TaskScheduler.UnobservedTaskException += (sender, args) =>
+        {
+            // 处理未观察的任务异常
+            Exception exception = args.Exception;
+
+        };
 
     }
 

@@ -8,6 +8,10 @@ using AntDesign.ProLayout;
 using Microsoft.AspNetCore.Components;
 using FastNet.BlazorCore.Services;
 using System.Net.Http;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Blazored.LocalStorage;
 
 namespace FastNet.BlazorCore;
 
@@ -23,14 +27,17 @@ public class Startup : AppStartup
     {
 
         services.AddConsoleFormatter();
-        services.AddRazorPages().AddInjectBase();
-        services.AddServerSideBlazor();
-
-        services.AddInjectMini();
-
         services.AddRazorPages();
         services.AddServerSideBlazor();
         services.AddAntDesign();
+        services.AddBlazoredLocalStorage();
+
+        // Authorization
+        services.AddAuthorizationCore();
+        services.AddScoped<JwtAuthenticationStateProvider>();
+        services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<JwtAuthenticationStateProvider>());
+
+
         services.AddScoped(sp => new HttpClient
         {
             BaseAddress = new Uri(sp.GetService<NavigationManager>()!.BaseUri)
@@ -46,7 +53,13 @@ public class Startup : AppStartup
             });
         });
 
+
+
+
         services.Configure<ProSettings>(App.Configuration.GetSection("ProSettings"));
+
+
+
     }
 
     /// <summary>
@@ -69,7 +82,10 @@ public class Startup : AppStartup
 
         app.UseRouting();
 
-        app.UseInjectBase();
+    
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.UseEndpoints(endpoints =>
         {

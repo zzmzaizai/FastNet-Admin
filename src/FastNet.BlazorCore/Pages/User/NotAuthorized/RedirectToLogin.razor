@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@namespace FastNet.BlazorCore.Pages.User
+@inject NavigationManager Navigation
+@code {
+    [Inject]
+    public JwtAuthenticationStateProvider AuthStateProvider { get; set; }
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (user.Identity is null || !user.Identity.IsAuthenticated)
+            {
+                var returnUrl = Navigation.ToBaseRelativePath(Navigation.Uri);
+                var YourLoginPath = "user/login";
+                var NotAuthorizedUrls = new string[] { "user/login", "user/register" };
+                if (!NotAuthorizedUrls.Any(x => returnUrl.Contains(x, StringComparison.OrdinalIgnoreCase)))
+                {
+                    if (string.IsNullOrWhiteSpace(returnUrl))
+                        Navigation.NavigateTo($"/{YourLoginPath}", true);
+                    else
+                        Navigation.NavigateTo($"/{YourLoginPath}?returnUrl={returnUrl}", true);
+                }
+            }
+        }
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (authenticationState is not null)
+        {
+            var authState = await authenticationState;
+            var user = authState?.User;
+
+            if (authState?.User.Identity is null || !authState.User.Identity.IsAuthenticated)
+            {
+                var returnUrl = Navigation.ToBaseRelativePath(Navigation.Uri);
+                var YourLoginPath = "user/login";
+                var NotAuthorizedUrls = new string[] { "user/login", "user/register" };
+                if (!NotAuthorizedUrls.Any(x => returnUrl.Contains(x, StringComparison.OrdinalIgnoreCase)))
+                {
+                    if (string.IsNullOrWhiteSpace(returnUrl))
+                        Navigation.NavigateTo($"/{YourLoginPath}", true);
+                    else
+                        Navigation.NavigateTo($"/{YourLoginPath}?returnUrl={returnUrl}", true);
+                }
+            }
+        }
+    }
+}

@@ -16,6 +16,12 @@ public class ClaimConst
     public const string Account = "Account";
 
     /// <summary>
+    /// 昵称
+    /// </summary>
+    public const string NickName = "NickName";
+    
+
+    /// <summary>
     /// 账号类型
     /// </summary>
     public const string IsSuperAdmin = "IsSuperAdmin";
@@ -25,5 +31,18 @@ public class ClaimConst
     /// </summary>
 
     public const string UuidKey = "UniqueId";
+
+    /// <summary>
+    /// 刷新 Token
+    /// </summary>
+    public const string RefreshToken = "RefreshToken";
+
+    /// <summary>
+    /// 访问 Token
+    /// </summary>
+    public const string AccessToken = "AccessToken";
+    
+
+    
 
 }

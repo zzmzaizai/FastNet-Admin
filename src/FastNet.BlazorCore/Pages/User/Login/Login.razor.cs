@@ -11,30 +11,37 @@ namespace FastNet.BlazorCore.Pages.User
     {
         private readonly LoginParamsType _model = new LoginParamsType();
 
-        [Inject] public NavigationManager NavigationManager { get; set; }
+        [Inject] 
+        public NavigationManager NavigationManager { get; set; }
 
-        //[Inject] public IAccountService AccountService { get; set; }
 
-        [Inject] public MessageService Message { get; set; }
 
-        [Inject] public AuthService authService { get; set; }
+        [Inject] 
+        public MessageService Message { get; set; }
+
+
+        [Inject]
+        JwtAuthenticationStateProvider AuthStateProvider { get; set; }
+
+        //[Inject] public AuthService authService { get; set; }
 
         /// <summary>
         /// 登录提交按钮处理
         /// </summary>
         public async Task HandleSubmit()
         {
-          
-                var LoginData = await authService.SignIn(_model.Adapt<LoginInput>());
-                if (LoginData.Succeeded)
-                {
-                    NavigationManager.NavigateTo("/");
-                }
-                else
-                {
-                    await Message.Warning(LoginData.Errors.ToString());
-                }
-          
+            var LoginData = await AuthStateProvider.Login(_model.Adapt<LoginInput>());
+            if (LoginData.Succeeded)
+            {
+                var CurrentUser = await AuthStateProvider.GetCurrentUserAsync();
+                NavigationManager.NavigateTo("/");
+                await Message.Success($"欢迎{CurrentUser.UserName}回来");
+            }
+            else
+            {
+                await Message.Warning(LoginData.Errors.ToString());
+            }
+
         }
 
         public async Task GetCaptcha()

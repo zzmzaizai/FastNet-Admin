@@ -12,13 +12,18 @@ namespace FastNet.BlazorCore;
 public interface IHttpAuthService : IBaseHttpRemote
 {
     /// <summary>
-    /// 测试
+    /// 登录
     /// </summary>
     /// <returns></returns>
     [Post("api/system/auth/sign-in")]
-    Task<RESTfulResult<  SigninToken>> SignIn([Body("application/json")]LoginInput dto);
+    Task<RESTfulResult<SigninToken>> SignIn([Body("application/json")]LoginInput dto);
 
-
+    /// <summary>
+    /// 登录2
+    /// </summary>
+    /// <returns></returns>
+    [Post("api/system/auth/sign-in")]
+    Task<object> Login(LoginInput dto);
 
     /// <summary>
     /// 系统用户退出
