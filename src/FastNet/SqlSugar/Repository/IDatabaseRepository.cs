@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FastNet.Repository;
+namespace FastNet.SqlSugar;
 
 /// <summary>
 /// 数据仓储接口

@@ -5,7 +5,7 @@
 /// <summary>
 /// 
 /// </summary>
-public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
+public class SysMenuRepository : SysDatabaseRepository<SysMenu>, ISysMenuRepository
 {
     /// <summary>
     /// 分页列表查询

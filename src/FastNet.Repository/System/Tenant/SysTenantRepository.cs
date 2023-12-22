@@ -7,19 +7,9 @@ namespace FastNet.Repository;
 /// <summary>
 /// 租户仓储
 /// </summary>
-public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepository
+public class SysTenantRepository : SysDatabaseRepository<SysTenant>, ISysTenantRepository
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    /// <summary>
-    /// 构造
-    /// </summary>
-    /// <param name="httpContextAccessor"></param>
-    public SysTenantRepository(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
-
+ 
     /// <summary>
     /// 根据主机名获取租户信息
     /// </summary>
@@ -115,7 +105,7 @@ public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepo
                     await InsertAsync(new SysTenant
                     {
                         Name = "Default",
-                        Domains = $",{_httpContextAccessor.HttpContext.Request.Host.ToString()},",
+                        Domains = $",{_HttpContextAccessor.HttpContext.Request.Host.ToString()},",
                         IsDefault = true,
                         Email = "washala@qq.com",
                         Tel = "",

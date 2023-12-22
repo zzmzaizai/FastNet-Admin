@@ -3,9 +3,9 @@
 
 
 /// <summary>
-/// 
+/// 数据关系仓储
 /// </summary>
-public class SysRelationRepository : DatabaseRepository<SysRelation>, ISysRelationRepository
+public class SysRelationRepository : SysDatabaseRepository<SysRelation>, ISysRelationRepository
 {
     /// <summary>
     /// 分页列表查询

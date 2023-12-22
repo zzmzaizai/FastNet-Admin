@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 系统配置仓储接口
 /// </summary>
 public interface ISysConfigRepository : IDatabaseRepository<SysConfig>, ITransient
 {

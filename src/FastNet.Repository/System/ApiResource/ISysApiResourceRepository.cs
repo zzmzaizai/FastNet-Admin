@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// API资源仓储接口
 /// </summary>
 public interface ISysApiResourceRepository : IDatabaseRepository<SysApiResource>, ITransient
 {

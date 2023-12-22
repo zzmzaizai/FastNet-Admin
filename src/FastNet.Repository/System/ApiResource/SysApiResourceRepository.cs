@@ -3,9 +3,9 @@
 
 
 /// <summary>
-/// 
+/// API资源仓储
 /// </summary>
-public class SysApiResourceRepository : DatabaseRepository<SysApiResource>, ISysApiResourceRepository
+public class SysApiResourceRepository : SysDatabaseRepository<SysApiResource>, ISysApiResourceRepository
 {
     /// <summary>
     /// 分页列表查询

@@ -4,8 +4,7 @@
 
 
 
-namespace FastNet.Repository;
-
+namespace FastNet.SqlSugar;
 /// <summary>
 /// 仓储模式对象
 /// </summary>
@@ -16,7 +15,7 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
     /// <summary>
     /// 用户数据
     /// </summary>
-    public AuthManager authManager { get; set; }
+    public AuthManager _AuthManager { get; set; }
 
 
     
@@ -29,7 +28,7 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
     {
         Context = DatabaseContext.Db.GetConnectionScopeWithAttr<T>();//ioc注入的对象
         itenant = DatabaseContext.Db;
-        authManager = App.GetService<AuthManager>();
+        _AuthManager = App.GetService<AuthManager>();
     }
 
     #region 仓储方法拓展

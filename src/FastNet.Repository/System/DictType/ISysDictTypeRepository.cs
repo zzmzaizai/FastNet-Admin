@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 字典类型仓储接口
 /// </summary>
 public interface ISysDictTypeRepository : IDatabaseRepository<SysDictType>, ITransient
 {

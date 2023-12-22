@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 系统角色仓储接口
 /// </summary>
 public interface ISysRoleRepository : IDatabaseRepository<SysRole>, ITransient
 {

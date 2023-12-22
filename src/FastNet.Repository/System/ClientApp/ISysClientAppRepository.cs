@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 客户端APP仓储接口
 /// </summary>
 public interface ISysClientAppRepository : IDatabaseRepository<SysClientApp>, ITransient
 {

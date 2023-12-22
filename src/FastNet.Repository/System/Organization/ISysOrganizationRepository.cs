@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 组织架构仓储接口
 /// </summary>
 public interface ISysOrganizationRepository : IDatabaseRepository<SysOrganization>, ITransient
 {

@@ -5,7 +5,7 @@
 /// <summary>
 /// 组织架构仓储
 /// </summary>
-public class SysOrganizationRepository : DatabaseRepository<SysOrganization>, ISysOrganizationRepository
+public class SysOrganizationRepository : SysDatabaseRepository<SysOrganization>, ISysOrganizationRepository
 {
     /// <summary>
     /// 分页列表查询

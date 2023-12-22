@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 系统用户仓储接口
 /// </summary>
 public interface ISysUserRepository : IDatabaseRepository<SysUser>, ITransient
 {

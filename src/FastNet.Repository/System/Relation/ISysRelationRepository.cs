@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 数据关系仓储接口
 /// </summary>
 public interface ISysRelationRepository : IDatabaseRepository<SysRelation>, ITransient
 {
