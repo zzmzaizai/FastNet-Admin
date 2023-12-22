@@ -4,6 +4,8 @@
 
 
 
+using Microsoft.Extensions.Logging;
+
 namespace FastNet.SqlSugar;
 /// <summary>
 /// 仓储模式对象
@@ -16,19 +18,21 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
     /// 用户数据
     /// </summary>
     public AuthManager _AuthManager { get; set; }
+    private readonly ILogger<DatabaseRepository<T>> _logger;
 
 
-    
 
     /// <summary>
-    /// 仓储构造
+    /// 构造函数
     /// </summary>
+    /// <param name="logger"></param>
     /// <param name="context"></param>
-    public DatabaseRepository(ISqlSugarClient context = null) : base(context)//注意这里要有默认值等于null
+    public DatabaseRepository(ILogger<DatabaseRepository<T>> logger,ISqlSugarClient context = null) : base(context)//注意这里要有默认值等于null
     {
         Context = DatabaseContext.Db.GetConnectionScopeWithAttr<T>();//ioc注入的对象
         itenant = DatabaseContext.Db;
         _AuthManager = App.GetService<AuthManager>();
+        _logger = logger;
     }
 
     #region 仓储方法拓展

@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// 
+/// 系统菜单仓储接口
 /// </summary>
 public interface ISysMenuRepository : IDatabaseRepository<SysMenu>, ITransient
 {

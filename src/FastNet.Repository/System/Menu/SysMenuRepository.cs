@@ -3,7 +3,7 @@
 
 
 /// <summary>
-/// 
+/// 系统菜单仓储
 /// </summary>
 public class SysMenuRepository : SysDatabaseRepository<SysMenu>, ISysMenuRepository
 {
