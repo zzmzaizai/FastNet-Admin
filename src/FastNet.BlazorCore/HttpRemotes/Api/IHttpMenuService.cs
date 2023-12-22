@@ -36,6 +36,24 @@ public interface IHttpMenuService : IBaseHttpRemote
 
 
     /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    [Get("api/system/menu/menu-list/{userid}")]
+    Task<RESTfulResult<List<SysMenu>>> GetMenuListAsync(long userId);
+
+
+    /// <summary>
+    /// 获取用户菜单树形列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    [Get("api/system/menu/menu-tree/{userid}")]
+    Task<RESTfulResult<List<SysMenu>>> GetMenuTreeAsync(long userId);
+
+
+    /// <summary>
     /// 根据菜单Id获取菜单
     /// </summary>
     /// <param name="MenuId">菜单编号</param>

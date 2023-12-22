@@ -28,6 +28,19 @@ public interface IMenuService : ITransient
     /// <returns></returns>
     Task<RESTfulResult<List<CheckPermissionOutput>>> GetAuthButtonCodeList(long userId);
 
+    /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<List<SysMenu>>> GetMenuListAsync(long userId);
+
+    /// <summary>
+    /// 获取用户菜单树形列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<List<SysMenu>>> GetMenuTreeAsync(long userId);
 
     /// <summary>
     /// 根据菜单Id获取菜单
@@ -99,6 +112,26 @@ public class MenuService : IMenuService
     public async Task<RESTfulResult<List<CheckPermissionOutput>>> GetAuthButtonCodeList(long userId)
     {
         return await menuHttp.GetAuthButtonCodeList(userId);
+    }
+
+    /// <summary>
+    /// 获取用户菜单列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<List<SysMenu>>> GetMenuListAsync(long userId)
+    {
+        return await menuHttp.GetMenuListAsync(userId);
+    }
+
+    /// <summary>
+    /// 获取用户菜单树形列表
+    /// </summary>
+    /// <param name="userId">系统用户id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<List<SysMenu>>> GetMenuTreeAsync(long userId)
+    {
+        return await menuHttp.GetMenuTreeAsync(userId);
     }
 
 

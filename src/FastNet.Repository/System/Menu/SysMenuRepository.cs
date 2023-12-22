@@ -76,7 +76,7 @@ public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
         var queryable = Context.Queryable<SysRole>()
             .InnerJoin<SysRelation>((role, userRole) => role.Id == userRole.TargetId && userRole.RelationType == DataRelationType.UserRole)
             .InnerJoin<SysRelation>((role, userRole, roleMenu) => role.Id == roleMenu.SourceId && userRole.RelationType == DataRelationType.RoleMenu)
-            .Where(role => role.Status == DataStatus.Enable)
+            .Where((role, userRole, roleMenu) => role.Status == DataStatus.Enable && userRole.TargetId == userId)
             .Select((role, userRole, roleMenu) => roleMenu);
 
 
