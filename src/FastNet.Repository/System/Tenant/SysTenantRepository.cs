@@ -7,7 +7,7 @@ namespace FastNet.Repository;
 /// <summary>
 /// 租户仓储
 /// </summary>
-public class SysTenantRepository : SysDatabaseRepository<SysTenant>, ISysTenantRepository
+public class SysTenantRepository : DatabaseRepository<SysTenant>, ISysTenantRepository
 {
  
     /// <summary>

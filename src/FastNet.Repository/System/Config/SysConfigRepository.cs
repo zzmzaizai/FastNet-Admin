@@ -5,7 +5,7 @@
 /// <summary>
 /// 系统配置仓储
 /// </summary>
-public class SysConfigRepository : SysDatabaseRepository<SysConfig>, ISysConfigRepository
+public class SysConfigRepository : DatabaseRepository<SysConfig>, ISysConfigRepository
 {
     /// <summary>
     /// 分页列表查询

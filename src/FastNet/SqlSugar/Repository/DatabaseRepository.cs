@@ -1,10 +1,4 @@
-﻿
-
-
-
-
-
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace FastNet.SqlSugar;
 /// <summary>
@@ -18,7 +12,10 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
     /// 用户数据
     /// </summary>
     public AuthManager _AuthManager { get; set; }
-    private readonly ILogger<DatabaseRepository<T>> _logger;
+    /// <summary>
+    /// HTTP上下文访问器
+    /// </summary>
+    protected readonly IHttpContextAccessor _HttpContextAccessor;
 
 
 
@@ -27,12 +24,12 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
     /// </summary>
     /// <param name="logger"></param>
     /// <param name="context"></param>
-    public DatabaseRepository(ILogger<DatabaseRepository<T>> logger,ISqlSugarClient context = null) : base(context)//注意这里要有默认值等于null
+    public DatabaseRepository(ISqlSugarClient context = null) : base(context)//注意这里要有默认值等于null
     {
         Context = DatabaseContext.Db.GetConnectionScopeWithAttr<T>();//ioc注入的对象
         itenant = DatabaseContext.Db;
         _AuthManager = App.GetService<AuthManager>();
-        _logger = logger;
+        _HttpContextAccessor = App.GetService<IHttpContextAccessor>();
     }
 
     #region 仓储方法拓展

@@ -5,7 +5,7 @@
 /// <summary>
 /// 客户端APP仓储
 /// </summary>
-public class SysClientAppRepository : SysDatabaseRepository<SysClientApp>, ISysClientAppRepository
+public class SysClientAppRepository : DatabaseRepository<SysClientApp>, ISysClientAppRepository
 {
     /// <summary>
     /// 分页列表查询

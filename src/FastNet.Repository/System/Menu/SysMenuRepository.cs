@@ -5,7 +5,7 @@
 /// <summary>
 /// 系统菜单仓储
 /// </summary>
-public class SysMenuRepository : SysDatabaseRepository<SysMenu>, ISysMenuRepository
+public class SysMenuRepository : DatabaseRepository<SysMenu>, ISysMenuRepository
 {
     /// <summary>
     /// 分页列表查询

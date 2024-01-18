@@ -5,7 +5,7 @@
 /// <summary>
 /// 字典类型仓储
 /// </summary>
-public class SysDictTypeRepository : SysDatabaseRepository<SysDictType>, ISysDictTypeRepository
+public class SysDictTypeRepository : DatabaseRepository<SysDictType>, ISysDictTypeRepository
 {
     /// <summary>
     /// 分页列表查询

@@ -7,7 +7,7 @@ namespace FastNet.Repository;
 /// <summary>
 /// 系统角色仓储
 /// </summary>
-public class SysRoleRepository : SysDatabaseRepository<SysRole>, ISysRoleRepository
+public class SysRoleRepository : DatabaseRepository<SysRole>, ISysRoleRepository
 {
     /// <summary>
     /// 分页列表查询

@@ -1,6 +1,7 @@
 ﻿
 using Furion.LinqBuilder;
 
+
 namespace FastNet.Repository;
 
 
@@ -8,7 +9,7 @@ namespace FastNet.Repository;
 /// <summary>
 /// 系统用户仓储
 /// </summary>
-public class SysUserRepository : SysDatabaseRepository<SysUser>, ISysUserRepository
+public class SysUserRepository : DatabaseRepository<SysUser>, ISysUserRepository
 {
     /// <summary>
     /// 根据用户名获取用户
