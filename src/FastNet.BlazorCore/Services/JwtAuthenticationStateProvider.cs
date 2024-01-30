@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
+using SqlSugar.Extensions;
 
 namespace FastNet.BlazorCore.Services;
 
@@ -93,6 +94,7 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
             UserName = Claims.FindFirstValue(ClaimConst.Account),
             AccessToken = Claims.FindFirstValue(ClaimConst.AccessToken),
             RefreshToken = Claims.FindFirstValue(ClaimConst.RefreshToken),
+            ExpiredTime = Claims.FindFirstValue(ClaimConst.ExpiredTime).ObjToDate(),
             IsSuperAdmin = Claims.FindFirstValue(ClaimConst.IsSuperAdmin) == "true",
 
         } : null;
@@ -160,6 +162,7 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
                       new Claim(ClaimConst.IsSuperAdmin, LoginUser.IsSuperAdmin ? "true":"false"),
                       new Claim(ClaimConst.AccessToken, LoginUser.AccessToken),
                       new Claim(ClaimConst.RefreshToken, LoginUser.RefreshToken),
+                      new Claim(ClaimConst.ExpiredTime, LoginUser.ExpiredTime.ToString("yyyy-MM-ddTHH:mm:ss")),
 
                 }, nameof(JwtAuthenticationStateProvider));
     }
@@ -172,6 +175,12 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
         var SigninUser = await GetCurrentUserAsync();
         if (SigninUser != null && SigninUser.UserId > 0)
         {
+            //刷新Token
+            if(SigninUser.ExpiredTime <= DateTimeOffset.Now)
+            {
+                await Logout();
+                return;
+            }
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
         }
     }

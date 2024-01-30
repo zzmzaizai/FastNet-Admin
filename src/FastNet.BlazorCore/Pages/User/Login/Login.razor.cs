@@ -7,19 +7,29 @@ using System.Threading.Tasks;
 
 namespace FastNet.BlazorCore.Pages.User
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Login
     {
         private readonly LoginParamsType _model = new LoginParamsType();
 
+        /// <summary>
+        /// 
+        /// </summary>
         [Inject] 
         public NavigationManager NavigationManager { get; set; }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Inject] 
         public MessageService Message { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         [Inject]
         JwtAuthenticationStateProvider AuthStateProvider { get; set; }
 
@@ -48,7 +58,6 @@ namespace FastNet.BlazorCore.Pages.User
                 {
                     NavigationManager.NavigateTo("/");
                 }
-               
             }
             else
             {

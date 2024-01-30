@@ -18,6 +18,12 @@ public class SigninToken:IRegister
     public string AccessToken { get; set; }
 
     /// <summary>
+    /// 过期时间
+    /// </summary>
+    public DateTimeOffset ExpiredTime { get; set; }
+
+
+    /// <summary>
     /// 用户编号
     /// </summary>
     public long UserId { get; set; }

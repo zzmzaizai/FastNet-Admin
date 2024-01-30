@@ -61,11 +61,13 @@ public class AuthService : BaseApiController
             [ClaimConst.UuidKey] = uniqueId,
             [ClaimConst.IsSuperAdmin] = user.IsSuperAdmin
         };
-        string token = JWTEncryption.Encrypt(ClaimConsts);
+
+        var expiredTime = 60 * 24 * 7;
+        string token = JWTEncryption.Encrypt(ClaimConsts, expiredTime);
 
         var context = httpContextAccessor.HttpContext;
         // 获取刷新 token
-        var refreshToken = JWTEncryption.GenerateRefreshToken(token);
+        var refreshToken = JWTEncryption.GenerateRefreshToken(token, expiredTime * 60);
         // 设置响应报文头
         context.SigninToSwagger(token);
         context!.Response.Headers["access-token"] = token;
@@ -74,6 +76,7 @@ public class AuthService : BaseApiController
         var st = user.Adapt<SigninToken>();
         st.AccessToken = token;
         st.RefreshToken = refreshToken;
+        st.ExpiredTime = DateTimeOffset.Now.AddMinutes(expiredTime);
 
         return st;
     }

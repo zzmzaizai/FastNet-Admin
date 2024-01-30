@@ -41,8 +41,11 @@ public class ClaimConst
     /// 访问 Token
     /// </summary>
     public const string AccessToken = "AccessToken";
-    
 
+    /// <summary>
+    /// 过期时间
+    /// </summary>
+    public const string ExpiredTime = "ExpiredTime";
     
 
 }
