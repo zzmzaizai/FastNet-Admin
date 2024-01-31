@@ -27,8 +27,4 @@ public interface IHttpConfigService : IBaseHttpRemote
     [Get("api/system/config/page-list")]
     Task<RESTfulResult<SqlSugarPagedList<SysConfigPageOutput>>> GetPageListAsync([FromQuery] QueryConfigPagedInput dto);
 
-
-
-
-
 }

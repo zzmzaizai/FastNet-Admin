@@ -18,6 +18,14 @@ public interface IHttpMenuService : IBaseHttpRemote
     Task<RESTfulResult<List<SysMenu>>> GetListAsync();
 
     /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Get("api/system/menu/page-list")]
+    Task<RESTfulResult<SqlSugarPagedList<SysMenuPageOutput>>> GetPageAsync([FromQuery] QueryMenuPagedInput dto);
+
+    /// <summary>
     /// 校验权限
     /// </summary>
     /// <param name="code">权限标识</param>
@@ -79,6 +87,22 @@ public interface IHttpMenuService : IBaseHttpRemote
 
 
 
+    /// <summary>
+    /// 删除单个菜单
+    /// </summary>
+    /// <param name="MenuId">菜单Id</param>
+    /// <returns></returns>
+    [Delete("api/system/menu/{menuid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long MenuId);
+
+
+    /// <summary>
+    /// 批量删除菜单
+    /// </summary>
+    /// <param name="MenuIds">菜单Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/menu")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> MenuIds);
 
 
 }

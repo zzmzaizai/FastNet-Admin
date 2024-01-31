@@ -49,4 +49,21 @@ public interface IHttpApiResourceService : IBaseHttpRemote
 
 
 
+    /// <summary>
+    /// 删除单个API资源
+    /// </summary>
+    /// <param name="ApiResourceId">API资源Id</param>
+    /// <returns></returns>
+    [Delete("api/system/api-resource/{apiresourceid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long ApiResourceId);
+
+
+    /// <summary>
+    /// 批量删除API资源
+    /// </summary>
+    /// <param name="ApiResourceIds">API资源Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/api-resource")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> ApiResourceIds);
+
 }

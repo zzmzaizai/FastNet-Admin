@@ -57,4 +57,20 @@ public interface IHttpClientAppService : IBaseHttpRemote
 
 
 
+    /// <summary>
+    /// 删除单个客户端APP
+    /// </summary>
+    /// <param name="ClientAppId">客户端APP Id</param>
+    /// <returns></returns>
+    [Delete("api/system/client/{clientappid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long ClientAppId);
+
+
+    /// <summary>
+    /// 批量删除客户端APP
+    /// </summary>
+    /// <param name="ClientAppIds">客户端APP Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/client")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> ClientAppIds);
 }

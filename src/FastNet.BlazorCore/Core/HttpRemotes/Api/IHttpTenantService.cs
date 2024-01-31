@@ -15,7 +15,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Post("api/system/role")]
+    [Post("api/system/tenant")]
     Task<RESTfulResult<SysTenant>> InsertAsync([Body("application/json")] InsertTenantInput dto);
 
     /// <summary>
@@ -23,7 +23,7 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Put("api/system/role")]
+    [Put("api/system/tenant")]
     Task<RESTfulResult<SysTenant>> UpdateAsync([Body("application/json")] UpdateTenantInput dto);
 
     /// <summary>
@@ -83,5 +83,21 @@ public interface IHttpTenantService : IBaseHttpRemote
 
 
 
+    /// <summary>
+    /// 删除单个租户站点
+    /// </summary>
+    /// <param name="TenantId">租户站点Id</param>
+    /// <returns></returns>
+    [Delete("api/system/tenant/{tenantid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long TenantId);
+
+
+    /// <summary>
+    /// 批量删除租户站点
+    /// </summary>
+    /// <param name="TenantIds">租户站点Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/tenant")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> TenantIds);
 
 }

@@ -47,6 +47,22 @@ public interface IHttpRoleService : IBaseHttpRemote
     [Put("api/system/role")]
     Task<RESTfulResult<SysRole>> UpdateAsync([Body("application/json")] UpdateRoleInput dto);
 
- 
 
+
+    /// <summary>
+    /// 删除单个角色
+    /// </summary>
+    /// <param name="RoleId">角色Id</param>
+    /// <returns></returns>
+    [Delete("api/system/role/{roleid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long RoleId);
+
+
+    /// <summary>
+    /// 批量删除角色
+    /// </summary>
+    /// <param name="RoleIds">角色Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/role")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> RoleIds);
 }

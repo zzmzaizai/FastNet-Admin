@@ -19,6 +19,14 @@ public interface IHttpOrganizationService : IBaseHttpRemote
     Task<RESTfulResult<List<SysOrganization>>> GetListAsync();
 
     /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [Get("api/system/organization/page-list")]
+    Task<RESTfulResult<SqlSugarPagedList<SysOrganizationPageOutput>>> GetPageAsync([FromQuery] QueryOrganizationPagedInput dto);
+
+    /// <summary>
     /// 根据组织架构Id获取组织架构
     /// </summary>
     /// <param name="OrganizationId">组织架构编号</param>
@@ -44,5 +52,21 @@ public interface IHttpOrganizationService : IBaseHttpRemote
 
 
 
+    /// <summary>
+    /// 删除单个组织架构
+    /// </summary>
+    /// <param name="OrganizationId">组织架构Id</param>
+    /// <returns></returns>
+    [Delete("api/system/organization/{organizationid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long OrganizationId);
+
+
+    /// <summary>
+    /// 批量删除组织架构
+    /// </summary>
+    /// <param name="OrganizationIds">组织架构Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/organization")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> OrganizationIds);
 
 }

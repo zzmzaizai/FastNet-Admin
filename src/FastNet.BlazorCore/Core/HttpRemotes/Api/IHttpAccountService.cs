@@ -56,9 +56,24 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [Get("api/system/account/page")]
+    [Get("api/system/account/page-list")]
     Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
 
 
+    /// <summary>
+    /// 删除单个用户
+    /// </summary>
+    /// <param name="UserId">用户Id</param>
+    /// <returns></returns>
+    [Delete("api/system/account/{userid}")]
+    Task<RESTfulResult<bool>> DeleteAsync(long UserId);
 
+
+    /// <summary>
+    /// 批量删除用户
+    /// </summary>
+    /// <param name="UserIds">用户Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/account")]
+    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> UserIds);
 }
