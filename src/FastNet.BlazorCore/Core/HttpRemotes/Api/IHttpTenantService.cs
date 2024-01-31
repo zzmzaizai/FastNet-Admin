@@ -98,6 +98,6 @@ public interface IHttpTenantService : IBaseHttpRemote
     /// <param name="TenantIds">租户站点Id集合</param>
     /// <returns></returns>
     [Delete("api/system/tenant")]
-    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> TenantIds);
+    Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> TenantIds);
 
 }

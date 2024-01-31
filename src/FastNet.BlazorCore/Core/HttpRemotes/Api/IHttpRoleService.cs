@@ -64,5 +64,5 @@ public interface IHttpRoleService : IBaseHttpRemote
     /// <param name="RoleIds">角色Id集合</param>
     /// <returns></returns>
     [Delete("api/system/role")]
-    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> RoleIds);
+    Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> RoleIds);
 }

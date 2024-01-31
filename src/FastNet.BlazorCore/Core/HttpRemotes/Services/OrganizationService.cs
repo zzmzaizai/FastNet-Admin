@@ -33,6 +33,21 @@ public interface IOrganizationService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<RESTfulResult<SysOrganization>> UpdateAsync(UpdateOrganizationInput dto);
+
+    /// <summary>
+    /// 删除单个组织架构
+    /// </summary>
+    /// <param name="OrganizationId">组织架构Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long OrganizationId);
+
+
+    /// <summary>
+    /// 批量删除组织架构
+    /// </summary>
+    /// <param name="OrganizationIds">组织架构Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> OrganizationIds);
 }
 
 
@@ -94,6 +109,23 @@ public class OrganizationService : IOrganizationService
         return await organizationHttp.UpdateAsync(dto);
     }
 
+    /// <summary>
+    /// 删除单个组织架构
+    /// </summary>
+    /// <param name="OrganizationId">组织架构Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long OrganizationId)
+    {
+        return await organizationHttp.DeleteAsync(OrganizationId);
+    }
 
-     
+    /// <summary>
+    /// 批量删除组织架构
+    /// </summary>
+    /// <param name="OrganizationIds">组织架构Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> OrganizationIds)
+    {
+        return await organizationHttp.DeleteAsync(OrganizationIds);
+    }
 }

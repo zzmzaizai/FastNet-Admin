@@ -48,7 +48,21 @@ public interface IAccountService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync(QueryUserPagedInput dto);
+
+    /// <summary>
+    /// 删除单个用户
+    /// </summary>
+    /// <param name="UserId">用户Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long UserId);
+
+    /// <summary>
+    /// 批量删除用户
+    /// </summary>
+    /// <param name="UserIds">用户Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> UserIds);
 }
 
 
@@ -127,10 +141,30 @@ public class AccountService : IAccountService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync([FromQuery] QueryUserPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysUserPageOutput>>> GetPageAsync(QueryUserPagedInput dto)
     {
         return await accountHttp.GetPageAsync(dto);
     }
- 
+
+    /// <summary>
+    /// 删除单个用户
+    /// </summary>
+    /// <param name="UserId">用户Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long UserId)
+    {
+        return await accountHttp.DeleteAsync(UserId);
+    }
+
+    /// <summary>
+    /// 批量删除用户
+    /// </summary>
+    /// <param name="UserIds">用户Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> UserIds)
+    {
+        return await accountHttp.DeleteAsync(UserIds);
+    }
+
 
 }

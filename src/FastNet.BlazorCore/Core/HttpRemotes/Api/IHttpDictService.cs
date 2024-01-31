@@ -40,6 +40,23 @@ public interface IHttpDictService : IBaseHttpRemote
     Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId);
 
     /// <summary>
+    /// 删除单个字典类型
+    /// </summary>
+    /// <param name="DictTypeId">字典类型Id</param>
+    /// <returns></returns>
+    [Delete("api/system/dict/dict-type/{dicttypeid}")]
+    Task<RESTfulResult<bool>> DeleteDictTypeAsync(long DictTypeId);
+
+
+    /// <summary>
+    /// 批量删除字典类型
+    /// </summary>
+    /// <param name="DictTypeIds">字典类型Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/dict/dict-type")]
+    Task<RESTfulResult<bool>> DeleteDictTypeAsync([Body("application/json")] List<long> DictTypeIds);
+
+    /// <summary>
     /// 插入字典类型
     /// </summary>
     /// <param name="dto"></param>
@@ -66,6 +83,23 @@ public interface IHttpDictService : IBaseHttpRemote
     Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId);
 
     /// <summary>
+    /// 删除单个字典数据
+    /// </summary>
+    /// <param name="DictDataId">字典数据Id</param>
+    /// <returns></returns>
+    [Delete("api/system/dict/dict-data/{dictdataid}")]
+    Task<RESTfulResult<bool>> DeleteDictDataAsync(long DictDataId);
+
+
+    /// <summary>
+    /// 批量删除字典数据
+    /// </summary>
+    /// <param name="DictDataIds">字典数据Id集合</param>
+    /// <returns></returns>
+    [Delete("api/system/dict/dict-data")]
+    Task<RESTfulResult<bool>> DeleteDictDataAsync([Body("application/json")] List<long> DictDataIds);
+
+    /// <summary>
     /// 插入字典数据
     /// </summary>
     /// <param name="dto"></param>
@@ -81,7 +115,6 @@ public interface IHttpDictService : IBaseHttpRemote
     [Put("api/system/dict/dict-data")]
     Task<RESTfulResult<SysDictData>> UpdateDictDataAsync([Body("application/json")] UpdateDictDataInput dto);
 
-     
-
+ 
 
 }

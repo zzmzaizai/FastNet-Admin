@@ -1,4 +1,7 @@
-﻿namespace FastNet.BlazorCore.HttpRemotes;
+﻿
+using AntDesign;
+
+namespace FastNet.BlazorCore.HttpRemotes;
 
 
 /// <summary>
@@ -62,6 +65,21 @@ public interface IMenuService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<RESTfulResult<SysMenu>> UpdateAsync(UpdateMenuInput dto);
+
+    /// <summary>
+    /// 删除单个菜单
+    /// </summary>
+    /// <param name="MenuId">菜单Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long MenuId);
+
+
+    /// <summary>
+    /// 批量删除菜单
+    /// </summary>
+    /// <param name="MenuIds">菜单Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> MenuIds);
 }
 
 
@@ -165,7 +183,23 @@ public class MenuService : IMenuService
         return await menuHttp.UpdateAsync(dto);
     }
 
-     
+    /// <summary>
+    /// 删除单个菜单
+    /// </summary>
+    /// <param name="MenuId">菜单Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long MenuId)
+    {
+        return await menuHttp.DeleteAsync(MenuId);
+    }
 
-
+    /// <summary>
+    /// 批量删除菜单
+    /// </summary>
+    /// <param name="MenuIds">菜单Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> MenuIds)
+    {
+        return await menuHttp.DeleteAsync(MenuIds);
+    }
 }

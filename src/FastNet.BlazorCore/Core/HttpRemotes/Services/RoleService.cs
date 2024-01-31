@@ -33,6 +33,21 @@ public interface IRoleService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<RESTfulResult<SysRole>> UpdateAsync(UpdateRoleInput dto);
+
+    /// <summary>
+    /// 删除单个角色
+    /// </summary>
+    /// <param name="RoleId">角色Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long RoleId);
+
+
+    /// <summary>
+    /// 批量删除角色
+    /// </summary>
+    /// <param name="RoleIds">角色Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> RoleIds);
 }
 
 
@@ -99,6 +114,25 @@ public class RoleService : IRoleService
         return await roleHttp.UpdateAsync(dto);
     }
 
+    /// <summary>
+    /// 删除单个角色
+    /// </summary>
+    /// <param name="RoleId">角色Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long RoleId)
+    {
+        return await roleHttp.DeleteAsync(RoleId);
+    }
 
-    
+
+    /// <summary>
+    /// 批量删除角色
+    /// </summary>
+    /// <param name="RoleIds">角色Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> RoleIds)
+    {
+        return await roleHttp.DeleteAsync(RoleIds);
+    }
+
 }

@@ -69,7 +69,22 @@ public interface ITenantService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<RESTfulResult<SqlSugarPagedList<SysTenantPageOutput>>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysTenantPageOutput>>> GetPageListAsync(QueryTenantPagedInput dto);
+
+    /// <summary>
+    /// 删除单个租户站点
+    /// </summary>
+    /// <param name="TenantId">租户站点Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long TenantId);
+
+
+    /// <summary>
+    /// 批量删除租户站点
+    /// </summary>
+    /// <param name="TenantIds">租户站点Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> TenantIds);
 }
 
 
@@ -185,5 +200,25 @@ public class TenantService : ITenantService
         return await tenantHttp.GetPageListAsync(dto);
     }
 
-     
+
+    /// <summary>
+    /// 删除单个租户站点
+    /// </summary>
+    /// <param name="TenantId">租户站点Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long TenantId)
+    {
+        return await tenantHttp.DeleteAsync(TenantId);
+    }
+
+
+    /// <summary>
+    /// 批量删除租户站点
+    /// </summary>
+    /// <param name="TenantIds">租户站点Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> TenantIds)
+    {
+        return await tenantHttp.DeleteAsync(TenantIds);
+    }
 }

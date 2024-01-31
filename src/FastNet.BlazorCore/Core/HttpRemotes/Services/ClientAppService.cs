@@ -41,6 +41,21 @@ public interface IClientAppService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<RESTfulResult<SysClientApp>> ResetSecretAsync(ResetClientAppSecretInput dto);
+
+    /// <summary>
+    /// 删除单个客户端APP
+    /// </summary>
+    /// <param name="ClientAppId">客户端APP Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long ClientAppId);
+
+
+    /// <summary>
+    /// 批量删除客户端APP
+    /// </summary>
+    /// <param name="ClientAppIds">客户端APP Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> ClientAppIds);
 }
 
 
@@ -114,5 +129,25 @@ public class ClientAppService : IClientAppService
     {
         return await clientAppHttp.ResetSecretAsync(dto);
     }
- 
+
+
+    /// <summary>
+    /// 删除单个客户端APP
+    /// </summary>
+    /// <param name="ClientAppId">客户端APP Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long ClientAppId)
+    {
+        return await clientAppHttp.DeleteAsync(ClientAppId);
+    }
+
+    /// <summary>
+    /// 批量删除客户端APP
+    /// </summary>
+    /// <param name="ClientAppIds">客户端APP Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> ClientAppIds)
+    {
+        return await clientAppHttp.DeleteAsync(ClientAppIds);
+    }
 }

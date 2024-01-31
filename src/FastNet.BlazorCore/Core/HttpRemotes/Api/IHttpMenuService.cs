@@ -102,7 +102,7 @@ public interface IHttpMenuService : IBaseHttpRemote
     /// <param name="MenuIds">菜单Id集合</param>
     /// <returns></returns>
     [Delete("api/system/menu")]
-    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> MenuIds);
+    Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> MenuIds);
 
 
 }

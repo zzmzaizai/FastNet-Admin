@@ -12,7 +12,7 @@ public interface IDictService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync(QueryDictDataPagedInput dto);
 
 
     /// <summary>
@@ -20,7 +20,7 @@ public interface IDictService : ITransient
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto);
+    Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync(QueryDictTypePagedInput dto);
 
 
 
@@ -30,6 +30,21 @@ public interface IDictService : ITransient
     /// <param name="DictTypeId">字典类型编号</param>
     /// <returns></returns>
     Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId);
+
+    /// <summary>
+    /// 删除单个字典类型
+    /// </summary>
+    /// <param name="DictTypeId">字典类型Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteDictTypeAsync(long DictTypeId);
+
+
+    /// <summary>
+    /// 批量删除字典类型
+    /// </summary>
+    /// <param name="DictTypeIds">字典类型Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteDictTypeAsync(List<long> DictTypeIds);
 
     /// <summary>
     /// 插入字典类型
@@ -51,6 +66,21 @@ public interface IDictService : ITransient
     /// <param name="DictDataId">字典数据编号</param>
     /// <returns></returns>
     Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId);
+
+    /// <summary>
+    /// 删除单个字典数据
+    /// </summary>
+    /// <param name="DictDataId">字典数据Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteDictDataAsync(long DictDataId);
+
+
+    /// <summary>
+    /// 批量删除字典数据
+    /// </summary>
+    /// <param name="DictDataIds">字典数据Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteDictDataAsync(List<long> DictDataIds);
 
     /// <summary>
     /// 插入字典数据
@@ -92,7 +122,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync([FromQuery] QueryDictDataPagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysDictDataPageOutput>>> GetDictDataPageListAsync(QueryDictDataPagedInput dto)
     {
         return await dictHttp.GetDictDataPageListAsync(dto);
     }
@@ -103,7 +133,7 @@ public class DictService : IDictService
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto)
+    public async Task<RESTfulResult<SqlSugarPagedList<SysDictTypePageOutput>>> GetDictTypePageListAsync(QueryDictTypePagedInput dto)
     {
         return await dictHttp.GetDictTypePageListAsync(dto);
     }
@@ -118,6 +148,27 @@ public class DictService : IDictService
     public async Task<RESTfulResult<SysDictType>> GetDictTypeAsync(long DictTypeId)
     {
         return await dictHttp.GetDictTypeAsync(DictTypeId);
+    }
+
+    /// <summary>
+    /// 删除单个字典类型
+    /// </summary>
+    /// <param name="DictTypeId">字典类型Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteDictTypeAsync(long DictTypeId)
+    {
+        return await dictHttp.DeleteDictTypeAsync(DictTypeId);
+    }
+
+
+    /// <summary>
+    /// 批量删除字典类型
+    /// </summary>
+    /// <param name="DictTypeIds">字典类型Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteDictTypeAsync(List<long> DictTypeIds)
+    {
+        return await dictHttp.DeleteDictTypeAsync(DictTypeIds);
     }
 
     /// <summary>
@@ -150,6 +201,27 @@ public class DictService : IDictService
     public async Task<RESTfulResult<SysDictData>> GetDictDataAsync(long DictDataId)
     {
         return await dictHttp.GetDictDataAsync(DictDataId);
+    }
+
+    /// <summary>
+    /// 删除单个字典数据
+    /// </summary>
+    /// <param name="DictDataId">字典数据Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteDictDataAsync(long DictDataId)
+    {
+        return await dictHttp.DeleteDictDataAsync(DictDataId);
+    }
+
+
+    /// <summary>
+    /// 批量删除字典数据
+    /// </summary>
+    /// <param name="DictDataIds">字典数据Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteDictDataAsync(List<long> DictDataIds)
+    {
+        return await dictHttp.DeleteDictDataAsync(DictDataIds);
     }
 
     /// <summary>

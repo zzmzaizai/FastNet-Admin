@@ -40,6 +40,20 @@ public interface IApiResourceService : ITransient
     /// <param name="dto"></param>
     /// <returns></returns>
     Task<RESTfulResult<SysApiResource>> UpdateAsync(UpdateApiResourceInput dto);
+
+    /// <summary>
+    /// 删除单个API资源
+    /// </summary>
+    /// <param name="ApiResourceId">API资源Id</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(long ApiResourceId);
+
+    /// <summary>
+    /// 批量删除API资源
+    /// </summary>
+    /// <param name="ApiResourceIds">API资源Id集合</param>
+    /// <returns></returns>
+    Task<RESTfulResult<bool>> DeleteAsync(List<long> ApiResourceIds);
 }
 
 
@@ -105,7 +119,24 @@ public class ApiResourceService : IApiResourceService
     }
 
 
+    /// <summary>
+    /// 删除单个API资源
+    /// </summary>
+    /// <param name="ApiResourceId">API资源Id</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(long ApiResourceId)
+    {
+        return await apiResourceHttp.DeleteAsync(ApiResourceId);
+    }
 
- 
+    /// <summary>
+    /// 批量删除API资源
+    /// </summary>
+    /// <param name="ApiResourceIds">API资源Id集合</param>
+    /// <returns></returns>
+    public async Task<RESTfulResult<bool>> DeleteAsync(List<long> ApiResourceIds)
+    {
+        return await apiResourceHttp.DeleteAsync(ApiResourceIds);
+    }
 
 }

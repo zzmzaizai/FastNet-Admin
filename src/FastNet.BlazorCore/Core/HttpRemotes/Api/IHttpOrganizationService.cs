@@ -67,6 +67,6 @@ public interface IHttpOrganizationService : IBaseHttpRemote
     /// <param name="OrganizationIds">组织架构Id集合</param>
     /// <returns></returns>
     [Delete("api/system/organization")]
-    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> OrganizationIds);
+    Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> OrganizationIds);
 
 }

@@ -75,5 +75,5 @@ public interface IHttpAccountService : IBaseHttpRemote
     /// <param name="UserIds">用户Id集合</param>
     /// <returns></returns>
     [Delete("api/system/account")]
-    Task<RESTfulResult<bool>> DeleteAsync([FromQuery] List<long> UserIds);
+    Task<RESTfulResult<bool>> DeleteAsync([Body("application/json")] List<long> UserIds);
 }
