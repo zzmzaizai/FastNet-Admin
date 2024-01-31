@@ -15,8 +15,6 @@ public interface IAuthService: ITransient
     /// <returns></returns>
     Task<RESTfulResult<SigninToken>> SignIn(LoginInput dto);
 
-    Task<object> Login(LoginInput dto);
-
     /// <summary>
     /// 系统用户退出
     /// </summary>
@@ -74,11 +72,6 @@ public class AuthService : IAuthService
     public async Task<RESTfulResult<SigninToken>> SignIn(LoginInput dto)
     {
          return await authHttp.SignIn(dto);
-    }
-
-    public async Task<object> Login(LoginInput dto)
-    {
-        return await authHttp.Login(dto);
     }
 
     /// <summary>
