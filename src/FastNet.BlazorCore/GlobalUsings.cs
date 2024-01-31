@@ -31,3 +31,4 @@ global using FastNet.Model.Dto;
 global using FastNet.Model.SeedData;
 global using FastNet.Infrastructure;
 global using FastNet.BlazorCore.HttpRemotes;
+global using FastNet.BlazorCore.Shared;

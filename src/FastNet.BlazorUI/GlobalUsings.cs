@@ -17,3 +17,4 @@ global using System.ComponentModel.DataAnnotations;
 global using FastNet.BlazorCore;
 global using FastNet.BlazorCore.Components;
 global using FastNet.BlazorCore.Services;
+global using FastNet.BlazorCore.Shared;

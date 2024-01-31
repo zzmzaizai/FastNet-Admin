@@ -18,6 +18,16 @@
     <ProjectReference Include="..\FastNet.Plugin.Caching\FastNet.Plugin.Caching.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\System\Role\" />
+    <Folder Include="Pages\System\Organization\" />
+    <Folder Include="Pages\System\Menu\" />
+    <Folder Include="Pages\System\Dict\" />
+    <Folder Include="Pages\System\Config\" />
+    <Folder Include="Pages\System\Client\" />
+    <Folder Include="Pages\System\ApiResource\" />
+  </ItemGroup>
+
 
 
 

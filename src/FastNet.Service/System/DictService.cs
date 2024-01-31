@@ -26,6 +26,16 @@ public class DictService : BaseApiController
 
 
     /// <summary>
+    /// 获取字典数据列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysDictData>> GetDictDataListAsync()
+    {
+        return await sysDictDataRep.GetListAsync();
+    }
+
+
+    /// <summary>
     /// 字典类型分页列表查询
     /// </summary>
     /// <param name="dto"></param>
@@ -34,6 +44,16 @@ public class DictService : BaseApiController
     public async Task<SqlSugarPagedList<SysDictTypePageOutput>> GetDictTypePageListAsync([FromQuery] QueryDictTypePagedInput dto)
     {
         return await sysDictTypeRep.GetPageListAsync(dto);
+    }
+
+
+    /// <summary>
+    /// 获取字典类型列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysDictType>> GetDictTypeListAsync()
+    {
+        return await sysDictTypeRep.GetListAsync();
     }
 
 
@@ -46,6 +66,26 @@ public class DictService : BaseApiController
     public async Task<SysDictType> GetDictTypeAsync(long DictTypeId)
     {
         return await sysDictTypeRep.GetDictTypeAsync(DictTypeId);
+    }
+
+    /// <summary>
+    /// 删除单个字典类型
+    /// </summary>
+    /// <param name="DictTypeId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteDictTypeAsync(long DictTypeId)
+    {
+        return await sysDictTypeRep.DeleteByIdAsync(DictTypeId);
+    }
+
+    /// <summary>
+    /// 批量删除字典类型
+    /// </summary>
+    /// <param name="DictTypeIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteDictTypeAsync(List<long> DictTypeIds)
+    {
+        return await sysDictTypeRep.DeleteByIdsAsync(DictTypeIds);
     }
 
     /// <summary>
@@ -81,7 +121,27 @@ public class DictService : BaseApiController
     }
 
     /// <summary>
-    /// 插入字典数据
+    /// 删除单个字典数据
+    /// </summary>
+    /// <param name="DictDataId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteDictDataAsync(long DictDataId)
+    {
+        return await sysDictDataRep.DeleteByIdAsync(DictDataId);
+    }
+
+    /// <summary>
+    /// 批量删除字典数据
+    /// </summary>
+    /// <param name="DictDataIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteDictDataAsync(List<long> DictDataIds)
+    {
+        return await sysDictDataRep.DeleteByIdsAsync(DictDataIds);
+    }
+
+    /// <summary>
+    /// 插入字典字典数据
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>

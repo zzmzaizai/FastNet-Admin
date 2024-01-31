@@ -23,6 +23,25 @@ public interface IDatabaseRepository<T> : ISimpleClient<T> where T : class, new(
 
     #endregion 插入
 
+    #region 删除
+
+    /// <summary>
+    /// 批量删除数据
+    /// </summary>
+    /// <param name="Ids">多个编号集合</param>
+    /// <returns></returns>
+    Task<bool> DeleteByIdsAsync(List<long> Ids);
+
+    /// <summary>
+    /// 删除数据
+    /// </summary>
+    /// <param name="Id">待删除的数据编号</param>
+    /// <returns></returns>
+    Task<bool> DeleteByIdAsync(long Id);
+
+
+    #endregion 删除
+
     #region 列表
 
     /// <summary>

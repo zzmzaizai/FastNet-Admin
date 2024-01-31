@@ -52,6 +52,32 @@ public partial class DatabaseRepository<T> : SimpleClient<T> where T : class, ne
 
     #endregion 插入
 
+    #region 删除
+
+    /// <summary>
+    /// 批量删除数据
+    /// </summary>
+    /// <param name="Ids">多个编号集合</param>
+    /// <returns></returns>
+    public virtual async Task<bool> DeleteByIdsAsync(List<long> Ids)
+    {
+        return await Context.Deleteable<T>().In(Ids).ExecuteCommandAsync() > 0;
+    }
+
+    /// <summary>
+    /// 删除数据
+    /// </summary>
+    /// <param name="Id">待删除的数据编号</param>
+    /// <returns></returns>
+    public virtual async Task<bool> DeleteByIdAsync(long Id)
+    {
+        return await DeleteByIdsAsync(new List<long> { Id });
+    }
+
+
+    #endregion 删除
+
+
     #region 列表
 
     /// <summary>

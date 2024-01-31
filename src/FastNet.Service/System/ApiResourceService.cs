@@ -38,6 +38,26 @@ public class ApiResourceService : BaseApiController
     }
 
     /// <summary>
+    /// 删除单个API资源
+    /// </summary>
+    /// <param name="ApiResourceId">API资源编号</param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long ApiResourceId)
+    {
+        return await sysUserRep.DeleteByIdAsync(ApiResourceId);
+    }
+
+    /// <summary>
+    /// 批量删除API资源
+    /// </summary>
+    /// <param name="ApiResourceIds">API资源编号集合</param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> ApiResourceIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(ApiResourceIds);
+    }
+
+    /// <summary>
     /// 插入API资源
     /// </summary>
     /// <param name="dto"></param>

@@ -15,6 +15,15 @@ public class RoleService : BaseApiController
 {
 
     /// <summary>
+    /// 获取列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysRole>> GetListAsync()
+    {
+        return await sysRoleRep.GetListAsync();
+    }
+
+    /// <summary>
     /// 分页列表查询
     /// </summary>
     /// <param name="dto"></param>
@@ -35,6 +44,26 @@ public class RoleService : BaseApiController
     public async Task<SysRole> GetAsync(long RoleId)
     {
         return await sysRoleRep.GetRoleAsync(RoleId);
+    }
+
+    /// <summary>
+    /// 删除单个角色
+    /// </summary>
+    /// <param name="RoleId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long RoleId)
+    {
+        return await sysUserRep.DeleteByIdAsync(RoleId);
+    }
+
+    /// <summary>
+    /// 批量删除角色
+    /// </summary>
+    /// <param name="RoleIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> RoleIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(RoleIds);
     }
 
     /// <summary>

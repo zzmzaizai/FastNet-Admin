@@ -37,6 +37,26 @@ public class ClientAppService : BaseApiController
     }
 
     /// <summary>
+    /// 删除单个客户端APP
+    /// </summary>
+    /// <param name="ClientAppId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long ClientAppId)
+    {
+        return await sysUserRep.DeleteByIdAsync(ClientAppId);
+    }
+
+    /// <summary>
+    /// 批量删除客户端APP
+    /// </summary>
+    /// <param name="ClientAppIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> ClientAppIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(ClientAppIds);
+    }
+
+    /// <summary>
     /// 插入客户端APP
     /// </summary>
     /// <param name="dto"></param>

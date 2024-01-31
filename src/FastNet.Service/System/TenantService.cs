@@ -10,6 +10,55 @@ namespace FastNet.Service;
 [ApiDescriptionSettings(groups: "Host", Order = 1)]
 public class TenantService : BaseApiController
 {
+    /// <summary>
+    /// 获取列表
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<SysTenant>> GetListAsync()
+    {
+        return await sysTenantRep.GetListAsync();
+    }
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto)
+    {
+        return await sysTenantRep.GetPageListAsync(dto);
+    }
+
+    /// <summary>
+    /// 获取单个租户信息
+    /// </summary>
+    /// <param name="TenantId">租户Id</param>
+    /// <returns></returns>
+    public async Task<SysTenant> GetAsync(long TenantId)
+    {
+        return await sysTenantRep.GetTenantAsync(TenantId);
+    }
+
+    /// <summary>
+    /// 删除单个租户信息
+    /// </summary>
+    /// <param name="TenantId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long TenantId)
+    {
+        return await sysTenantRep.DeleteByIdAsync(TenantId);
+    }
+
+    /// <summary>
+    /// 批量删除租户信息
+    /// </summary>
+    /// <param name="TenantIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> TenantIds)
+    {
+        return await sysTenantRep.DeleteByIdsAsync(TenantIds);
+    }
 
     /// <summary>
     /// 插入租户
@@ -42,15 +91,7 @@ public class TenantService : BaseApiController
         return await sysTenantRep.GetTenantAsync(HostName);
     }
 
-    /// <summary>
-    /// 获取单个租户信息
-    /// </summary>
-    /// <param name="TenantId">租户Id</param>
-    /// <returns></returns>
-    public async Task<SysTenant> GetAsync(long TenantId)
-    {
-        return await sysTenantRep.GetTenantAsync(TenantId);
-    }
+
 
     /// <summary>
     /// 获取当前租户信息
@@ -104,16 +145,6 @@ public class TenantService : BaseApiController
     }
 
 
-    /// <summary>
-    /// 分页列表查询
-    /// </summary>
-    /// <param name="dto"></param>
-    /// <returns></returns>
-    [HttpGet]
-    public async Task<SqlSugarPagedList<SysTenantPageOutput>> GetPageListAsync([FromQuery] QueryTenantPagedInput dto)
-    {
-        return await sysTenantRep.GetPageListAsync(dto);
-    }
 
 
     /// <summary>

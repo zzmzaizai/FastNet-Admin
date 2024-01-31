@@ -72,12 +72,33 @@ public class AccountService : BaseApiController
         return await sysUserRep.GetUserAsync(UserId);
     }
 
+
+    /// <summary>
+    /// 删除单个用户
+    /// </summary>
+    /// <param name="UserId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long UserId)
+    {
+        return await sysUserRep.DeleteByIdAsync(UserId);
+    }
+
+    /// <summary>
+    /// 批量删除用户
+    /// </summary>
+    /// <param name="UserIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> UserIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(UserIds);
+    }
+
     /// <summary>
     /// 分页列表查询
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
-    public async Task<SqlSugarPagedList<SysUserPageOutput>> GetPageAsync([FromQuery] QueryUserPagedInput dto)
+    public async Task<SqlSugarPagedList<SysUserPageOutput>> GetPageListAsync([FromQuery] QueryUserPagedInput dto)
     {
         return await sysUserRep.GetPageListAsync(dto);
     }

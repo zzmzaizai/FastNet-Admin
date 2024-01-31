@@ -16,7 +16,7 @@ public interface ISysUserRepository : IDatabaseRepository<SysUser>, ITransient
     /// <summary>
     /// 根据用户Id获取用户
     /// </summary>
-    /// <param name="UserId">用户名</param>
+    /// <param name="UserId">用户编号</param>
     /// <returns></returns>
     Task<SysUser> GetUserAsync(long UserId);
 

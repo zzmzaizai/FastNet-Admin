@@ -23,6 +23,17 @@ public class OrganizationService : BaseApiController
     }
 
     /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysOrganizationPageOutput>> GetPageListAsync([FromQuery] QueryOrganizationPagedInput dto)
+    {
+        return await sysOrganizationRep.GetPageListAsync(dto);
+    }
+
+    /// <summary>
     /// 根据组织架构Id获取组织架构
     /// </summary>
     /// <param name="OrganizationId">组织架构编号</param>
@@ -30,6 +41,26 @@ public class OrganizationService : BaseApiController
     public async Task<SysOrganization> GetAsync(long OrganizationId)
     {
         return await sysOrganizationRep.GetOrganizationAsync(OrganizationId);
+    }
+
+    /// <summary>
+    /// 删除单个组织架构
+    /// </summary>
+    /// <param name="OrganizationId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long OrganizationId)
+    {
+        return await sysUserRep.DeleteByIdAsync(OrganizationId);
+    }
+
+    /// <summary>
+    /// 批量删除组织架构
+    /// </summary>
+    /// <param name="OrganizationIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> OrganizationIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(OrganizationIds);
     }
 
     /// <summary>

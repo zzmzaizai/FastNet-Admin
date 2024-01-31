@@ -16,7 +16,18 @@ public class MenuService : BaseApiController
     {
         return await sysMenuRep.GetListAsync();
     }
- 
+
+    /// <summary>
+    /// 分页列表查询
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<SqlSugarPagedList<SysMenuPageOutput>> GetPageListAsync([FromQuery] QueryMenuPagedInput dto)
+    {
+        return await sysMenuRep.GetPageListAsync(dto);
+    }
+
     /// <summary>
     /// 校验权限
     /// </summary>
@@ -71,6 +82,26 @@ public class MenuService : BaseApiController
     public async Task<SysMenu> GetAsync(long MenuId)
     {
         return await sysMenuRep.GetMenuAsync(MenuId);
+    }
+
+    /// <summary>
+    /// 删除单个菜单
+    /// </summary>
+    /// <param name="MenuId"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(long MenuId)
+    {
+        return await sysUserRep.DeleteByIdAsync(MenuId);
+    }
+
+    /// <summary>
+    /// 批量删除菜单
+    /// </summary>
+    /// <param name="MenuIds"></param>
+    /// <returns></returns>
+    public async Task<bool> DeleteAsync(List<long> MenuIds)
+    {
+        return await sysUserRep.DeleteByIdsAsync(MenuIds);
     }
 
     /// <summary>
